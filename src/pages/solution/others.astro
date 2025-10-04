@@ -1,0 +1,159 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: '各種SaaSシステム受託開発 | Rakucloud株式会社',
+  description:
+    'Salesforce以外の業務管理システムやAPI連携開発など、各種SaaSシステムの受託開発・運用支援についてご紹介します。',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="SOLUTION"
+    title="各種SaaSシステム受託開発"
+    subtitle="Salesforce以外のSaaSや基幹システムでも、要件定義から開発・運用まで一気通貫で支援。ビジネスに最適な構成でスピーディーに提供します。"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'お問い合わせ',
+        href: '/contact',
+      },
+      {
+        variant: 'secondary',
+        text: '開発相談をする',
+        href: '/contact',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2070&q=80',
+      alt: 'SaaSシステムの開発を進めるチーム',
+    }}
+  />
+
+  <Content
+    tagline="PROBLEM"
+    title="SaaSシステムについて、こんなお悩みありませんか？"
+    items={[
+      {
+        title: '導入方法がわからない',
+        description: '数多くのSaaSからどれを選ぶべきか、どのように業務へ組み込むべきか判断できない。',
+      },
+      {
+        title: '運用の最適化ができない',
+        description: '現状の運用が正しいのか不安で、社内にノウハウがなく改善が進まない。',
+      },
+      {
+        title: '機能開発・連携に時間がかかる',
+        description: '業務に合わせたカスタマイズや外部サービスとのAPI連携に多くの工数が必要。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2070&q=80',
+      alt: 'SaaS導入を検討するチーム',
+    }}
+  >
+    <Fragment slot="content">
+      <p>
+        Rakucloudは、Salesforce以外にも多彩なSaaSや業務システムの開発・連携実績を持ち、
+        お客様のビジネスに最適なサービス選定から導入後の運用まで一貫してサポートします。
+      </p>
+    </Fragment>
+  </Content>
+
+  <Features
+    tagline="STRENGTH"
+    title="受託開発の強み"
+    subtitle="経験豊富なチームがスピードと品質を両立します。"
+    items={[
+      {
+        title: '幅広い導入実績',
+        description: '10年以上、50件を超えるSaaS導入・開発に携わり、多種多様な業界の課題を解決してきました。',
+      },
+      {
+        title: '複雑な要件にも対応',
+        description: 'オブジェクト設計やAPI連携など、複雑なシステム構成でも柔軟にカスタマイズし最適な提案を行います。',
+      },
+      {
+        title: '専門エンジニアによる伴走',
+        description: '得意分野の異なるエンジニアが連携し、課題に適したチームでスピーディーにプロジェクトを進めます。',
+      },
+    ]}
+  />
+
+  <Content
+    tagline="SERVICE"
+    title="支援領域"
+    items={[
+      {
+        title: 'サービス選定と要件整理',
+        description: '業務フローや既存システムを分析し、目的に適したSaaSの選定と要件整理を実施します。',
+      },
+      {
+        title: '開発・カスタマイズ',
+        description: 'ノーコード/ローコードからスクラッチ開発まで、必要な機能を短期間で構築します。',
+      },
+      {
+        title: '運用・改善サポート',
+        description: '導入後の教育や改善提案、運用代行までワンストップで支援します。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2070&q=80',
+      alt: 'プロジェクト支援の打ち合わせ',
+    }}
+  >
+    <Fragment slot="content">
+      <p>
+        既存の業務に合わせたカスタマイズはもちろん、複数システムを跨いだデータ連携やダッシュボード構築まで幅広く対応。
+        長期的な改善を見据えた柔軟な体制でサポートします。
+      </p>
+    </Fragment>
+  </Content>
+
+  <Steps
+    title="支援開始までの3ステップ"
+    subtitle="最短でプロジェクトをスタートできるよう丁寧に伴走します。"
+    items={[
+      {
+        title: 'Step 1: お問い合わせ',
+        description: 'フォームから課題やご希望をお知らせください。担当者がヒアリング日程をご案内します。',
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: 'Step 2: オンラインMTG',
+        description: '利用目的や範囲、連携したいシステムを確認し、概算スケジュールとご提案内容を共有します。',
+        icon: 'tabler:calendar-event',
+      },
+      {
+        title: 'Step 3: 開発・導入',
+        description: '要件に合わせて開発を進め、納品後も運用定着と改善まで継続的にサポートします。',
+        icon: 'tabler:rocket',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2070&q=80',
+      alt: 'オンラインミーティングを行うメンバー',
+    }}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: '開発の相談をする',
+        href: '/contact',
+      },
+    ]}
+  >
+    <Fragment slot="title">SaaS開発・連携のことはRakucloudへ</Fragment>
+    <Fragment slot="subtitle">
+      システム選定から運用改善まで、まずはお気軽にご相談ください。最適なチームでプロジェクトをサポートします。
+    </Fragment>
+  </CallToAction>
+</Layout>
