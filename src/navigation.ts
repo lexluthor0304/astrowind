@@ -17,7 +17,7 @@ export const headerData = {
     },
     {
       text: '会社情報',
-      href: getPermalink('/#about'),
+      href: getPermalink('/about'),
     },
     {
       text: '個人情報保護方針',
@@ -37,7 +37,7 @@ export const footerData = {
         { text: '楽Platformの開発販売', href: getPermalink('/solution/rakuplatform') },
         { text: 'Salesforce導入・運用支援', href: getPermalink('/solution/salesforce') },
         { text: '各種SaaSシステム受託開発', href: getPermalink('/solution/others') },
-        { text: '会社情報', href: getPermalink('/#about') },
+        { text: '会社情報', href: getPermalink('/about') },
         { text: 'お問い合わせ', href: getPermalink('/contact') },
       ],
     },
