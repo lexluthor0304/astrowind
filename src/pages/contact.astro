@@ -5,72 +5,72 @@ import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 
 const metadata = {
-  title: 'Contact',
+  title: 'お問い合わせ',
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText tagline="お問い合わせ" title="お気軽にご連絡ください" />
 
   <ContactUs
     id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    title="本日中にメッセージをお寄せください"
+    subtitle="お急ぎの場合は、まずFAQをご覧ください。そこで解決しないときは、サポートチームが喜んでお手伝いします。"
     inputs={[
       {
         type: 'text',
         name: 'name',
-        label: 'Name',
+        label: 'お名前',
       },
       {
         type: 'email',
         name: 'email',
-        label: 'Email',
+        label: 'メールアドレス',
       },
     ]}
     textarea={{
-      label: 'Message',
+      label: 'メッセージ',
     }}
     disclaimer={{
       label:
-        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
+        'フォームを送信することで、個人情報の取得に同意いただいたものとみなします。',
     }}
-    description="Our support team typically responds within 24 business hours."
+    description="通常、サポートチームは営業日24時間以内にご返信いたします。"
   />
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="We are here to help!"
+    title="私たちがお手伝いします"
     items={[
       {
-        title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
+        title: '一般的なサポート',
+        description: `アカウント管理、サイトの操作方法、支払いトラブル、購入済みテンプレートへのアクセス、その他機能に関するご質問はお気軽にご相談ください。`,
       },
       {
-        title: 'Contact sales',
+        title: '営業へのお問い合わせ',
         description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
+          '購入に関するご相談、カスタマイズのご要望、商用利用ライセンス、特定テンプレートについてのご質問などはこちらからどうぞ。',
       },
       {
-        title: 'Technical support',
+        title: '技術サポート',
         description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
+          'テンプレートのインストールや編集の不具合、ソフトウェアとの互換性、ダウンロードエラーなど技術的な問題がありましたらご連絡ください。',
       },
       {
-        title: 'Phone',
+        title: '電話',
         description: '+1 (234) 567-890',
         icon: 'tabler:headset',
       },
       {
-        title: 'Email',
+        title: 'メール',
         description: 'contact@support.com',
         icon: 'tabler:mail',
       },
       {
-        title: 'Location',
+        title: '所在地',
         description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
         icon: 'tabler:map-pin',
       },
