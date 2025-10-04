@@ -74,22 +74,24 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
 
       'astro:build:done': async ({ logger }) => {
         const buildLogger = logger.fork('astrowind');
-        buildLogger.info('Updating `robots.txt` with `sitemap-index.xml` ...');
+        buildLogger.info('Updating `robots.txt` with sitemap reference ...');
 
         try {
           const outDir = cfg.outDir;
           const publicDir = cfg.publicDir;
-          const sitemapName = 'sitemap-index.xml';
-          const sitemapFile = new URL(sitemapName, outDir);
+          const sitemapCandidates = ['sitemap.xml', 'sitemap-index.xml'];
+          const sitemapName = sitemapCandidates.find((name) => fs.existsSync(new URL(name, outDir)));
+          if (!sitemapName) {
+            return;
+          }
+
           const robotsTxtFile = new URL('robots.txt', publicDir);
           const robotsTxtFileInOut = new URL('robots.txt', outDir);
 
           const hasIntegration =
             Array.isArray(cfg?.integrations) &&
             cfg.integrations?.find((e) => e?.name === '@astrojs/sitemap') !== undefined;
-          const sitemapExists = fs.existsSync(sitemapFile);
-
-          if (hasIntegration && sitemapExists) {
+          if (hasIntegration) {
             const robotsTxt = fs.readFileSync(robotsTxtFile, { encoding: 'utf8', flag: 'a+' });
             const sitemapUrl = new URL(sitemapName, String(new URL(cfg.base, cfg.site)));
             const pattern = /^Sitemap:(.*)$/m;
