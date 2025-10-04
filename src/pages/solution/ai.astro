@@ -1,0 +1,159 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'AIソリューション開発・導入支援 | Rakucloud株式会社',
+  description:
+    'RAGやAIエージェントの企画・設計から開発、運用定着までを支援。業務に即したAI活用で成果につながる仕組みづくりをご紹介します。',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="SOLUTION"
+    title="AIソリューション開発・導入支援"
+    subtitle="RAGやAIエージェントを活用し、業務の自動化と意思決定の高度化を支援。ビジネス課題に合わせたAI活用をワンストップで実現します。"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'お問い合わせ',
+        href: '/contact',
+      },
+      {
+        variant: 'secondary',
+        text: '導入相談をする',
+        href: '/contact',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2070&q=80',
+      alt: 'AIソリューションの構想を練るチーム',
+    }}
+  />
+
+  <Content
+    tagline="PROBLEM"
+    title="AI活用について、こんなお悩みはありませんか？"
+    items={[
+      {
+        title: '活用イメージが描けない',
+        description: '自社の業務にAIをどう取り入れるべきか分からず、PoCで終わってしまう。',
+      },
+      {
+        title: 'データ基盤やセキュリティが不安',
+        description: '社内データの整備が追いつかず、機密情報を安全に扱えるのか不安がある。',
+      },
+      {
+        title: '運用・改善の体制がない',
+        description: '導入後の教育や改善ができるメンバーがいないため、成果が出ない。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2070&q=80',
+      alt: 'AI導入の課題を議論するメンバー',
+    }}
+  >
+    <Fragment slot="content">
+      <p>
+        Rakucloudは、業務システム開発で培った知見を活かし、AI活用の構想策定からプロトタイピング、運用定着まで伴走します。
+        データ整備やセキュリティ要件も含め、実業務で成果を出すAIソリューションをご提供します。
+      </p>
+    </Fragment>
+  </Content>
+
+  <Features
+    tagline="FEATURES"
+    title="AIソリューションの特徴"
+    subtitle="RAG、AIエージェント、データ連携など、業務に直結するAI活用を実現します。"
+    items={[
+      {
+        title: 'RAGによる業務ドキュメント活用',
+        description: '社内ドキュメントやFAQを検索性の高い形で統合し、現場に寄り添ったAIアシスタントを構築します。',
+      },
+      {
+        title: 'AIエージェントでプロセスを自動化',
+        description: '営業・サポート・バックオフィス業務をAIエージェントが代行。外部SaaSとの連携で実務フローを自動化します。',
+      },
+      {
+        title: '安全なデータ活用とガバナンス',
+        description: 'アクセス制御や監査ログを設計し、社内ポリシーに準拠した形でAIがデータを利用できる環境を整備します。',
+      },
+    ]}
+  />
+
+  <Content
+    tagline="SERVICE"
+    title="提供サービス"
+    items={[
+      {
+        title: 'AI戦略立案・要件定義',
+        description: '業務プロセスの棚卸しからKPI設計まで、AI活用のロードマップを策定します。',
+      },
+      {
+        title: 'PoC・開発・導入支援',
+        description: '小さく検証しながらRAGやAIエージェントを開発し、本番環境へ段階的に導入します。',
+      },
+      {
+        title: '運用・チューニング支援',
+        description: '効果測定やモデル改善を継続し、現場に定着するまで伴走します。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1581090464777-6ad62856b37b?auto=format&fit=crop&w=2070&q=80',
+      alt: 'AIプロジェクトを推進するメンバー',
+    }}
+  >
+    <Fragment slot="content">
+      <p>
+        既存のSalesforceや楽Platformと連携したAI活用はもちろん、他SaaSとのAPI連携も一括して対応可能です。
+        目的やフェーズに応じて最適な体制を組成し、ビジネスインパクトにつながるAI導入を実現します。
+      </p>
+    </Fragment>
+  </Content>
+
+  <Steps
+    title="導入までのステップ"
+    subtitle="構想策定から運用定着まで、スピーディーかつ安全に伴走します。"
+    items={[
+      {
+        title: 'Step 1: ヒアリング・アイデア創出',
+        description: '業務課題やデータ状況を整理し、AI活用の優先度と効果を明確にします。',
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: 'Step 2: PoC・開発',
+        description: 'RAGやAIエージェントを試作し、改善を繰り返しながら本番環境へ展開します。',
+        icon: 'tabler:cpu',
+      },
+      {
+        title: 'Step 3: 導入・運用支援',
+        description: '現場での利用定着を支援し、指標をもとに継続的な改善とガバナンス強化を行います。',
+        icon: 'tabler:rocket',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2070&q=80',
+      alt: 'AI導入ステップを確認するメンバー',
+    }}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'AI活用の相談をする',
+        href: '/contact',
+      },
+    ]}
+  >
+    <Fragment slot="title">AIで業務革新を実現しませんか？</Fragment>
+    <Fragment slot="subtitle">
+      RAGやAIエージェントの導入をはじめ、AI活用に関するあらゆるご相談を承ります。お気軽にお問い合わせください。
+    </Fragment>
+  </CallToAction>
+</Layout>
