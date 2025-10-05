@@ -21,6 +21,10 @@ export const headerData = {
       href: getPermalink('/about'),
     },
     {
+      text: 'ブログ',
+      href: getPermalink('/blog', 'blog'),
+    },
+    {
       text: '個人情報保護方針',
       href: getPermalink('/privacy'),
     },
@@ -40,6 +44,7 @@ export const footerData = {
         { text: 'AIソリューション開発・導入支援', href: getPermalink('/solution/ai') },
         { text: '各種SaaSシステム受託開発', href: getPermalink('/solution/others') },
         { text: '会社情報', href: getPermalink('/about') },
+        { text: 'ブログ', href: getPermalink('/blog', 'blog') },
         { text: 'お問い合わせ', href: getPermalink('/contact') },
       ],
     },
