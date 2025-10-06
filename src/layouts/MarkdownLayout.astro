@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import type { MetaData } from '~/types';
+import MermaidRenderer from '~/components/common/MermaidRenderer.astro';
 
 export interface Props {
   frontmatter: {
@@ -24,5 +25,6 @@ const metadata: MetaData = {
     >
       <slot />
     </div>
+    <MermaidRenderer />
   </section>
 </Layout>

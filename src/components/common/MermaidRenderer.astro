@@ -1,0 +1,84 @@
+---
+---
+
+<script type="module">
+  import mermaid from 'mermaid';
+
+  const renderMermaidCharts = () => {
+    const mermaidBlocks = Array.from(document.querySelectorAll('.mermaid'));
+
+    if (mermaidBlocks.length === 0) {
+      return;
+    }
+
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+      securityLevel: 'loose',
+    });
+
+    mermaidBlocks.forEach((block, index) => {
+      if (!(block instanceof HTMLElement)) {
+        return;
+      }
+
+      if (block.dataset.mermaidProcessed === 'true') {
+        return;
+      }
+
+      const graphDefinition = block.textContent?.trim();
+
+      if (!graphDefinition) {
+        return;
+      }
+
+      const renderTarget = document.createElement('div');
+      renderTarget.className = 'mermaid-graph';
+
+      block.dataset.mermaidProcessed = 'pending';
+
+      mermaid
+        .render(`mermaid-graph-${index}`, graphDefinition, renderTarget)
+        .then(({ svg }) => {
+          block.innerHTML = svg;
+          block.dataset.mermaidProcessed = 'true';
+        })
+        .catch((error) => {
+          console.error('Mermaid render failed', error);
+          delete block.dataset.mermaidProcessed;
+        });
+    });
+  };
+
+  const onReady = () => {
+    renderMermaidCharts();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onReady, { once: true });
+  } else {
+    onReady();
+  }
+
+  const observer = new MutationObserver((mutations) => {
+    const shouldRerender = mutations.some((mutation) => {
+      return Array.from(mutation.addedNodes).some((node) => {
+        if (!(node instanceof HTMLElement)) {
+          return false;
+        }
+
+        return node.matches('.mermaid') || node.querySelector('.mermaid');
+      });
+    });
+
+    if (shouldRerender) {
+      renderMermaidCharts();
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  window.addEventListener('astro:after-swap', () => {
+    renderMermaidCharts();
+  });
+</script>
