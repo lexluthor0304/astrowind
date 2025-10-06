@@ -49,13 +49,7 @@ const { post, url } = Astro.props;
               </>
             )
           }
-          {
-            post.readingTime && (
-              <>
-                &nbsp;· <span>{post.readingTime}</span> min read
-              </>
-            )
-          }
+          {post.readingTime && <>&nbsp;· <span>{post.readingTime}</span>分で読めます</>}
         </p>
       </div>
 

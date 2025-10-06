@@ -10,7 +10,12 @@ export interface Props {
   nextText?: string;
 }
 
-const { prevUrl, nextUrl, prevText = 'Newer posts', nextText = 'Older posts' } = Astro.props;
+const {
+  prevUrl,
+  nextUrl,
+  prevText = '新しい記事へ',
+  nextText = '過去の記事へ',
+} = Astro.props;
 ---
 
 {
