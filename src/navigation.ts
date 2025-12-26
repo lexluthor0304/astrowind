@@ -28,6 +28,10 @@ export const headerData = {
       text: '個人情報保護方針',
       href: getPermalink('/privacy'),
     },
+    {
+      text: '電子公告',
+      href: getPermalink('/electronic-notice'),
+    },
   ],
   actions: [{ text: 'お問い合わせ', href: getPermalink('/contact') }],
 };
@@ -52,6 +56,7 @@ export const footerData = {
       title: 'ポリシー',
       links: [
         { text: '個人情報保護方針', href: getPermalink('/privacy') },
+        { text: '電子公告', href: getPermalink('/electronic-notice') },
         { text: '利用規約', href: getPermalink('/terms') },
       ],
     },
