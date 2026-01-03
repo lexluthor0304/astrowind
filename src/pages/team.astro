@@ -7,6 +7,9 @@ import Image from '~/components/common/Image.astro';
 const metadata = {
   title: 'チーム紹介',
   description: 'Rakucloud株式会社のチームメンバーをご紹介します。',
+  openGraph: {
+    images: [{ url: '~/assets/images/team/techteam.jpeg' }],
+  },
 };
 
 const teamMembers = [

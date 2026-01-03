@@ -1,0 +1,34 @@
+---
+import { SITE } from 'astrowind:config';
+import logo from '~/assets/images/Logo.avif';
+import { getCanonical } from '~/utils/permalinks';
+
+const siteUrl = SITE?.site || String(getCanonical('/'));
+const logoUrl = siteUrl ? new URL(logo.src, siteUrl).toString() : logo.src;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Corporation',
+  name: SITE?.name || 'Rakucloud株式会社',
+  url: siteUrl,
+  logo: logoUrl,
+  email: 'sales@rakucloud.com',
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: '115-0045',
+    addressRegion: '東京都',
+    addressLocality: '北区',
+    streetAddress: '赤羽1-55-8 501',
+    addressCountry: 'JP',
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: 'sales@rakucloud.com',
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

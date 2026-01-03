@@ -12,6 +12,7 @@ import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 import BreadcrumbsJsonLd from '~/components/common/BreadcrumbsJsonLd.astro';
+import OrganizationJsonLd from '~/components/common/OrganizationJsonLd.astro';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -24,6 +25,19 @@ export interface Props {
 
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
+
+const noIndexPrefixes = ['/homes/', '/landing/'];
+const shouldNoIndex = noIndexPrefixes.some((prefix) => Astro.url.pathname.startsWith(prefix));
+const resolvedMetadata = shouldNoIndex
+  ? {
+      ...metadata,
+      robots: {
+        ...(metadata?.robots ?? {}),
+        index: false,
+        follow: false,
+      },
+    }
+  : metadata;
 ---
 
 <!doctype html>
@@ -33,8 +47,9 @@ const { language, textDirection } = I18N;
     <Favicons />
     <CustomStyles />
     <ApplyColorMode />
-    <Metadata {...metadata} />
+    <Metadata {...resolvedMetadata} />
     <BreadcrumbsJsonLd />
+    <OrganizationJsonLd />
     <SiteVerification />
     <Analytics />
 

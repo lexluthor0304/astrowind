@@ -28,7 +28,7 @@ export const mermaidRemarkPlugin: RemarkPlugin = () => {
 
       parent.children[index] = {
         type: 'html',
-        value: `<div class="mermaid">\n${escaped}\n</div>`,
+        value: `<pre class="mermaid">\n${escaped}\n</pre>`,
       };
     });
   };
