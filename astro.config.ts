@@ -18,11 +18,11 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehype
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = false;
-const isProduction = process.env.NODE_ENV === 'production';
+const mermaidStrategy = process.env.MERMAID_STRATEGY === 'inline-svg' ? 'inline-svg' : 'pre-mermaid';
 const mermaidPlugin = [
   rehypeMermaid,
   {
-    strategy: isProduction ? 'inline-svg' : 'pre-mermaid',
+    strategy: mermaidStrategy,
     errorFallback: (_element: unknown, diagram: string) => ({
       type: 'element',
       tagName: 'pre',
