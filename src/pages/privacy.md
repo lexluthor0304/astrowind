@@ -182,4 +182,4 @@ _最終更新日_: 2023年1月6日
 
 本プライバシーポリシーに関するご質問は、以下の方法でご連絡ください。
 
-- メール: somecoolemail@domain.com
+- メール: sales@rakucloud.com
