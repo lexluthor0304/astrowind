@@ -1,24 +1,31 @@
 ---
 title: '電子公告'
 layout: '~/layouts/MarkdownLayout.astro'
-description: 'Rakucloud株式会社の電子公告ページです。公告内容、更新日、会社情報を掲載しています。'
+description: 'Rakucloud株式会社の電子公告ページです。公告内容と更新日を掲載しています。'
 ---
 
 _最終更新日_: 2025年3月31日
 
 Rakucloud株式会社の電子公告は、本ページに掲載する方法により行います。
 
-## 公告本文
+## 公告
 
-現在、掲載すべき法定公告事項はありません。
-公告事項が生じた場合は、本ページに遅滞なく掲載します。
-
-## 会社情報
-
-- 会社名: Rakucloud株式会社
-- 本店所在地: 〒115-0045 東京都北区赤羽1-55-8 501
-- 代表者: 代表取締役 張壮壮
-- お問い合わせ: [お問い合わせページ](/contact)
+<ol class="mt-8 list-none border-l-2 border-primary/30 pl-0 dark:border-primary/50">
+  <li class="relative pb-8 pl-8">
+    <span class="absolute -left-2 top-1 h-4 w-4 rounded-full bg-primary ring-4 ring-primary/20 dark:ring-primary/30"></span>
+    <p class="text-sm font-semibold uppercase tracking-wide text-secondary dark:text-blue-200">2023年</p>
+    <p class="mt-2 text-base text-slate-700 dark:text-slate-300">
+      創業資本金100万
+    </p>
+  </li>
+  <li class="relative pl-8">
+    <span class="absolute -left-2 top-1 h-4 w-4 rounded-full bg-primary ring-4 ring-primary/20 dark:ring-primary/30"></span>
+    <p class="text-sm font-semibold uppercase tracking-wide text-secondary dark:text-blue-200">2025年</p>
+    <p class="mt-2 text-base text-slate-700 dark:text-slate-300">
+      資本金を100万円から1,000万円に増資しました。
+    </p>
+  </li>
+</ol>
 
 ## 掲載方法
 
