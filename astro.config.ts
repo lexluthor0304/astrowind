@@ -17,7 +17,7 @@ import {
   readingTimeRemarkPlugin,
   responsiveTablesRehypePlugin,
   lazyImagesRehypePlugin,
-  mermaidRehypePlugin,
+  mermaidRemarkPlugin,
 } from './src/utils/frontmatter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -81,8 +81,8 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [readingTimeRemarkPlugin],
-    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin, mermaidRehypePlugin],
+    remarkPlugins: [readingTimeRemarkPlugin, mermaidRemarkPlugin],
+    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
     shikiConfig: {
       langAlias: {
         mermaid: 'plaintext',

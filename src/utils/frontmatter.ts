@@ -15,6 +15,26 @@ export const readingTimeRemarkPlugin: RemarkPlugin = () => {
   };
 };
 
+const escapeHtml = (value: string) =>
+  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+export const mermaidRemarkPlugin: RemarkPlugin = () => {
+  return function (tree) {
+    visit(tree, 'code', function (node, index, parent) {
+      if (!parent || typeof index !== 'number') return;
+      if (node.lang !== 'mermaid') return;
+
+      const value = typeof node.value === 'string' ? node.value : '';
+      const escaped = escapeHtml(value);
+
+      parent.children[index] = {
+        type: 'html',
+        value: `<div class="mermaid">\n${escaped}\n</div>`,
+      };
+    });
+  };
+};
+
 export const responsiveTablesRehypePlugin: RehypePlugin = () => {
   return function (tree) {
     if (!tree.children) return;
