@@ -272,3 +272,49 @@ import { UI } from 'astrowind:config';
     Observer.start();
   });
 </script>
+
+<script type="module" is:inline>
+  const collectMermaidNodes = () => {
+    const nodes = Array.from(document.querySelectorAll('.mermaid'));
+    const preBlocks = new Set();
+
+    document.querySelectorAll('pre[data-language="mermaid"]').forEach((pre) => preBlocks.add(pre));
+    document.querySelectorAll('code.language-mermaid').forEach((code) => {
+      const pre = code.closest('pre');
+      if (pre) preBlocks.add(pre);
+    });
+
+    preBlocks.forEach((pre) => {
+      if (pre.closest('.mermaid')) return;
+      const text = pre.textContent?.trim();
+      if (!text) return;
+
+      const container = document.createElement('div');
+      container.className = 'mermaid';
+      container.textContent = text;
+      pre.replaceWith(container);
+      nodes.push(container);
+    });
+
+    return nodes;
+  };
+
+  const renderMermaid = async () => {
+    const nodes = collectMermaidNodes();
+    if (!nodes.length) return;
+
+    try {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+      });
+      await mermaid.run({ nodes });
+    } catch (error) {
+      console.error('Mermaid render failed', error);
+    }
+  };
+
+  window.addEventListener('load', renderMermaid);
+  document.addEventListener('astro:after-swap', renderMermaid);
+</script>
