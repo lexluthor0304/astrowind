@@ -12,6 +12,8 @@ const metadata = {
   title: '業務管理システムなら | Rakucloud株式会社',
   ignoreTitleTemplate: true,
 };
+
+const typewriterWords = ['DX化', 'AIエージェント導入', 'AI活用'];
 ---
 
 <Layout metadata={metadata}>
@@ -31,7 +33,16 @@ const metadata = {
     }}
   >
     <Fragment slot="title">
-      中小企業でもDX化しやすく、<span class="block">ベンチャー企業でも標準化しやすい世界へ</span>
+      中小企業でも
+      <span
+        class="inline-block min-w-[10ch] text-primary"
+        data-typewriter
+        data-words={JSON.stringify(typewriterWords)}
+      >
+        {typewriterWords[0]}
+      </span>
+      をしやすく、
+      <span class="block">ベンチャー企業でも標準化しやすい世界へ</span>
     </Fragment>
 
     <Fragment slot="subtitle">
@@ -198,3 +209,56 @@ const metadata = {
     </Fragment>
   </CallToAction>
 </Layout>
+
+<script is:inline>
+  const initTypewriter = () => {
+    document.querySelectorAll('[data-typewriter]').forEach((element) => {
+      if (!(element instanceof HTMLElement)) return;
+      if (element.dataset.typewriterInitialized === 'true') return;
+
+      const words = JSON.parse(element.dataset.words || '[]');
+      if (!Array.isArray(words) || words.length === 0) return;
+
+      element.dataset.typewriterInitialized = 'true';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        element.textContent = words[0];
+        return;
+      }
+
+      let wordIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      const typeSpeed = 90;
+      const deleteSpeed = 50;
+      const holdDelay = 1400;
+      const restartDelay = 300;
+
+      const tick = () => {
+        const word = words[wordIndex] || '';
+        charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
+        element.textContent = word.slice(0, Math.max(charIndex, 0));
+
+        let delay = isDeleting ? deleteSpeed : typeSpeed;
+
+        if (!isDeleting && charIndex >= word.length) {
+          isDeleting = true;
+          delay = holdDelay;
+        } else if (isDeleting && charIndex <= 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          delay = restartDelay;
+        }
+
+        window.setTimeout(tick, delay);
+      };
+
+      tick();
+    });
+  };
+
+  window.addEventListener('load', initTypewriter);
+  document.addEventListener('astro:after-swap', initTypewriter);
+</script>
