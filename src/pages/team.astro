@@ -1,0 +1,154 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'チーム紹介',
+  description: 'Rakucloud株式会社のチームメンバーをご紹介します。',
+};
+
+const teamMembers = [
+  {
+    name: '張 壮壮',
+    role: '代表取締役 CEO',
+    bio: 'Salesforce導入支援とSaaS開発を統括。業務に寄り添ったDX推進をリードします。',
+    focus: ['事業戦略', 'Salesforce', 'SaaS開発'],
+    image: {
+      src: '~/assets/images/ceo.png',
+      alt: '代表取締役 CEO 張 壮壮',
+    },
+  },
+  {
+    name: 'メンバー名を入力',
+    role: 'プロダクト開発',
+    bio: '担当領域や専門性を入力してください。',
+    focus: ['要件定義', 'アーキテクチャ', '運用改善'],
+    image: {
+      src: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=800&q=80',
+      alt: 'プロダクト開発メンバー',
+    },
+  },
+  {
+    name: 'メンバー名を入力',
+    role: 'コンサルティング',
+    bio: '業務改革や導入支援の経験を入力してください。',
+    focus: ['業務設計', '定着支援', 'データ活用'],
+    image: {
+      src: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
+      alt: 'コンサルティングメンバー',
+    },
+  },
+  {
+    name: 'メンバー名を入力',
+    role: 'エンジニアリング',
+    bio: '技術スタックや得意領域を入力してください。',
+    focus: ['API連携', 'AI活用', '品質改善'],
+    image: {
+      src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+      alt: 'エンジニアリングメンバー',
+    },
+  },
+];
+
+const teamStrengths = [
+  {
+    title: '現場起点の設計',
+    description: '業務フローと現場課題を丁寧に整理し、運用に馴染む形で設計します。',
+  },
+  {
+    title: 'スピードと品質の両立',
+    description: '小さく試して素早く改善し、成果を最短で可視化します。',
+  },
+  {
+    title: '再現性あるナレッジ共有',
+    description: '知見を標準化し、チーム全体で継続的に改善を進めます。',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="OUR TEAM"
+    title="信頼できるパートナーとして伴走するチーム"
+    subtitle="プロダクト開発、Salesforce導入、AI活用まで一貫して支援できる体制で、お客様の成果を最優先に考えます。"
+    image={{
+      src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2070&q=80',
+      alt: 'ミーティングを行うチーム',
+    }}
+  />
+
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">チームメンバー</h2>
+        <p class="mt-4 text-lg text-muted dark:text-slate-300">
+          事業戦略から実装、運用定着までを支えるメンバーをご紹介します。役割や担当領域に合わせて柔軟な体制を構築しています。
+        </p>
+      </div>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {teamMembers.map((member) => (
+          <div class="overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-sm transition hover:shadow-md dark:border-slate-700/60 dark:bg-slate-900/60">
+            <div class="aspect-square overflow-hidden">
+              <Image
+                class="h-full w-full object-cover"
+                width={400}
+                height={400}
+                widths={[320, 480, 640]}
+                sizes="(max-width: 640px) 100vw, 320px"
+                layout="responsive"
+                {...member.image}
+              />
+            </div>
+            <div class="p-6">
+              <p class="text-sm font-semibold uppercase tracking-wide text-secondary dark:text-blue-200">
+                {member.role}
+              </p>
+              <h3 class="mt-2 text-xl font-semibold text-slate-900 dark:text-white">{member.name}</h3>
+              <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">{member.bio}</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {member.focus.map((item) => (
+                  <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900/40">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">チームの強み</h2>
+        <p class="mt-4 text-lg text-muted dark:text-slate-300">
+          お客様の現場に入り込み、成果に繋がるまで伴走することを大切にしています。
+        </p>
+      </div>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {teamStrengths.map((item) => (
+          <div class="rounded-2xl border border-slate-200/70 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900/60">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">{item.title}</h3>
+            <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'お問い合わせ',
+        href: '/contact',
+      },
+    ]}
+    title="チームと一緒に課題解決を始めませんか？"
+    subtitle="業務管理システムやDX推進のご相談は、Rakucloud株式会社にお任せください。"
+  />
+</Layout>
