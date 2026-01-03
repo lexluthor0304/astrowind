@@ -15,7 +15,7 @@ export const readingTimeRemarkPlugin: RemarkPlugin = () => {
   };
 };
 
-const escapeHtml = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const encodeMermaidSource = (value: string) => encodeURIComponent(value);
 
 export const mermaidRemarkPlugin: RemarkPlugin = () => {
   return function (tree) {
@@ -24,11 +24,11 @@ export const mermaidRemarkPlugin: RemarkPlugin = () => {
       if (node.lang !== 'mermaid') return;
 
       const value = typeof node.value === 'string' ? node.value : '';
-      const escaped = escapeHtml(value);
+      const encoded = encodeMermaidSource(value);
 
       parent.children[index] = {
         type: 'html',
-        value: `<pre class="mermaid">\n${escaped}\n</pre>`,
+        value: `<div class="mermaid" data-mermaid="${encoded}"></div>`,
       };
     });
   };
@@ -98,12 +98,13 @@ export const mermaidRehypePlugin: RehypePlugin = () => {
 
       const textSource = code && code.type === 'element' ? code : node;
       const text = toText(textSource, { whitespace: 'pre' }).trim();
+      const encoded = encodeMermaidSource(text);
 
       parent.children.splice(index, 1, {
         type: 'element',
         tagName: 'div',
-        properties: { className: ['mermaid'] },
-        children: [{ type: 'text', value: text }],
+        properties: { className: ['mermaid'], dataMermaid: encoded },
+        children: [],
       });
     });
   };

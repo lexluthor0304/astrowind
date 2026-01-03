@@ -274,8 +274,36 @@ import { UI } from 'astrowind:config';
 </script>
 
 <script type="module" is:inline>
+  const decodeMermaidSource = (value) => {
+    if (typeof value !== 'string') return '';
+    try {
+      return decodeURIComponent(value);
+    } catch (error) {
+      return value;
+    }
+  };
+
+  const normalizeMermaidSource = (element) => {
+    if (!(element instanceof HTMLElement)) return '';
+    const dataSource = element.getAttribute('data-mermaid');
+    if (dataSource) {
+      return decodeMermaidSource(dataSource).replace(/\r\n/g, '\n').trim();
+    }
+    const lines = element.querySelectorAll('span.line');
+    if (lines.length > 0) {
+      return Array.from(lines)
+        .map((line) => line.textContent ?? '')
+        .join('\n')
+        .trim();
+    }
+    const raw = element.textContent || '';
+    return raw.replace(/\r\n/g, '\n').trim();
+  };
+
   const collectMermaidNodes = () => {
-    const nodes = Array.from(document.querySelectorAll('.mermaid'));
+    const nodes = Array.from(document.querySelectorAll('.mermaid')).filter(
+      (node) => node instanceof HTMLElement && !node.hasAttribute('data-processed')
+    );
     const preBlocks = new Set();
 
     document.querySelectorAll('pre[data-language="mermaid"]').forEach((pre) => preBlocks.add(pre));
@@ -286,7 +314,7 @@ import { UI } from 'astrowind:config';
 
     preBlocks.forEach((pre) => {
       if (pre.closest('.mermaid')) return;
-      const text = pre.textContent?.trim();
+      const text = normalizeMermaidSource(pre);
       if (!text) return;
 
       const container = document.createElement('div');
@@ -294,6 +322,12 @@ import { UI } from 'astrowind:config';
       container.textContent = text;
       pre.replaceWith(container);
       nodes.push(container);
+    });
+
+    nodes.forEach((node) => {
+      if (!(node instanceof HTMLElement)) return;
+      const text = normalizeMermaidSource(node);
+      if (text) node.textContent = text;
     });
 
     return nodes;
