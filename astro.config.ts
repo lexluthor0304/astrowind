@@ -8,20 +8,29 @@ import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
+import rehypeMermaid from 'rehype-mermaid';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
 
-import {
-  readingTimeRemarkPlugin,
-  responsiveTablesRehypePlugin,
-  lazyImagesRehypePlugin,
-  mermaidRemarkPlugin,
-} from './src/utils/frontmatter';
+import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = false;
+const isProduction = process.env.NODE_ENV === 'production';
+const mermaidPlugin = [
+  rehypeMermaid,
+  {
+    strategy: isProduction ? 'inline-svg' : 'pre-mermaid',
+    errorFallback: (_element: unknown, diagram: string) => ({
+      type: 'element',
+      tagName: 'pre',
+      properties: { className: ['mermaid'] },
+      children: [{ type: 'text', value: diagram }],
+    }),
+  },
+];
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
@@ -79,13 +88,12 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [readingTimeRemarkPlugin, mermaidRemarkPlugin],
-    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
-    shikiConfig: {
-      langAlias: {
-        mermaid: 'plaintext',
-      },
+    syntaxHighlight: {
+      type: 'shiki',
+      excludeLangs: ['mermaid', 'math'],
     },
+    remarkPlugins: [readingTimeRemarkPlugin],
+    rehypePlugins: [mermaidPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
   },
 
   vite: {
