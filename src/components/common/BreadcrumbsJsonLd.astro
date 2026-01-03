@@ -77,14 +77,16 @@ const currentNode = candidates.find((node) => !node.isHash) ?? candidates[0];
 const homeNode = nodes.find((node) => node.path === '/' && !node.isHash);
 
 const breadcrumbTrail: NavNode[] = [];
-let cursor = currentNode;
-while (cursor) {
-  breadcrumbTrail.unshift(cursor);
-  cursor = cursor.parent;
-}
+if (currentNode) {
+  let cursor: NavNode | undefined = currentNode;
+  while (cursor) {
+    breadcrumbTrail.unshift(cursor);
+    cursor = cursor.parent;
+  }
 
-if (homeNode && (!breadcrumbTrail.length || breadcrumbTrail[0].href !== homeNode.href)) {
-  breadcrumbTrail.unshift(homeNode);
+  if (homeNode && (!breadcrumbTrail.length || breadcrumbTrail[0].href !== homeNode.href)) {
+    breadcrumbTrail.unshift(homeNode);
+  }
 }
 
 const itemListElement = breadcrumbTrail.map((node, index) => ({
@@ -99,6 +101,7 @@ const itemListElement = breadcrumbTrail.map((node, index) => ({
   itemListElement.length > 0 && (
     <script
       type="application/ld+json"
+      is:inline
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',

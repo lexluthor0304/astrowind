@@ -15,8 +15,7 @@ export const readingTimeRemarkPlugin: RemarkPlugin = () => {
   };
 };
 
-const escapeHtml = (value: string) =>
-  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const escapeHtml = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 export const mermaidRemarkPlugin: RemarkPlugin = () => {
   return function (tree) {
@@ -75,7 +74,7 @@ export const mermaidRehypePlugin: RehypePlugin = () => {
     if (!tree.children) return;
 
     visit(tree, 'element', function (node, index, parent) {
-      if (!parent || node.tagName !== 'pre') return;
+      if (!parent || node.tagName !== 'pre' || typeof index !== 'number') return;
 
       const dataLanguage =
         typeof node.properties?.dataLanguage === 'string'
@@ -88,8 +87,11 @@ export const mermaidRehypePlugin: RehypePlugin = () => {
       const code = node.children?.[0];
       if (!isMermaid && code && code.type === 'element' && code.tagName === 'code') {
         const className = code.properties?.className;
-        const classes =
-          Array.isArray(className) ? className : typeof className === 'string' ? className.split(' ') : [];
+        const classes = Array.isArray(className)
+          ? className
+          : typeof className === 'string'
+            ? className.split(' ')
+            : [];
         isMermaid = classes.includes('language-mermaid');
       }
       if (!isMermaid) return;

@@ -16,12 +16,12 @@ metadata:
 
 NocoBaseはプラグインで機能を自由に組み合わせられるローコード基盤です。採用段階では以下の観点をチェックしておくと、後戻りコストを抑えられます。
 
-| 観点 | チェックポイント | 推奨アクション |
-| --- | --- | --- |
-| 認証・権限 | SSOや部門別ロールは必要か | `@nocobase/plugin-rbac`の有無とSSO連携のPoCを先に実施 |
-| データ連携 | 外部SaaSとのAPI連携頻度 | Webhookと自動化フローの同時利用を想定した性能テスト |
-| UI要件 | 独自UIコンポーネントの必要性 | Schema Designerで再現可能か、Vueコンポーネントの拡張が必要か評価 |
-| 運用 | Dev/Test/Prodの環境分離 | マイグレーションCLIとGitOps運用を組み合わせる手順を策定 |
+| 観点       | チェックポイント             | 推奨アクション                                                   |
+| ---------- | ---------------------------- | ---------------------------------------------------------------- |
+| 認証・権限 | SSOや部門別ロールは必要か    | `@nocobase/plugin-rbac`の有無とSSO連携のPoCを先に実施            |
+| データ連携 | 外部SaaSとのAPI連携頻度      | Webhookと自動化フローの同時利用を想定した性能テスト              |
+| UI要件     | 独自UIコンポーネントの必要性 | Schema Designerで再現可能か、Vueコンポーネントの拡張が必要か評価 |
+| 運用       | Dev/Test/Prodの環境分離      | マイグレーションCLIとGitOps運用を組み合わせる手順を策定          |
 
 ## プロジェクト構成のベストプラクティス
 
@@ -37,9 +37,7 @@ NocoBaseはプラグインで機能を自由に組み合わせられるローコ
     { "type": "integer", "name": "budget", "uiSchema": { "title": "予算", "component": "NumberPicker" } },
     { "type": "relation", "name": "owner", "target": "users", "uiSchema": { "title": "担当者" } }
   ],
-  "indexes": [
-    { "fields": ["name"], "options": { "unique": true } }
-  ]
+  "indexes": [{ "fields": ["name"], "options": { "unique": true } }]
 }
 ```
 

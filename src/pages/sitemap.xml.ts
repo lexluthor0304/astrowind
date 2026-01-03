@@ -22,18 +22,14 @@ const toAbsoluteUrl = (path: string): string => {
 const generateSitemap = (urls: string[]): string => {
   const lastmod = new Date().toISOString();
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n` +
+  return (
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
     urls
-      .map(
-        (url) =>
-          `  <url>\n` +
-          `    <loc>${url}</loc>\n` +
-          `    <lastmod>${lastmod}</lastmod>\n` +
-          `  </url>`
-      )
+      .map((url) => `  <url>\n` + `    <loc>${url}</loc>\n` + `    <lastmod>${lastmod}</lastmod>\n` + `  </url>`)
       .join('\n') +
-    `\n</urlset>`;
+    `\n</urlset>`
+  );
 };
 
 export const GET = async () => {
