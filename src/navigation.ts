@@ -38,7 +38,13 @@ export const headerData = {
       href: getPermalink('/electronic-notice'),
     },
   ],
-  actions: [{ text: 'お問い合わせ', href: getPermalink('/contact') }],
+  actions: [
+    {
+      text: 'お問い合わせ',
+      // href: getPermalink('/contact'),
+      href: 'https://www.rakucloud.co.jp/contact',
+    },
+  ],
 };
 
 export const footerData = {
@@ -56,7 +62,11 @@ export const footerData = {
         { text: '会社情報', href: getPermalink('/about') },
         { text: 'チーム紹介', href: getPermalink('/team') },
         { text: 'ブログ', href: getPermalink('/blog', 'blog') },
-        { text: 'お問い合わせ', href: getPermalink('/contact') },
+        {
+          text: 'お問い合わせ',
+          // href: getPermalink('/contact'),
+          href: 'https://www.rakucloud.co.jp/contact',
+        },
       ],
     },
     {
