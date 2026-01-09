@@ -38,6 +38,96 @@ npm run dev
 - `npm run check` を通す（必要に応じて `npm run preview` で動作確認）
 - 原則1名以上のレビューを受ける
 
+## Git運用
+
+- `main` へ直接コミットせず、必ず作業ブランチを作成してPRで進める
+- 変更は小さくコミットし、Conventional Commits に従う
+- PRでレビュー依頼し、`npm run check` が通ることを確認
+- 承認後に `main` へマージし、必要に応じてリリース
+
+作業の流れ（初心者向け・詳細）:
+
+1) `main` を最新化して作業開始
+
+```bash
+git checkout main
+git pull
+```
+
+2) 作業ブランチを作成
+
+```bash
+git checkout -b feat/add-blog-post
+```
+
+ブランチ名例: `feat/...`, `fix/...`, `chore/...`, `docs/...`
+
+3) 変更の確認（作業中はこまめに）
+
+```bash
+git status
+git diff
+```
+
+4) ステージングとコミット
+
+```bash
+git add src/pages/index.astro
+git commit -m "feat: update hero copy"
+```
+
+必要に応じて `git add -p` で差分を分割して追加する
+
+5) リモートへPushしてPR作成
+
+```bash
+git push -u origin feat/add-blog-post
+```
+
+PRでは変更概要・影響範囲・確認方法を記載し、レビューを依頼する
+
+6) レビュー対応（差分修正が入った場合）
+
+- 修正 → `git add` → `git commit` → `git push`
+- `main` の更新を取り込む必要があれば以下を実行
+
+```bash
+git fetch origin
+git merge origin/main
+```
+
+コンフリクトが出た場合は該当ファイルを修正 → `git add` → `git commit`
+
+7) マージ後の片付け
+
+```bash
+git checkout main
+git pull
+git branch -d feat/add-blog-post
+git push origin --delete feat/add-blog-post
+```
+
+コミットメッセージ例（Conventional Commits）:
+
+- `feat: add blog post template`
+- `fix: correct contact link`
+- `docs: update README`
+
+```mermaid
+flowchart TD
+  A[main を最新化] --> B[作業ブランチ作成]
+  B --> C[実装/修正]
+  C --> D[変更確認]
+  D --> E[ステージング]
+  E --> F[コミット]
+  F --> G[Push]
+  G --> H[PR作成]
+  H --> I{レビューOK?}
+  I -- 修正あり --> C
+  I -- OK --> J[main にマージ]
+  J --> K[ブランチ削除/リリース]
+```
+
 ## ディレクトリ構成
 
 - `src/pages/`: ルーティング（`/`、`/about`、`/team` など）
