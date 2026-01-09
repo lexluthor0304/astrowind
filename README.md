@@ -64,11 +64,32 @@ npm run dev
 - `src/assets/styles/tailwind.css`: グローバルスタイル
 - `src/components/CustomStyles.astro`: フォントや追加スタイル
 
-## ブログ運用
+## ブログ追加方法
 
-- 記事は `src/data/post/*.md(x)` に配置
-- 主要フロントマター例: `title`, `publishDate`, `excerpt`, `tags`, `image`
-- スキーマは `src/content/config.ts` で管理
+- 記事は `src/data/post/` に `slug-base-name.md` / `slug-base-name.mdx` で追加
+- `title` は必須、`publishDate` は並び順に影響（新しい順）
+- `draft: true` を付けると一覧・詳細ページに出さない
+- 画像は `https://...` / `/` 配下（`public/`）/ `~/assets/images/...` のいずれかで指定可能
+- スキーマは `src/content/config.ts`、URL設計は `src/config.yaml` で管理
+
+フロントマター例:
+
+```md
+---
+title: 記事タイトル
+publishDate: 2024-06-01T00:00:00Z
+excerpt: 記事の概要
+author: 部署名 or 氏名
+category: AI
+tags:
+  - タグ1
+  - タグ2
+image: https://example.com/hero.jpg
+draft: false
+metadata:
+  canonical: https://www.rakucloud.co.jp/blog/slug-base-name
+---
+```
 
 ## 画像・アセット
 
