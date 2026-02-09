@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Rakucloud株式会社 | 業務管理システム・DX推進・AI活用</title>
+  <meta name="description" content="Rakucloud株式会社は、楽PlatformやSalesforce導入支援、AI活用、SaaS開発を通じて中小・ベンチャー企業のDXを支援します。">
+  <meta property="og:title" content="Rakucloud株式会社 | 業務管理システム・DX推進・AI活用">
+  <meta property="og:description" content="Rakucloud株式会社は、楽PlatformやSalesforce導入支援、AI活用、SaaS開発を通じて中小・ベンチャー企業のDXを支援します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.rakucloud.co.jp">
+  <link rel="canonical" href="https://www.rakucloud.co.jp/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased overflow-hidden">
+
+  <!-- ========== PRELOADER ========== -->
+  <div id="preloader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0B1A2B]">
+    <div class="relative flex flex-col items-center">
+      <!-- Logo -->
+      <img src="/src/images/Logo.avif" alt="Rakucloud" class="h-12 mb-8 preloader-logo">
+      <!-- Counter -->
+      <div class="flex items-baseline gap-1 mb-6">
+        <span id="preloader-count" class="text-6xl md:text-7xl font-bold text-white tabular-nums" style="font-family:'Inter',monospace;">0</span>
+        <span class="text-2xl md:text-3xl font-bold text-[#00AEEF]">%</span>
+      </div>
+      <!-- Progress bar -->
+      <div class="w-48 md:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden">
+        <div id="preloader-bar" class="h-full bg-[#00AEEF] rounded-full transition-none" style="width:0%"></div>
+      </div>
+      <!-- Tagline -->
+      <p class="mt-6 text-sm text-gray-500 tracking-widest uppercase">Loading Experience</p>
+    </div>
+  </div>
+
+  <!-- ========== 1. HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- Logo -->
+      <a href="https://www.rakucloud.co.jp/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+
+      <!-- CTA + Burger -->
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-2xl">
+      <div class="flex justify-between items-center px-5 py-4 border-b">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== 2. HERO ========== -->
+  <section class="relative overflow-hidden bg-[#0B1A2B] text-white" style="height: calc(100vh - 65px); max-height: 720px;">
+    <canvas id="gridCanvas" class="absolute inset-0 w-full h-full"></canvas>
+    <div class="relative z-10 h-full flex items-center justify-center">
+      <div class="max-w-4xl mx-auto text-center px-6">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight" data-aos="zoom-in">
+          中小企業でも<span class="text-[#00AEEF]">DX化</span>をしやすく、<br class="hidden sm:block">ベンチャー企業でも標準化しやすい世界へ
+        </h1>
+        <p class="mt-6 text-base md:text-lg leading-relaxed font-semibold" data-aos="fade-up" data-aos-delay="200">
+          楽Platform・Salesforce・AI活用で、ビジネス成長を全力サポート
+        </p>
+        <p class="mt-3 text-base md:text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="300">
+          業務管理システムの導入から運用まで、誰もが活用できる仕組みづくりを共に実現します。
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
+          <a href="/contact.html" class="btn-primary">
+            <span>お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="white"/></svg>
+          </a>
+          <a href="#solutions" class="btn-outline border-white text-white hover:bg-white hover:text-gray-900">
+            ソリューションを見る
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 3. NOTE BAR ========== -->
+  <section class="bg-[#F7F8F9] py-6 px-5">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-sm md:text-base font-semibold text-gray-700">
+        <span class="text-[#00AEEF] font-bold">Rakucloudの想い</span> ——
+        誰もがシステムを開発・運用し、課題を抽出し、標準化されたプロセスでビジネス成長を促進できる世界をつくります。
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== LOGO SCROLL ========== -->
+  <section class="py-10 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-5 mb-6 text-center">
+      <p class="text-sm text-gray-400 font-semibold uppercase tracking-wider">Trusted by innovative companies</p>
+    </div>
+    <div class="relative">
+      <div class="flex logo-track" style="width: max-content;">
+        <div class="flex items-center gap-12 px-6">
+          <a href="https://flex.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/flex.svg" alt="FLEX" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.uchiyama.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/uchiyama.png" alt="内山鑑定" class="h-9 w-auto object-contain"></a>
+          <a href="https://housewell-group.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/housewell.webp" alt="Housewell Group" class="h-9 w-auto object-contain"></a>
+          <a href="https://tohjo.com/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/tohjo.webp" alt="東上セレモサービス" class="h-9 w-auto object-contain"></a>
+          <a href="https://www.jptco.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/jptco.png" alt="JPT" class="h-9 w-auto object-contain"></a>
+          <a href="https://crowdworks.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/crowdworks.png" alt="CrowdWorks" class="h-8 w-auto object-contain"></a>
+          <a href="https://x-mov.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/xmov.svg" alt="X-mov Japan" class="h-9 w-auto object-contain"></a>
+          <a href="https://www.sonynetwork.co.jp/" target="_blank" rel="noopener" class="w-44 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/sonynetwork.svg" alt="Sony Network Communications" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.currentmotor.co.jp/" target="_blank" rel="noopener" class="w-44 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/currentmotor.png" alt="カレント自動車" class="h-9 w-auto object-contain"></a>
+          <a href="https://www.kk-wakabayashi.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/wakabayashi.svg" alt="ワカバヤシ" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.srush.co.jp/" target="_blank" rel="noopener" class="w-36 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/srush.svg" alt="Srush" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.ms-uni.com/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/msuni.svg" alt="MS Corporation" class="h-9 w-auto object-contain"></a>
+          <a href="https://frogwell.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/frogwell.png" alt="Frogwell" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.dayliferecruit.com/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/daylife.svg" alt="デイライフ" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.algahome8.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/algahome.png" alt="ALGA HOME" class="h-9 w-auto object-contain"></a>
+          <a href="https://toptrust-home.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/toptrust.svg" alt="トップトラスト" class="h-9 w-auto object-contain"></a>
+          <a href="https://sumitas.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/sumitas.svg" alt="Sumitas" class="h-8 w-auto object-contain"></a>
+          <a href="https://iedot-recruit.com/" target="_blank" rel="noopener" class="w-36 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center text-gray-500 font-bold text-sm flex-shrink-0 hover:shadow-md transition-shadow">イエドット</a>
+        </div>
+        <!-- Duplicate for seamless loop -->
+        <div class="flex items-center gap-12 px-6">
+          <a href="https://flex.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/flex.svg" alt="FLEX" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.uchiyama.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/uchiyama.png" alt="内山鑑定" class="h-9 w-auto object-contain"></a>
+          <a href="https://housewell-group.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/housewell.webp" alt="Housewell Group" class="h-9 w-auto object-contain"></a>
+          <a href="https://tohjo.com/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/tohjo.webp" alt="東上セレモサービス" class="h-9 w-auto object-contain"></a>
+          <a href="https://www.jptco.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/jptco.png" alt="JPT" class="h-9 w-auto object-contain"></a>
+          <a href="https://crowdworks.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/crowdworks.png" alt="CrowdWorks" class="h-8 w-auto object-contain"></a>
+          <a href="https://x-mov.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/xmov.svg" alt="X-mov Japan" class="h-9 w-auto object-contain"></a>
+          <a href="https://www.sonynetwork.co.jp/" target="_blank" rel="noopener" class="w-44 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/sonynetwork.svg" alt="Sony Network Communications" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.currentmotor.co.jp/" target="_blank" rel="noopener" class="w-44 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/currentmotor.png" alt="カレント自動車" class="h-9 w-auto object-contain"></a>
+          <a href="https://www.kk-wakabayashi.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/wakabayashi.svg" alt="ワカバヤシ" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.srush.co.jp/" target="_blank" rel="noopener" class="w-36 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/srush.svg" alt="Srush" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.ms-uni.com/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/msuni.svg" alt="MS Corporation" class="h-9 w-auto object-contain"></a>
+          <a href="https://frogwell.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/frogwell.png" alt="Frogwell" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.dayliferecruit.com/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/daylife.svg" alt="デイライフ" class="h-8 w-auto object-contain"></a>
+          <a href="https://www.algahome8.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/algahome.png" alt="ALGA HOME" class="h-9 w-auto object-contain"></a>
+          <a href="https://toptrust-home.co.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/toptrust.svg" alt="トップトラスト" class="h-9 w-auto object-contain"></a>
+          <a href="https://sumitas.jp/" target="_blank" rel="noopener" class="w-40 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center px-4 flex-shrink-0 hover:shadow-md transition-shadow"><img src="/src/images/clients/sumitas.svg" alt="Sumitas" class="h-8 w-auto object-contain"></a>
+          <a href="https://iedot-recruit.com/" target="_blank" rel="noopener" class="w-36 h-14 bg-[#F7F8F9] rounded-lg flex items-center justify-center text-gray-500 font-bold text-sm flex-shrink-0 hover:shadow-md transition-shadow">イエドット</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. SOLUTIONS ========== -->
+  <section id="solutions" class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm">Solutions</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">5つのソリューションで課題を解決</h2>
+        <p class="text-gray-500 mt-3">業務管理のDX化からAI活用まで、ビジネスの成長段階に合わせたサービスをご用意しています。</p>
+      </div>
+
+      <div class="flex flex-col xl:flex-row xl:items-stretch mt-10 xl:mt-14 gap-8 xl:gap-16">
+        <!-- Left: Service List -->
+        <div class="flex-1 xl:max-w-md">
+          <ul class="divide-y divide-gray-200">
+            <!-- Solution 1 -->
+            <li class="service-item active py-5 cursor-pointer group" data-target="panel-1" data-aos="fade-up">
+              <div class="flex justify-between items-start">
+                <h3 class="text-xl font-semibold group-hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</h3>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-[#00AEEF] group-hover:rotate-45 transition-all duration-500 flex-shrink-0 mt-1" viewBox="0 0 32 32" fill="currentColor"><path d="M9.33 9.33h11.45L7.06 23.06l1.88 1.88L22.67 11.22V22.67h2.67V6.67H9.33v2.67z"/></svg>
+              </div>
+              <p class="text-gray-400 group-hover:text-gray-600 transition-colors mt-2 text-sm">全ての業務をひとつで管理できる総合SaaSプラットフォーム。知識がなくてもスピーディーに構築でき、コストと時間を最小限に抑えます。</p>
+              <div class="accordion-content xl:hidden mt-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <p class="text-xs font-semibold text-center">導入・運用コスト最適化</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+                    <p class="text-xs font-semibold text-center">自社で高速に開発・改善</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+                    <p class="text-xs font-semibold text-center">複数業務を一元管理</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+                    <p class="text-xs font-semibold text-center">API・外部SaaS連携</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- Solution 2 -->
+            <li class="service-item py-5 cursor-pointer group" data-target="panel-2" data-aos="fade-up">
+              <div class="flex justify-between items-start">
+                <h3 class="text-xl font-semibold group-hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</h3>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-[#00AEEF] group-hover:rotate-45 transition-all duration-500 flex-shrink-0 mt-1" viewBox="0 0 32 32" fill="currentColor"><path d="M9.33 9.33h11.45L7.06 23.06l1.88 1.88L22.67 11.22V22.67h2.67V6.67H9.33v2.67z"/></svg>
+              </div>
+              <p class="text-gray-400 group-hover:text-gray-600 transition-colors mt-2 text-sm">10年以上、50社以上のプロジェクトを支援してきた知見で、導入計画から全体設計、開発、運用までを伴走します。</p>
+              <div class="accordion-content xl:hidden mt-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                    <p class="text-xs font-semibold text-center">導入戦略と要件定義</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg>
+                    <p class="text-xs font-semibold text-center">設計・開発・連携構築</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+                    <p class="text-xs font-semibold text-center">定着支援と継続改善</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+                    <p class="text-xs font-semibold text-center">16以上の資格保有</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- Solution 3 -->
+            <li class="service-item py-5 cursor-pointer group" data-target="panel-3" data-aos="fade-up">
+              <div class="flex justify-between items-start">
+                <h3 class="text-xl font-semibold group-hover:text-[#00AEEF] transition-colors">AIソリューション開発・導入支援</h3>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-[#00AEEF] group-hover:rotate-45 transition-all duration-500 flex-shrink-0 mt-1" viewBox="0 0 32 32" fill="currentColor"><path d="M9.33 9.33h11.45L7.06 23.06l1.88 1.88L22.67 11.22V22.67h2.67V6.67H9.33v2.67z"/></svg>
+              </div>
+              <p class="text-gray-400 group-hover:text-gray-600 transition-colors mt-2 text-sm">RAGやAIエージェントなどの先進技術を活用し、業務の自動化と高度な意思決定を実現。構想策定から運用定着まで伴走します。</p>
+              <div class="accordion-content xl:hidden mt-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+                    <p class="text-xs font-semibold text-center">RAGによるドキュメント活用</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
+                    <p class="text-xs font-semibold text-center">AIエージェント自動化</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                    <p class="text-xs font-semibold text-center">データガバナンス</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
+                    <p class="text-xs font-semibold text-center">PoC・運用支援</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- Solution 4 -->
+            <li class="service-item py-5 cursor-pointer group" data-target="panel-4" data-aos="fade-up">
+              <div class="flex justify-between items-start">
+                <h3 class="text-xl font-semibold group-hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</h3>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-[#00AEEF] group-hover:rotate-45 transition-all duration-500 flex-shrink-0 mt-1" viewBox="0 0 32 32" fill="currentColor"><path d="M9.33 9.33h11.45L7.06 23.06l1.88 1.88L22.67 11.22V22.67h2.67V6.67H9.33v2.67z"/></svg>
+              </div>
+              <p class="text-gray-400 group-hover:text-gray-600 transition-colors mt-2 text-sm">オープンソースのノーコード/ローコード基盤で業務アプリを短期構築。自社ホストや拡張開発まで支援します。</p>
+              <div class="accordion-content xl:hidden mt-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg>
+                    <p class="text-xs font-semibold text-center">オープンソース基盤</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z"/></svg>
+                    <p class="text-xs font-semibold text-center">プラグイン拡張</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+                    <p class="text-xs font-semibold text-center">ワークフロー自動化</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
+                    <p class="text-xs font-semibold text-center">自社ホスティング</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- Solution 5 -->
+            <li class="service-item py-5 cursor-pointer group" data-target="panel-5" data-aos="fade-up">
+              <div class="flex justify-between items-start">
+                <h3 class="text-xl font-semibold group-hover:text-[#00AEEF] transition-colors">各種SaaSシステム受託開発</h3>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-[#00AEEF] group-hover:rotate-45 transition-all duration-500 flex-shrink-0 mt-1" viewBox="0 0 32 32" fill="currentColor"><path d="M9.33 9.33h11.45L7.06 23.06l1.88 1.88L22.67 11.22V22.67h2.67V6.67H9.33v2.67z"/></svg>
+              </div>
+              <p class="text-gray-400 group-hover:text-gray-600 transition-colors mt-2 text-sm">Salesforce以外の業務管理システムやAPI連携も柔軟に対応。最適なサービス選定から開発、保守までワンストップで提供します。</p>
+              <div class="accordion-content xl:hidden mt-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <p class="text-xs font-semibold text-center">幅広い導入実績</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"/></svg>
+                    <p class="text-xs font-semibold text-center">複雑な要件対応</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+                    <p class="text-xs font-semibold text-center">API連携</p>
+                  </div>
+                  <div class="bg-[#F7F8F9] p-4 rounded-lg flex flex-col items-center gap-2">
+                    <svg class="w-6 h-6 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.1 3.04.97-5.657L3 8.416l5.676-.825L11.42 2.5l2.534 5.091L19.63 8.416l-4.29 4.137.97 5.657-5.1-3.04z"/></svg>
+                    <p class="text-xs font-semibold text-center">ワンストップ保守</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Desktop Panels -->
+        <div class="flex-1 hidden xl:flex xl:flex-col">
+          <div id="panel-1" class="service-panel active">
+            <div class="rounded-2xl bg-gradient-to-br from-[#0B1A2B] to-[#162d4a] p-8 text-white">
+              <h3 class="text-2xl font-bold mb-4">楽Platform</h3>
+              <p class="text-gray-300 mb-6">全ての業務をひとつで管理できる総合SaaSプラットフォーム。知識がなくてもスピーディーに構築でき、コストと時間を最小限に抑えます。</p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <p class="font-semibold text-sm">導入・運用がしやすいコスト設計</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+                  <p class="font-semibold text-sm">自社で高速に開発・改善</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+                  <p class="font-semibold text-sm">複数の業務を一元管理</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+                  <p class="font-semibold text-sm">APIや外部SaaSとも連携可能</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="panel-2" class="service-panel">
+            <div class="rounded-2xl bg-gradient-to-br from-[#0B1A2B] to-[#162d4a] p-8 text-white">
+              <h3 class="text-2xl font-bold mb-4">Salesforce導入・運用支援</h3>
+              <p class="text-gray-300 mb-6">約10年以上の経験、50以上の企業への導入支援実績。導入戦略から要件定義、設計・開発、定着支援まで一貫して伴走します。</p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                  <p class="font-semibold text-sm">導入戦略と要件定義</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg>
+                  <p class="font-semibold text-sm">設計・開発・連携構築</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+                  <p class="font-semibold text-sm">定着支援と継続改善</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+                  <p class="font-semibold text-sm">Salesforce資格16以上保有</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="panel-3" class="service-panel">
+            <div class="rounded-2xl bg-gradient-to-br from-[#0B1A2B] to-[#162d4a] p-8 text-white">
+              <h3 class="text-2xl font-bold mb-4">AIソリューション</h3>
+              <p class="text-gray-300 mb-6">RAGやAIエージェントなどの先進技術を活用し、業務の自動化と高度な意思決定を実現。構想策定から運用定着まで伴走します。</p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+                  <p class="font-semibold text-sm">RAGによる業務ドキュメント活用</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>
+                  <p class="font-semibold text-sm">AIエージェントでプロセス自動化</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                  <p class="font-semibold text-sm">安全なデータ活用とガバナンス</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
+                  <p class="font-semibold text-sm">PoC・開発・運用チューニング</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="panel-4" class="service-panel">
+            <div class="rounded-2xl bg-gradient-to-br from-[#0B1A2B] to-[#162d4a] p-8 text-white">
+              <h3 class="text-2xl font-bold mb-4">NocoBase導入・開発</h3>
+              <p class="text-gray-300 mb-6">オープンソースのノーコード/ローコード基盤で業務アプリを短期構築。自社ホストや拡張開発まで支援します。</p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg>
+                  <p class="font-semibold text-sm">オープンソース & 自社ホスティング</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z"/></svg>
+                  <p class="font-semibold text-sm">プラグインによる拡張設計</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+                  <p class="font-semibold text-sm">ワークフロー/権限/自動連携</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
+                  <p class="font-semibold text-sm">要件整理・データモデル設計</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="panel-5" class="service-panel">
+            <div class="rounded-2xl bg-gradient-to-br from-[#0B1A2B] to-[#162d4a] p-8 text-white">
+              <h3 class="text-2xl font-bold mb-4">各種SaaS受託開発</h3>
+              <p class="text-gray-300 mb-6">Salesforce以外の業務管理システムやAPI連携も柔軟に対応。最適なサービス選定から開発、保守までワンストップで提供します。</p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <p class="font-semibold text-sm">幅広い導入実績（10年以上）</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"/></svg>
+                  <p class="font-semibold text-sm">複雑な要件にも対応</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+                  <p class="font-semibold text-sm">API連携・外部システム統合</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur p-5 rounded-xl flex items-start gap-3">
+                  <svg class="w-8 h-8 flex-shrink-0 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.1 3.04.97-5.657L3 8.416l5.676-.825L11.42 2.5l2.534 5.091L19.63 8.416l-4.29 4.137.97 5.657-5.1-3.04z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.328 4.328 0 00-.745-2.44 4.326 4.326 0 00-3.505-1.832 4.326 4.326 0 00-3.505 1.833 4.328 4.328 0 00-.745 2.439v.228"/></svg>
+                  <p class="font-semibold text-sm">ワンストップ保守運用</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. ABOUT ========== -->
+  <section id="about" class="py-16 xl:py-24 px-5 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <!-- Row 1 -->
+      <div class="flex flex-col xl:flex-row items-center gap-12 xl:gap-20" data-aos="fade-up">
+        <div class="xl:w-1/2">
+          <img src="/src/images/3dman.png" alt="誰もが業務管理システムを使いこなせる未来を" class="rounded-2xl w-full object-cover aspect-[4/3]" loading="lazy">
+        </div>
+        <div class="xl:w-1/2">
+          <div class="font-semibold text-[#00AEEF] uppercase text-sm">About</div>
+          <h2 class="text-3xl xl:text-4xl font-bold mt-2">誰もが業務管理システムを使いこなせる未来を</h2>
+          <div class="mt-6 space-y-4">
+            <div>
+              <h4 class="font-bold text-lg">DX化・標準化の推進</h4>
+              <p class="text-gray-600 mt-1">大企業だけでなく中小・ベンチャー企業でも業務管理を定着させるための仕組みづくりを支援します。</p>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">現場に寄り添う設計</h4>
+              <p class="text-gray-600 mt-1">属人化ではなく標準化を実現し、組織全体で課題を共有・解決できる運用を目指します。</p>
+            </div>
+          </div>
+          <p class="mt-6 text-gray-600 leading-relaxed">
+            これまで大手企業や投資力のある企業がSFA・CRM・ERPなどの業務管理システムを積極的に導入してきましたが、
+            中小企業やベンチャー企業ではDX化や標準化が進んでいないケースが多く見られます。Rakucloud株式会社は、
+            こうした企業に寄り添い、誰もが使いこなせる業務管理システムの導入と運用を支援します。
+          </p>
+        </div>
+      </div>
+
+      <!-- Row 2: Story -->
+      <div class="flex flex-col xl:flex-row-reverse items-center gap-12 xl:gap-20 mt-20" data-aos="fade-up">
+        <div class="xl:w-1/2">
+          <img src="/src/images/ceo-home.jpeg" alt="代表 張 壮壮" class="rounded-2xl w-full object-cover aspect-[4/3]" loading="lazy">
+        </div>
+        <div class="xl:w-1/2">
+          <div class="font-semibold text-[#00AEEF] uppercase text-sm">Story</div>
+          <h2 class="text-3xl xl:text-4xl font-bold mt-2">経験に裏づけられた知見</h2>
+          <div class="mt-6 space-y-4">
+            <div>
+              <h4 class="font-bold text-lg">豊富なプロジェクト経験</h4>
+              <p class="text-gray-600 mt-1">外資系コンサルや大手EC企業で基幹システム開発を担当し、50以上の導入・運用プロジェクトを成功に導いてきました。</p>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">楽Platformの開発</h4>
+              <p class="text-gray-600 mt-1">お客様に寄り添った業務管理システムが必要だという想いから、総合SaaSプラットフォーム「楽Platform」を自社開発しました。</p>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">代表 張 壮壮</h4>
+              <p class="text-gray-600 mt-1">多様な業界の課題に向き合ってきた経験を活かし、お客様のビジネス成長を支えるパートナーとして伴走します。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6. STEPS ========== -->
+  <section id="steps" class="py-16 xl:py-24 px-5 lg:px-8 bg-[#F7F8F9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm">Process</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">導入から運用まで伴走します</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mt-12">
+        <div class="bg-white rounded-2xl p-8 shadow-sm relative" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-12 h-12 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-lg mb-4">1</div>
+          <h3 class="text-xl font-bold">課題ヒアリング</h3>
+          <p class="text-gray-600 mt-2 text-sm">現場の課題や業務フローを丁寧にヒアリングし、DX化の方向性を明確にします。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-lg mb-4">2</div>
+          <h3 class="text-xl font-bold">設計と開発</h3>
+          <p class="text-gray-600 mt-2 text-sm">最適なシステム構成を設計し、楽PlatformやSalesforceなどを活用して短期間で構築します。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-12 h-12 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-lg mb-4">3</div>
+          <h3 class="text-xl font-bold">導入と定着支援</h3>
+          <p class="text-gray-600 mt-2 text-sm">運用の標準化と定着を支援し、必要に応じて他SaaSやAPI連携にも対応します。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-12 h-12 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-lg mb-4">4</div>
+          <h3 class="text-xl font-bold">継続的な改善</h3>
+          <p class="text-gray-600 mt-2 text-sm">導入後も伴走し、データ活用や業務改善のサイクルを一緒に回していきます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. STATISTICS ========== -->
+  <section id="stats" class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm">Results</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">Rakucloudの歩み</h2>
+        <p class="text-gray-500 mt-3">経験と実績が信頼の証です</p>
+      </div>
+
+      <div class="mt-12 rounded-3xl bg-[#202020] p-8 lg:p-12" data-aos="fade-up">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:divide-x divide-gray-700">
+          <div class="counter-card">
+            <div class="text-4xl xl:text-5xl font-bold text-white" data-counter="50" data-suffix="+">0</div>
+            <div class="text-sm text-gray-400 mt-2">プロジェクト実績</div>
+          </div>
+          <div class="counter-card">
+            <div class="text-4xl xl:text-5xl font-bold text-white" data-counter="10" data-suffix="+">0</div>
+            <div class="text-sm text-gray-400 mt-2">年以上の経験</div>
+          </div>
+          <div class="counter-card">
+            <div class="text-4xl xl:text-5xl font-bold text-white" data-counter="5" data-suffix="">0</div>
+            <div class="text-sm text-gray-400 mt-2">つのソリューション</div>
+          </div>
+          <div class="counter-card">
+            <div class="text-4xl xl:text-5xl font-bold text-white" data-counter="100" data-suffix="%">0</div>
+            <div class="text-sm text-gray-400 mt-2">導入から運用まで伴走</div>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center gap-4 mt-10" data-aos="zoom-in">
+          <p class="text-white text-sm">Rakucloudについてもっと知る</p>
+          <a href="/about.html" class="btn-primary">
+            <span>会社概要</span>
+            <svg class="w-3 h-3 group-hover:rotate-45 transition-transform" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="white"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. BLOG ========== -->
+  <section id="blog" class="py-16 xl:py-24 px-5 lg:px-8 bg-[#F7F8F9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-end justify-between mb-12" data-aos="fade-up">
+        <div>
+          <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest">Blog</div>
+          <h2 class="text-3xl xl:text-4xl font-bold mt-2">最新記事</h2>
+        </div>
+        <a href="/blog.html" class="hidden md:inline-flex items-center gap-2 text-[#00AEEF] font-semibold text-sm hover:underline">
+          <span>すべての記事を見る</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <!-- Post 1 -->
+        <a href="/blog.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up">
+          <div class="aspect-[16/9] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=2070&q=80" alt="生成AIサービスを安全に運用するためのMLOps設計ガイド" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">AI</span>
+              <span class="text-xs text-gray-400">2024/05/29</span>
+            </div>
+            <h3 class="font-bold text-lg leading-snug group-hover:text-[#00AEEF] transition-colors">生成AIサービスを安全に運用するためのMLOps設計ガイド</h3>
+            <p class="text-gray-500 text-sm mt-3 line-clamp-2">生成AIを業務システムに組み込む際のアーキテクチャ、品質評価、ガバナンス体制を解説し、継続的な改善を実現するための設計手法をまとめました。</p>
+            <div class="flex gap-2 mt-4">
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#生成AI</span>
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#MLOps</span>
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#セキュリティ</span>
+            </div>
+          </div>
+        </a>
+        <!-- Post 2 -->
+        <a href="/blog.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="aspect-[16/9] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2070&q=80" alt="Salesforce導入を成功させるための実践ブループリント" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">Salesforce</span>
+              <span class="text-xs text-gray-400">2024/05/27</span>
+            </div>
+            <h3 class="font-bold text-lg leading-snug group-hover:text-[#00AEEF] transition-colors">Salesforce導入を成功させるための実践ブループリント</h3>
+            <p class="text-gray-500 text-sm mt-3 line-clamp-2">要件定義から運用定着までのフェーズごとの成功要因やテンプレートをまとめ、Salesforce導入を加速するためのベストプラクティスを紹介します。</p>
+            <div class="flex gap-2 mt-4">
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#Salesforce</span>
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#CRM</span>
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#DX</span>
+            </div>
+          </div>
+        </a>
+        <!-- Post 3 -->
+        <a href="/blog.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+          <div class="aspect-[16/9] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=2070&q=80" alt="NocoBaseで業務アプリを迅速に構築するためのアーキテクチャ設計ガイド" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">NocoBase</span>
+              <span class="text-xs text-gray-400">2024/05/24</span>
+            </div>
+            <h3 class="font-bold text-lg leading-snug group-hover:text-[#00AEEF] transition-colors">NocoBaseで業務アプリを迅速に構築するためのアーキテクチャ設計ガイド</h3>
+            <p class="text-gray-500 text-sm mt-3 line-clamp-2">NocoBaseのプラグイン構成やデータモデリング、運用設計のポイントを整理し、ローコード開発を安全かつ拡張性高く進めるための実践的なガイドです。</p>
+            <div class="flex gap-2 mt-4">
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#NocoBase</span>
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#ローコード</span>
+              <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#業務改善</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-10 md:hidden" data-aos="fade-up">
+        <a href="/blog.html" class="btn-primary">すべての記事を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 9. CTA ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-[#00AEEF] to-[#0077A8] p-8 lg:p-12 flex flex-col xl:flex-row justify-between xl:items-center gap-8" data-aos="fade-up">
+        <div class="text-white">
+          <h3 class="text-2xl xl:text-3xl font-bold">ビジネス成長を加速するパートナーにご相談ください</h3>
+          <p class="mt-3 text-sky-100">業務管理システムの導入やDX推進に関するご相談は、Rakucloud株式会社にお任せください。課題の整理から運用定着まで伴走いたします。</p>
+        </div>
+        <div class="flex-shrink-0">
+          <a href="/contact.html" class="inline-flex items-center gap-2 bg-white text-[#00AEEF] px-8 py-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+            <span>お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 10. FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <!-- Links -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/solution/others.html" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">サービス内容</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="#steps" class="hover:text-[#00AEEF] transition-colors">課題ヒアリング</a></li>
+            <li><a href="#steps" class="hover:text-[#00AEEF] transition-colors">設計と開発</a></li>
+            <li><a href="#steps" class="hover:text-[#00AEEF] transition-colors">導入と定着支援</a></li>
+            <li><a href="#steps" class="hover:text-[#00AEEF] transition-colors">継続的な改善</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Company Info Card -->
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="https://www.rakucloud.co.jp/" class="flex items-center flex-shrink-0">
+          <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto">
+        </a>
+        <div>
+          <div class="font-semibold text-sm">所在地</div>
+          <div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div>
+        </div>
+        <div>
+          <div class="font-semibold text-sm">メール</div>
+          <a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

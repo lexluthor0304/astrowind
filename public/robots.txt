@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /homes/
-Disallow: /landing/
-Sitemap: https://www.rakucloud.co.jp/sitemap.xml

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>ブログ | Rakucloud株式会社</title>
+  <meta name="description" content="Rakucloud株式会社のブログ。AI活用、Salesforce導入、NocoBase開発など、DXに関する最新情報をお届けします。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-2xl">
+      <div class="flex justify-between items-center px-5 py-4 border-b">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="bg-[#0B1A2B] py-16 xl:py-20 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest" data-aos="fade-up">Blog</div>
+      <h1 class="text-4xl xl:text-5xl font-bold text-white mt-4" data-aos="fade-up" data-aos-delay="100">ブログ</h1>
+      <p class="text-gray-400 mt-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">AI活用、Salesforce導入、NocoBase開発など、DXに関する最新情報をお届けします。</p>
+    </div>
+  </section>
+
+  <!-- ========== BLOG CONTENT ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12">
+
+        <!-- Main Content -->
+        <div class="space-y-8">
+          <!-- Post: 介護RPA自動化 -->
+          <a href="/blog/kaigo-rpa-automation.html" class="block">
+            <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100" data-aos="fade-up">
+              <div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-0">
+                <div class="aspect-[16/9] md:aspect-auto overflow-hidden">
+                  <img src="/src/images/rpa.png" alt="介護事業者の国保連請求業務をPlaywrightで完全自動化" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                </div>
+                <div class="p-6 lg:p-8 flex flex-col justify-center">
+                  <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">RPA</span>
+                    <span class="text-xs text-gray-400">2025/12/15</span>
+                    <span class="text-xs text-gray-400">自動化事例</span>
+                  </div>
+                  <h2 class="font-bold text-xl leading-snug group-hover:text-[#00AEEF] transition-colors">介護事業者の国保連請求業務をPlaywrightで完全自動化 — 月額500円で0.5人月を削減</h2>
+                  <p class="text-gray-500 text-sm mt-3 line-clamp-3">Playwrightによるブラウザ自動操作をDockerコンテナ化しGCP上で月額約500円で運用。介護事業者の国保連請求業務を完全自動化し、0.5人月の工数削減とヒューマンエラーゼロを実現した事例を紹介します。</p>
+                  <div class="flex gap-2 mt-4">
+                    <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#RPA</span>
+                    <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#Playwright</span>
+                    <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#介護DX</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </a>
+
+          <!-- Post: NocoBase導入事例 -->
+          <a href="/blog/nocobase-case-study.html" class="block">
+            <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100" data-aos="fade-up">
+              <div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-0">
+                <div class="aspect-[16/9] md:aspect-auto overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2070&q=80" alt="NocoBase導入でソフトウェア企業の納品効率が70%向上" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                </div>
+                <div class="p-6 lg:p-8 flex flex-col justify-center">
+                  <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">NocoBase</span>
+                    <span class="text-xs text-gray-400">2025/12/09</span>
+                    <span class="text-xs text-gray-400">導入事例</span>
+                  </div>
+                  <h2 class="font-bold text-xl leading-snug group-hover:text-[#00AEEF] transition-colors">NocoBase導入でソフトウェア企業の納品効率が70%向上</h2>
+                  <p class="text-gray-500 text-sm mt-3 line-clamp-3">石油化学業界向けソフトウェアを提供する大規模企業がNocoBaseを導入し、カスタマイズ対応の工数を約70%削減。「コアシステム＋NocoBase拡張」の二層アーキテクチャにより、主力製品の膨張を抑えつつ市場変化への迅速な対応を実現した事例を紹介します。</p>
+                  <div class="flex gap-2 mt-4">
+                    <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#NocoBase</span>
+                    <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#ローコード</span>
+                    <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#導入事例</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </a>
+
+          <!-- Post 1 -->
+          <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100" data-aos="fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-0">
+              <div class="aspect-[16/9] md:aspect-auto overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=2070&q=80" alt="生成AIサービスを安全に運用するためのMLOps設計ガイド" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </div>
+              <div class="p-6 lg:p-8 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">AI</span>
+                  <span class="text-xs text-gray-400">2024/05/29</span>
+                  <span class="text-xs text-gray-400">AIソリューション部</span>
+                </div>
+                <h2 class="font-bold text-xl leading-snug group-hover:text-[#00AEEF] transition-colors">生成AIサービスを安全に運用するためのMLOps設計ガイド</h2>
+                <p class="text-gray-500 text-sm mt-3 line-clamp-3">生成AIを業務システムに組み込む際のアーキテクチャ、品質評価、ガバナンス体制を解説し、継続的な改善を実現するための設計手法をまとめました。</p>
+                <div class="flex gap-2 mt-4">
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#生成AI</span>
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#MLOps</span>
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#セキュリティ</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Post 2 -->
+          <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100" data-aos="fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-0">
+              <div class="aspect-[16/9] md:aspect-auto overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2070&q=80" alt="Salesforce導入を成功させるための実践ブループリント" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </div>
+              <div class="p-6 lg:p-8 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">Salesforce</span>
+                  <span class="text-xs text-gray-400">2024/05/27</span>
+                  <span class="text-xs text-gray-400">Rakucloudコンサルティングチーム</span>
+                </div>
+                <h2 class="font-bold text-xl leading-snug group-hover:text-[#00AEEF] transition-colors">Salesforce導入を成功させるための実践ブループリント</h2>
+                <p class="text-gray-500 text-sm mt-3 line-clamp-3">要件定義から運用定着までのフェーズごとの成功要因やテンプレートをまとめ、Salesforce導入を加速するためのベストプラクティスを紹介します。</p>
+                <div class="flex gap-2 mt-4">
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#Salesforce</span>
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#CRM</span>
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#DX</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Post 3 -->
+          <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100" data-aos="fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-0">
+              <div class="aspect-[16/9] md:aspect-auto overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=2070&q=80" alt="NocoBaseで業務アプリを迅速に構築するためのアーキテクチャ設計ガイド" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              </div>
+              <div class="p-6 lg:p-8 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">NocoBase</span>
+                  <span class="text-xs text-gray-400">2024/05/24</span>
+                </div>
+                <h2 class="font-bold text-xl leading-snug group-hover:text-[#00AEEF] transition-colors">NocoBaseで業務アプリを迅速に構築するためのアーキテクチャ設計ガイド</h2>
+                <p class="text-gray-500 text-sm mt-3 line-clamp-3">NocoBaseのプラグイン構成やデータモデリング、運用設計のポイントを整理し、ローコード開発を安全かつ拡張性高く進めるための実践的なガイドです。</p>
+                <div class="flex gap-2 mt-4">
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#NocoBase</span>
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#ローコード</span>
+                  <span class="text-xs text-gray-400 border border-gray-200 px-2 py-0.5 rounded">#業務改善</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-8">
+          <!-- Categories -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100" data-aos="fade-up">
+            <h3 class="font-bold text-lg mb-4">カテゴリー</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#00AEEF]/5 transition-colors text-sm font-medium text-gray-700 hover:text-[#00AEEF]"><span>すべて</span><span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">5</span></a></li>
+              <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#00AEEF]/5 transition-colors text-sm font-medium text-gray-700 hover:text-[#00AEEF]"><span>AI</span><span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">1</span></a></li>
+              <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#00AEEF]/5 transition-colors text-sm font-medium text-gray-700 hover:text-[#00AEEF]"><span>Salesforce</span><span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">1</span></a></li>
+              <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#00AEEF]/5 transition-colors text-sm font-medium text-gray-700 hover:text-[#00AEEF]"><span>NocoBase</span><span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">2</span></a></li>
+              <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#00AEEF]/5 transition-colors text-sm font-medium text-gray-700 hover:text-[#00AEEF]"><span>RPA</span><span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">1</span></a></li>
+            </ul>
+          </div>
+
+          <!-- Tags -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100" data-aos="fade-up">
+            <h3 class="font-bold text-lg mb-4">タグ</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#生成AI</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#MLOps</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#Salesforce</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#CRM</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#DX</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#NocoBase</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#ローコード</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#セキュリティ</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#導入事例</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#業務改善</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#RPA</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#Playwright</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#Docker</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#GCP</span>
+              <span class="text-xs font-medium text-gray-600 bg-gray-100 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] px-3 py-1.5 rounded-full cursor-pointer transition-colors">#介護DX</span>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="bg-gradient-to-br from-[#00AEEF] to-[#0077A8] rounded-2xl p-6 text-white" data-aos="fade-up">
+            <h3 class="font-bold text-lg mb-2">最新記事をお届け</h3>
+            <p class="text-sky-100 text-sm mb-4">メールアドレスをご登録いただくと、新着記事の通知をお送りします。</p>
+            <div class="flex gap-2">
+              <input type="email" placeholder="メールアドレス" class="flex-1 px-4 py-2.5 rounded-lg text-sm text-gray-800 bg-white placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-white/50">
+              <button class="bg-white/20 hover:bg-white/30 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors">登録</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/solution/others.html" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">サービス内容</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">課題ヒアリング</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">設計と開発</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">導入と定着支援</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">継続的な改善</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0"><img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto"></a>
+        <div><div class="font-semibold text-sm">所在地</div><div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div></div>
+        <div><div class="font-semibold text-sm">メール</div><a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a></div>
+      </div>
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

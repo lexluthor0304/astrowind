@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>NocoBase導入でソフトウェア企業の納品効率が70%向上 | Rakucloud株式会社</title>
+  <meta name="description" content="石油化学業界向けソフトウェア企業がNocoBaseを導入し、カスタマイズ対応の工数を約70%削減した導入事例を紹介します。">
+  <meta property="og:title" content="NocoBase導入でソフトウェア企業の納品効率が70%向上 | Rakucloud株式会社">
+  <meta property="og:description" content="石油化学業界向けソフトウェア企業がNocoBaseを導入し、カスタマイズ対応の工数を約70%削減した導入事例を紹介します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.rakucloud.co.jp/blog/nocobase-case-study">
+  <link rel="canonical" href="https://www.rakucloud.co.jp/blog/nocobase-case-study">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-2xl">
+      <div class="flex justify-between items-center px-5 py-4 border-b">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="bg-[#0B1A2B] py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-3 mb-6" data-aos="fade-up">
+        <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">NocoBase</span>
+        <span class="text-xs text-gray-400">2025/12/09</span>
+        <span class="text-xs text-gray-400">導入事例</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="100">NocoBase導入でソフトウェア企業の<br class="hidden md:block">納品効率が70%向上</h1>
+      <p class="text-gray-400 mt-6 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">石油化学業界向けソフトウェアを提供する大規模企業がNocoBaseを導入し、カスタマイズ対応の工数を約70%削減した事例を紹介します。</p>
+    </div>
+  </section>
+
+  <!-- ========== HERO IMAGE ========== -->
+  <div class="max-w-5xl mx-auto px-5 lg:px-8 -mt-8" data-aos="fade-up" data-aos-delay="300">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2070&q=80" alt="NocoBase導入事例" class="w-full rounded-2xl shadow-xl object-cover aspect-[21/9]">
+  </div>
+
+  <!-- ========== ARTICLE ========== -->
+  <article class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- 導入 -->
+      <p class="text-lg text-gray-600 leading-relaxed">本ケースでは、NocoBaseが大規模な企業向けソフトウェア基盤をどのように補完し、強化するのかを紹介する。自社開発力の高い企業であっても、細かな追加要件に対応するには、軽く扱いやすいオープンソースのノーコード／ローコード層が最も実用的な選択肢となる場面が少なくない。</p>
+
+      <!-- 業界背景 -->
+      <h2 class="text-2xl font-bold mt-16 mb-6 pb-3 border-b-2 border-[#00AEEF]">業界背景：石油化学のデジタル化</h2>
+      <p class="text-gray-600 leading-relaxed">石油化学産業のデジタル化を語るうえで欠かせないのが「複雑さ」である。工程の違いは大きく、統一基準の徹底も難しく、現場の業務要件は絶えず変化し続ける。</p>
+      <p class="text-gray-600 leading-relaxed mt-4">工場ごとに工程ルートや設備規模、組織体制、安全管理の仕組みが異なるため、巡回点検や是正手続きといった基礎的な業務でさえ、企業によって運用方法がバラバラになる。</p>
+      <p class="text-gray-600 leading-relaxed mt-4">そしてこの問題は石油化学だけの特殊事情ではない。多くのB2Bソフトウェア企業が、多様な顧客環境に向き合う中で同じ課題に直面している。</p>
+
+      <!-- 直面していた課題 -->
+      <h2 class="text-2xl font-bold mt-16 mb-6 pb-3 border-b-2 border-[#00AEEF]">直面していた主な課題</h2>
+      <p class="text-gray-600 leading-relaxed">この企業は、長年にわたり石油化学業界向けのソフトウェアを提供してきた。世界各地の大手石油化学企業を数百社抱え、自社開発力も高く、産業デジタル化の分野では確かな実績を持つ。また、ワークフローやフォーム中心の場面で使う独自のローコード基盤も運用している。</p>
+      <p class="text-gray-600 leading-relaxed mt-4">ただ、日々の案件対応を続ける中で、直面している課題は石油化学に限らず、多くのB2Bソフトウェア企業に共通する構造的な問題だと気付き始めた。</p>
+
+      <!-- 課題カード -->
+      <div class="grid sm:grid-cols-2 gap-6 mt-8">
+        <div class="bg-[#F7F8F9] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">カスタマイズは避けられない</h3>
+          <p class="text-sm text-gray-600">どれほど完成度の高い製品でも、すべての企業ニーズを満たすことはできない。コア製品に手を加えるとアーキテクチャが乱れ、品質や安定性を損なう。</p>
+        </div>
+        <div class="bg-[#F7F8F9] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">自社ローコード基盤の限界</h3>
+          <p class="text-sm text-gray-600">ワークフローやフォーム中心の比較的定型的な業務には対応できるが、複雑なデータ処理や細かい画面インタラクションには対応しきれない。</p>
+        </div>
+        <div class="bg-[#F7F8F9] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">システムの乱立と統合コスト</h3>
+          <p class="text-sm text-gray-600">安全・環境、設備、巡回、DCSなど多数の業務システムが並行稼動。データの規格もAPIの形式もバラバラで統合負荷が大きい。</p>
+        </div>
+        <div class="bg-[#F7F8F9] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">開発リソースの逼迫</h3>
+          <p class="text-sm text-gray-600">案件ごとの追加対応や細かな修正依頼に追われ、コア製品の進化に集中できる時間がどんどん奪われていく。</p>
+        </div>
+      </div>
+
+      <!-- NocoBase採用の理由 -->
+      <h2 class="text-2xl font-bold mt-16 mb-6 pb-3 border-b-2 border-[#00AEEF]">NocoBase採用の理由</h2>
+      <p class="text-gray-600 leading-relaxed">案件の要求が増え続け、自社のローコード基盤では対応しきれなくなってきたため、チームは外部のローコード製品を本格的に比較検討することにした。複数の候補をテストし比較した結果、NocoBaseを採用する決断をした。</p>
+
+      <div class="mt-8 space-y-6">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-[#00AEEF] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm mt-0.5">1</div>
+          <div>
+            <h3 class="font-bold">オープンソースで自由に手を加えられる</h3>
+            <p class="text-gray-600 text-sm mt-1">技術スタックを自分たちで完全にコントロールでき、要件変更時にもプラットフォームの制約を受けずにコードレベルで自由に改修・拡張できる。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-[#00AEEF] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm mt-0.5">2</div>
+          <div>
+            <h3 class="font-bold">複数データソースをそのまま扱える</h3>
+            <p class="text-gray-600 text-sm mt-1">外部データを一つのアプリ層に集約でき、統合ビューや一貫した業務フローを構築しやすい。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-[#00AEEF] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm mt-0.5">3</div>
+          <div>
+            <h3 class="font-bold">長期運用に耐えるプラグイン拡張</h3>
+            <p class="text-gray-600 text-sm mt-1">プラグインとして機能を追加でき、コア製品には手を触れずに個別要件へ対応。拡張部分は構造化されており独立性が高い。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-[#00AEEF] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm mt-0.5">4</div>
+          <div>
+            <h3 class="font-bold">企業利用に必要な基盤機能が揃っている</h3>
+            <p class="text-gray-600 text-sm mt-1">権限管理、APIゲートウェイ、多言語対応など、複雑なロール体系や厳しいセキュリティ基準に応えるための機能が備わっている。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ユースケース -->
+      <h2 class="text-2xl font-bold mt-16 mb-6 pb-3 border-b-2 border-[#00AEEF]">二つの主要なユースケース</h2>
+
+      <!-- ユースケース1 -->
+      <div class="bg-gradient-to-br from-[#00AEEF]/5 to-transparent rounded-2xl p-8 mt-8 border border-[#00AEEF]/20">
+        <h3 class="text-xl font-bold mb-4">ユースケース1：顧客ごとの追加要件への対応</h3>
+        <p class="text-gray-600 leading-relaxed">NocoBaseは、コア製品には影響させたくないものの、短期間で仕上げる必要がある個別要望に非常に向いている。</p>
+
+        <h4 class="font-bold mt-6 mb-3">こうした要望には共通点がある：</h4>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>企業ごとに内容が異なり、再利用はほぼ見込めない</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>コア製品に組み込むとバージョン管理が煩雑になる</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>コードで作り込むとコストが高く、保守負担も重い</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>しかし検収条件や実務上の理由から、顧客はどうしても必要とする</li>
+        </ul>
+
+        <h4 class="font-bold mt-6 mb-3">NocoBaseを活用した新しい納品方式：</h4>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>NocoBase上で小さなモジュールを素早く構築</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>コア製品とユーザー／権限／データを連携</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>既存システムのメニューや画面構成に自然に組み込む</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>表面上は一体のシステムだが、内部はきれいに分離されている</li>
+        </ul>
+
+        <!-- 成果ハイライト -->
+        <div class="grid sm:grid-cols-3 gap-4 mt-8">
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+            <div class="text-3xl font-bold text-[#00AEEF]">70%</div>
+            <div class="text-sm text-gray-600 mt-1">工数削減</div>
+          </div>
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+            <div class="text-3xl font-bold text-[#00AEEF]">1人</div>
+            <div class="text-sm text-gray-600 mt-1">で完結可能</div>
+          </div>
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+            <div class="text-3xl font-bold text-[#00AEEF]">0</div>
+            <div class="text-sm text-gray-600 mt-1">コア製品への影響</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ユースケース2 -->
+      <div class="bg-gradient-to-br from-[#00AEEF]/5 to-transparent rounded-2xl p-8 mt-8 border border-[#00AEEF]/20">
+        <h3 class="text-xl font-bold mb-4">ユースケース2：社内向けツールの構築</h3>
+        <p class="text-gray-600 leading-relaxed">企業規模が大きくなるにつれ、社内プロセスは変わり続け、それに合わせてシステムも頻繁に調整が必要になる。しかしR&Dチームに依頼すると、主力製品の開発が停滞する。市販SaaSは自社の業務に合わず、結局使いこなせない。</p>
+        <p class="text-gray-600 leading-relaxed mt-4">そこでNocoBaseは「必要な時にすぐ作れる社内システム基盤」として機能した：</p>
+
+        <ul class="space-y-2 text-sm text-gray-600 mt-4">
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>ビジネスチームが自分たちで基本機能を設定</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>大半の場面でフロント・バックの専門開発が不要</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>プロセス変更にもモジュール調整だけで柔軟に対応</li>
+          <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5 flex-shrink-0">&#10003;</span>主力R&Dのリソースを消費しない</li>
+        </ul>
+      </div>
+
+      <!-- まとめ -->
+      <h2 class="text-2xl font-bold mt-16 mb-6 pb-3 border-b-2 border-[#00AEEF]">まとめ</h2>
+      <p class="text-gray-600 leading-relaxed">B2Bソフトウェア企業にとって、競争力の源泉は「強いコア製品」と「安定したプロジェクト収益」である。NocoBaseを取り入れたことで、同社はその優先順位をより明確にできた。</p>
+
+      <div class="mt-8 space-y-6">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold">コア開発への徹底集中</h3>
+            <p class="text-gray-600 text-sm mt-1">細かな追加要望に時間を取られていたコア開発チームが、本来取り組むべき高付加価値の改善・アップグレードに専念できるようになった。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold">プロジェクト収益を守る体制づくり</h3>
+            <p class="text-gray-600 text-sm mt-1">ばらつきの大きいカスタマイズ作業をNocoBase側で素早く低コストに対応できるようになり、納品時の粗利が大きく改善した。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold">整然とした二層アーキテクチャの確立</h3>
+            <p class="text-gray-600 text-sm mt-1">「コアシステム+NocoBase拡張」という構造により、主力製品は無駄な膨張を避け、追加要件はすべて分離された拡張層で処理できる。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags & Share -->
+      <div class="mt-16 pt-8 border-t border-gray-200">
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#NocoBase</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#ローコード</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#導入事例</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#業務改善</span>
+        </div>
+      </div>
+
+      <!-- Back to Blog -->
+      <div class="mt-10">
+        <a href="/blog.html" class="inline-flex items-center gap-2 text-[#00AEEF] font-semibold text-sm hover:underline">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          ブログ一覧に戻る
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-[#00AEEF] to-[#0077A8] p-8 lg:p-12 flex flex-col xl:flex-row justify-between xl:items-center gap-8" data-aos="fade-up">
+        <div class="text-white">
+          <h3 class="text-2xl xl:text-3xl font-bold">NocoBase導入についてご相談ください</h3>
+          <p class="mt-3 text-sky-100">業務管理システムの導入やDX推進に関するご相談は、Rakucloud株式会社にお任せください。</p>
+        </div>
+        <div class="flex-shrink-0">
+          <a href="/contact.html" class="inline-flex items-center gap-2 bg-white text-[#00AEEF] px-8 py-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+            <span>お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/solution/others.html" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">サービス内容</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">課題ヒアリング</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">設計と開発</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">導入と定着支援</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">継続的な改善</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0"><img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto"></a>
+        <div><div class="font-semibold text-sm">所在地</div><div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div></div>
+        <div><div class="font-semibold text-sm">メール</div><a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a></div>
+      </div>
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

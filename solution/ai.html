@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>AIソリューション開発・導入支援 | Rakucloud株式会社</title>
+  <meta name="description" content="RAGやAIエージェントを活用し、業務の自動化と意思決定の高度化を支援。ビジネス課題に合わせたAI活用をワンストップで実現します。">
+  <meta property="og:title" content="AIソリューション開発・導入支援 | Rakucloud株式会社">
+  <meta property="og:description" content="RAGやAIエージェントを活用し、業務の自動化と意思決定の高度化を支援。ビジネス課題に合わせたAI活用をワンストップで実現します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.rakucloud.co.jp/solution/ai">
+  <link rel="canonical" href="https://www.rakucloud.co.jp/solution/ai">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu with solution links -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-2xl">
+      <div class="flex justify-between items-center px-5 py-4 border-b">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ブログ</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="bg-[#0B1A2B] py-20 xl:py-28 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest" data-aos="fade-up">Solution</div>
+      <h1 class="text-4xl xl:text-5xl font-bold text-white mt-4" data-aos="fade-up" data-aos-delay="100">AIソリューション開発・導入支援</h1>
+      <p class="text-gray-400 mt-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">RAGやAIエージェントを活用し、業務の自動化と意思決定の高度化を支援。ビジネス課題に合わせたAI活用をワンストップで実現します。</p>
+      <div class="mt-10 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2070&q=80" alt="AIソリューションの構想を練るチーム" class="rounded-2xl shadow-2xl w-full" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROBLEM ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest">Problem</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">AI活用について、<br class="sm:hidden">こんなお悩みはありませんか？</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 items-center">
+        <div class="rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2070&q=80" alt="AI導入の課題を議論するメンバー" class="w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="space-y-4">
+          <!-- Problem 1 -->
+          <div class="rounded-2xl border border-gray-100 shadow-sm p-6 flex items-start gap-4" data-aos="fade-up">
+            <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold">活用イメージが描けない</h3>
+              <p class="mt-1 text-gray-600 text-sm leading-relaxed">自社の業務にAIをどう取り入れるべきか分からず、PoCで終わってしまう。</p>
+            </div>
+          </div>
+
+          <!-- Problem 2 -->
+          <div class="rounded-2xl border border-gray-100 shadow-sm p-6 flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold">データ基盤やセキュリティが不安</h3>
+              <p class="mt-1 text-gray-600 text-sm leading-relaxed">社内データの整備が追いつかず、機密情報を安全に扱えるのか不安がある。</p>
+            </div>
+          </div>
+
+          <!-- Problem 3 -->
+          <div class="rounded-2xl border border-gray-100 shadow-sm p-6 flex items-start gap-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold">運用・改善の体制がない</h3>
+              <p class="mt-1 text-gray-600 text-sm leading-relaxed">導入後の教育や改善ができるメンバーがいないため、成果が出ない。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-[#00AEEF]/5 border border-[#00AEEF]/20 rounded-2xl p-8 xl:p-10 mt-12" data-aos="fade-up">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-[#00AEEF] flex items-center justify-center flex-shrink-0 mt-1">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-[#0B1A2B] mb-2">Rakucloudが課題を解決します</h3>
+            <p class="text-gray-700 leading-relaxed">Rakucloudは、業務システム開発で培った知見を活かし、AI活用の構想策定からプロトタイピング、運用定着まで伴走します。データ整備やセキュリティ要件も含め、実業務で成果を出すAIソリューションをご提供します。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-[#F7F8F9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest">Features</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">AIソリューションの特徴</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <!-- Feature 1 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm" data-aos="fade-up">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <h3 class="text-lg font-bold">RAGによる業務ドキュメント活用</h3>
+          <p class="mt-3 text-gray-600 text-sm leading-relaxed">社内ドキュメントやFAQを検索性の高い形で統合し、現場に寄り添ったAIアシスタントを構築します。</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold">AIエージェントでプロセスを自動化</h3>
+          <p class="mt-3 text-gray-600 text-sm leading-relaxed">営業・サポート・バックオフィス業務をAIエージェントが代行。外部SaaSとの連携で実務フローを自動化します。</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold">安全なデータ活用とガバナンス</h3>
+          <p class="mt-3 text-gray-600 text-sm leading-relaxed">アクセス制御や監査ログを設計し、社内ポリシーに準拠した形でAIがデータを利用できる環境を整備します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICE ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest">Service</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">提供サービス</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <!-- Service 1 -->
+        <div class="rounded-2xl border border-gray-100 shadow-sm p-8" data-aos="fade-up">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          </div>
+          <h3 class="text-lg font-bold">AI戦略立案・要件定義</h3>
+          <p class="mt-3 text-gray-600 text-sm leading-relaxed">業務プロセスの棚卸しからKPI設計まで、AI活用のロードマップを策定します。</p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="rounded-2xl border border-gray-100 shadow-sm p-8" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 class="text-lg font-bold">PoC・開発・導入支援</h3>
+          <p class="mt-3 text-gray-600 text-sm leading-relaxed">小さく検証しながらRAGやAIエージェントを開発し、本番環境へ段階的に導入します。</p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="rounded-2xl border border-gray-100 shadow-sm p-8" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3 class="text-lg font-bold">運用・チューニング支援</h3>
+          <p class="mt-3 text-gray-600 text-sm leading-relaxed">効果測定やモデル改善を継続し、現場に定着するまで伴走します。</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 items-center" data-aos="fade-up">
+        <div class="bg-[#F7F8F9] rounded-2xl p-8 lg:p-10">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+            </div>
+            <p class="text-gray-600 leading-relaxed">既存のSalesforceや楽Platformと連携したAI活用はもちろん、他SaaSとのAPI連携も一括して対応可能です。</p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-lg">
+          <img src="/src/images/ai/ai_flow.jpeg" alt="AI導入フロー" class="w-full" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STEPS ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-[#F7F8F9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest">Steps</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">導入までのステップ</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12 items-center">
+        <div class="space-y-6">
+          <div class="relative bg-white rounded-2xl p-6 shadow-sm" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">1</div>
+              <div>
+                <h3 class="text-lg font-bold">ヒアリング・アイデア創出</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mt-1">業務課題やデータ状況を整理し、AI活用の優先度と効果を明確にします。</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative bg-white rounded-2xl p-6 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">2</div>
+              <div>
+                <h3 class="text-lg font-bold">PoC・開発</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mt-1">RAGやAIエージェントを試作し、改善を繰り返しながら本番環境へ展開します。</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative bg-white rounded-2xl p-6 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">3</div>
+              <div>
+                <h3 class="text-lg font-bold">導入・運用支援</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mt-1">現場での利用定着を支援し、指標をもとに継続的な改善とガバナンス強化を行います。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2070&q=80" alt="AI導入ステップを確認するメンバー" class="w-full h-full object-cover" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-[#00AEEF] to-[#0077A8] p-8 lg:p-12 flex flex-col xl:flex-row justify-between xl:items-center gap-8" data-aos="fade-up">
+        <div class="text-white">
+          <h3 class="text-2xl xl:text-3xl font-bold">AIで業務革新を実現しませんか？</h3>
+          <p class="mt-3 text-sky-100">RAGやAIエージェントの導入をはじめ、AI活用に関するあらゆるご相談を承ります。お気軽にお問い合わせください。</p>
+        </div>
+        <div class="flex-shrink-0">
+          <a href="/contact.html" class="inline-flex items-center gap-2 bg-white text-[#00AEEF] px-8 py-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+            <span>お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/solution/others.html" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">サービス内容</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">課題ヒアリング</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">設計と開発</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">導入と定着支援</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">継続的な改善</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0"><img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto"></a>
+        <div><div class="font-semibold text-sm">所在地</div><div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div></div>
+        <div><div class="font-semibold text-sm">メール</div><a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a></div>
+      </div>
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

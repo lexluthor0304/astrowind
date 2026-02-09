@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>チーム紹介 | Rakucloud株式会社</title>
+  <meta name="description" content="Rakucloud株式会社のチームメンバーをご紹介します。事業戦略から実装、運用定着までを支えるプロフェッショナル集団です。">
+  <meta property="og:title" content="チーム紹介 | Rakucloud株式会社">
+  <meta property="og:description" content="Rakucloud株式会社のチームメンバーをご紹介します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.rakucloud.co.jp/team">
+  <link rel="canonical" href="https://www.rakucloud.co.jp/team">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase text-[#00AEEF]">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-2xl">
+      <div class="flex justify-between items-center px-5 py-4 border-b">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold text-[#00AEEF]">チーム</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ブログ</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="relative bg-[#0B1A2B] overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/src/images/team/techteam.jpeg" alt="チームミーティング" class="w-full h-full object-cover opacity-25">
+    </div>
+    <div class="relative py-24 xl:py-32 px-5 lg:px-8">
+      <div class="max-w-7xl mx-auto text-center">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest" data-aos="fade-up">Our Team</div>
+        <h1 class="text-4xl xl:text-5xl font-bold text-white mt-4" data-aos="fade-up" data-aos-delay="100">信頼できるパートナーとして<br class="hidden md:block">伴走するチーム</h1>
+        <p class="text-gray-300 mt-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">プロダクト開発、Salesforce導入、AI活用まで一貫して支援できる体制で、お客様の成果を最優先に考えます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEAM MEMBERS ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm">Members</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">チームメンバー</h2>
+        <p class="mt-4 text-gray-600">事業戦略から実装、運用定着までを支えるメンバーをご紹介します。役割や担当領域に合わせて柔軟な体制を構築しています。</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <!-- Member 1: CEO -->
+        <div class="relative group overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up">
+          <div class="aspect-square overflow-hidden">
+            <img src="/src/images/ceo.png" alt="代表取締役 CEO 張 壮壮" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-semibold uppercase tracking-wide text-[#00AEEF]">代表取締役 CEO</p>
+            <h3 class="mt-2 text-xl font-bold">張 壮壮</h3>
+            <p class="mt-3 text-sm text-gray-600">Salesforce導入支援とSaaS開発を統括。業務に寄り添ったDX推進をリードします。</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">事業戦略</span>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">Salesforce</span>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">SaaS開発</span>
+            </div>
+          </div>
+          <!-- Hover overlay -->
+          <div class="absolute inset-0 bg-[#0B1A2B]/90 flex items-end p-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+            <div class="text-white">
+              <p class="text-sm font-semibold uppercase tracking-wide text-[#00AEEF]">代表取締役 CEO</p>
+              <h3 class="mt-2 text-xl font-bold">張 壮壮</h3>
+              <p class="text-gray-300 text-sm mt-3">外資系コンサル企業や大手ECサイト企業で培った知識と経験をベースに、多様な業界の課題に向き合い、お客様のビジネス成長を支えるパートナーとして伴走します。</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">事業戦略</span>
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">Salesforce</span>
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">SaaS開発</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 2: AI -->
+        <div class="relative group overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+          <div class="aspect-square overflow-hidden">
+            <img src="/src/images/team/CAI.jpeg" alt="AI導入メンバー 蔡 恒" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-semibold uppercase tracking-wide text-[#00AEEF]">AI導入</p>
+            <h3 class="mt-2 text-xl font-bold">蔡 恒</h3>
+            <p class="mt-3 text-sm text-gray-600">AI活用の構想策定からPoC、運用定着までを支援します。</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">活用企画</span>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">PoC支援</span>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">運用改善</span>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-[#0B1A2B]/90 flex items-end p-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+            <div class="text-white">
+              <p class="text-sm font-semibold uppercase tracking-wide text-[#00AEEF]">AI導入</p>
+              <h3 class="mt-2 text-xl font-bold">蔡 恒</h3>
+              <p class="text-gray-300 text-sm mt-3">AI活用の構想策定からPoC、運用定着までを支援。RAGやAIエージェントなどの先進技術を活用し、業務効率化を実現します。</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">活用企画</span>
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">PoC支援</span>
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">運用改善</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 3: SaaS -->
+        <div class="relative group overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+          <div class="aspect-square overflow-hidden">
+            <img src="/src/images/team/SEKI.jpeg" alt="SaaS導入担当 関 晶" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-semibold uppercase tracking-wide text-[#00AEEF]">SaaS導入担当</p>
+            <h3 class="mt-2 text-xl font-bold">関 晶</h3>
+            <p class="mt-3 text-sm text-gray-600">要件整理から導入計画、運用定着までを一貫して支援します。</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">要件整理</span>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">導入計画</span>
+              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">運用定着</span>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-[#0B1A2B]/90 flex items-end p-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+            <div class="text-white">
+              <p class="text-sm font-semibold uppercase tracking-wide text-[#00AEEF]">SaaS導入担当</p>
+              <h3 class="mt-2 text-xl font-bold">関 晶</h3>
+              <p class="text-gray-300 text-sm mt-3">要件整理から導入計画、運用定着までを一貫して支援。最適なサービス選定から開発、保守まで対応します。</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">要件整理</span>
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">導入計画</span>
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">運用定着</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEAM STRENGTHS ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-[#F7F8F9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm">Strengths</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">チームの強み</h2>
+        <p class="mt-4 text-gray-600">お客様の現場に入り込み、成果に繋がるまで伴走することを大切にしています。</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100" data-aos="fade-up">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold">現場起点の設計</h3>
+          <p class="mt-3 text-gray-600 text-sm">業務フローと現場課題を丁寧に整理し、運用に馴染む形で設計します。</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold">スピードと品質の両立</h3>
+          <p class="mt-3 text-gray-600 text-sm">小さく試して素早く改善し、成果を最短で可視化します。</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3 class="text-xl font-bold">再現性あるナレッジ共有</h3>
+          <p class="mt-3 text-gray-600 text-sm">知見を標準化し、チーム全体で継続的に改善を進めます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEAM PHOTO ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up">
+        <div class="rounded-2xl overflow-hidden">
+          <img src="/src/images/team/techteam.jpeg" alt="テクニカルチーム" class="w-full h-full object-cover aspect-[4/3]" loading="lazy">
+        </div>
+        <div class="rounded-2xl overflow-hidden">
+          <img src="/src/images/team/bizteam.jpeg" alt="ビジネスチーム" class="w-full h-full object-cover aspect-[4/3]" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-[#00AEEF] to-[#0077A8] p-8 lg:p-12 flex flex-col xl:flex-row justify-between xl:items-center gap-8" data-aos="fade-up">
+        <div class="text-white">
+          <h3 class="text-2xl xl:text-3xl font-bold">チームと一緒に課題解決を始めませんか？</h3>
+          <p class="mt-3 text-sky-100">業務管理システムやDX推進のご相談は、Rakucloud株式会社にお任せください。</p>
+        </div>
+        <div class="flex-shrink-0">
+          <a href="/contact.html" class="inline-flex items-center gap-2 bg-white text-[#00AEEF] px-8 py-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+            <span>お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">サービス内容</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">課題ヒアリング</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">設計と開発</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">導入と定着支援</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">継続的な改善</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0">
+          <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto">
+        </a>
+        <div>
+          <div class="font-semibold text-sm">所在地</div>
+          <div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div>
+        </div>
+        <div>
+          <div class="font-semibold text-sm">メール</div>
+          <a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

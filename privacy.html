@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>個人情報保護方針 | Rakucloud株式会社</title>
+  <meta name="description" content="Rakucloud株式会社のプライバシーポリシー。お客様の個人情報の取り扱いについて説明します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase text-[#00AEEF]">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-2xl">
+      <div class="flex justify-between items-center px-5 py-4 border-b">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="bg-[#0B1A2B] py-16 xl:py-20 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl xl:text-5xl font-bold text-white" data-aos="fade-up">個人情報保護方針</h1>
+      <p class="text-gray-400 mt-4" data-aos="fade-up" data-aos-delay="100">最終更新日: 2023年1月6日</p>
+    </div>
+  </section>
+
+  <!-- ========== CONTENT ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-3xl mx-auto prose prose-gray prose-lg">
+      <p>本プライバシーポリシーでは、当社がサービスをご利用いただく際にお客様の情報をどのように収集、利用、開示するか、またお客様のプライバシーに関する権利と法的保護について説明します。</p>
+      <p>当社は、サービスを提供し改善するためにお客様の個人データを利用します。サービスをご利用いただくことで、本プライバシーポリシーに従った情報の収集と利用に同意したものとみなされます。</p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">解釈および定義</h2>
+      <h3 class="text-xl font-bold mt-8 mb-3">解釈</h3>
+      <p>本文書では、冒頭が大文字の語句には以下に定義する意味があります。単数形でも複数形でも同じ意味を持ちます。</p>
+      <h3 class="text-xl font-bold mt-8 mb-3">定義</h3>
+      <p>本プライバシーポリシーにおいて:</p>
+      <ul class="space-y-2 list-disc pl-6">
+        <li><strong>アカウント</strong>とは、サービスまたはその一部へアクセスするためにお客様のために作成された固有のアカウントを意味します。</li>
+        <li><strong>会社</strong>（以下「当社」「私たち」などといいます）とは、Rakucloud株式会社（東京都北区赤羽1-55-8 501）を指します。</li>
+        <li><strong>クッキー</strong>とは、ウェブサイトによってお客様のコンピューターや携帯端末に保存される小さなファイルで、閲覧履歴などの情報が含まれます。</li>
+        <li><strong>国</strong>とは、日本を指します。</li>
+        <li><strong>デバイス</strong>とは、コンピューター、携帯電話、タブレットなどサービスへアクセスできるあらゆる機器を指します。</li>
+        <li><strong>個人データ</strong>とは、識別されたまたは識別可能な個人に関連する情報を指します。</li>
+        <li><strong>サービス</strong>とは本ウェブサイトを指します。</li>
+        <li><strong>サービスプロバイダー</strong>とは、当社に代わってデータを処理する第三者企業または個人を指します。</li>
+        <li><strong>利用データ</strong>とは、サービスの利用状況やその基盤となるインフラから自動的に生成・収集されるデータを指します。</li>
+        <li><strong>ウェブサイト</strong>とは、<a href="https://www.rakucloud.co.jp/" class="text-[#00AEEF] hover:underline">https://www.rakucloud.co.jp/</a> からアクセスできるサイトを指します。</li>
+        <li><strong>お客様</strong>とは、サービスにアクセスまたは利用する個人、またはその個人が代理してサービスにアクセス・利用する法人その他の団体を指します。</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">個人データの収集と利用</h2>
+      <h3 class="text-xl font-bold mt-8 mb-3">収集するデータの種類</h3>
+      <h4 class="text-lg font-bold mt-6 mb-2">個人データ</h4>
+      <p>当社のサービスをご利用いただく際、連絡や本人確認のために個人を特定できる情報の提供をお願いする場合があります。</p>
+      <h4 class="text-lg font-bold mt-6 mb-2">利用データ</h4>
+      <p>利用データは、サービスの利用時に自動的に収集されます。利用データには、お客様のデバイスのIPアドレス、ブラウザー種別・バージョン、訪問したサービス内のページ、訪問日時、各ページで費やした時間、固有のデバイス識別子、その他診断データなどが含まれる場合があります。</p>
+
+      <h4 class="text-lg font-bold mt-6 mb-2">トラッキング技術とクッキー</h4>
+      <p>当社は、サービス上の活動を追跡し、特定の情報を保存するためにクッキーや類似のトラッキング技術を使用します。</p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">個人データの利用目的</h2>
+      <p>当社は、以下の目的で個人データを利用します。</p>
+      <ul class="space-y-2 list-disc pl-6">
+        <li><strong>サービスの提供および維持</strong>: サービスの利用状況を監視することを含みます。</li>
+        <li><strong>アカウントの管理</strong>: サービス登録ユーザーとしてのアカウントの管理を行います。</li>
+        <li><strong>契約の履行</strong>: ご購入いただいた商品またはサービスに関する契約の開発、遵守、遂行を行います。</li>
+        <li><strong>お問い合わせへの対応</strong>: サービスの更新や機能に関する情報提供などを行います。</li>
+        <li><strong>ご要望の管理</strong>: お客様からのリクエストに対応・管理します。</li>
+        <li><strong>その他の目的</strong>: データ分析、利用傾向の把握、サービスや製品の評価・改善などに使用します。</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">個人データの保管</h2>
+      <p>当社は、本プライバシーポリシーで定めた目的達成に必要な期間のみ個人データを保持します。法的義務の遵守、紛争の解決、契約・ポリシーの履行が必要な範囲で個人データを保存・利用します。</p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">個人データの移転</h2>
+      <p>お客様の情報は、当社の事業所や処理に関与する各所で処理されます。本プライバシーポリシーに同意のうえ情報を提供いただいた時点で、その移転に同意したものとみなします。</p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">個人データの削除</h2>
+      <p>お客様は、当社が保有する個人データの削除または削除支援を求める権利を有します。アカウントにログインし、個人情報を管理できる設定ページから情報の更新、修正、削除を行うことができます。</p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">個人データの安全性</h2>
+      <p>当社はお客様の個人データの安全性を重視していますが、インターネット経由の送信方法や電子的な保存方法は完全に安全とは言えません。当社は商業的に妥当な手段で保護に努めますが、絶対的な安全性を保証することはできません。</p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">子どものプライバシー</h2>
+      <p>当社のサービスは13歳未満を対象としていません。13歳未満の方から個人情報を意図的に取得することはありません。</p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">本プライバシーポリシーの変更</h2>
+      <p>当社は必要に応じて本プライバシーポリシーを更新する場合があります。変更があった場合は、本ページに新しいプライバシーポリシーを掲載してお知らせします。</p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">お問い合わせ</h2>
+      <p>本プライバシーポリシーに関するご質問は、以下の方法でご連絡ください。</p>
+      <ul class="list-disc pl-6">
+        <li>メール: <a href="mailto:sales@rakucloud.com" class="text-[#00AEEF] hover:underline">sales@rakucloud.com</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/solution/others.html" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">サービス内容</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">課題ヒアリング</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">設計と開発</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">導入と定着支援</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">継続的な改善</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0"><img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto"></a>
+        <div><div class="font-semibold text-sm">所在地</div><div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div></div>
+        <div><div class="font-semibold text-sm">メール</div><a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a></div>
+      </div>
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

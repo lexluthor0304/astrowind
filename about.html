@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>会社情報 | Rakucloud株式会社</title>
+  <meta name="description" content="Rakucloud株式会社の会社概要、事業内容、ミッション、保有資格、沿革をご紹介します。">
+  <meta property="og:title" content="会社情報 | Rakucloud株式会社">
+  <meta property="og:description" content="Rakucloud株式会社の会社概要、事業内容、ミッション、保有資格、沿革をご紹介します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.rakucloud.co.jp/about">
+  <link rel="canonical" href="https://www.rakucloud.co.jp/about">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase text-[#00AEEF]">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="https://www.rakucloud.co.jp/contact" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-2xl">
+      <div class="flex justify-between items-center px-5 py-4 border-b">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold text-[#00AEEF]">会社情報</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ブログ</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="https://www.rakucloud.co.jp/contact" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="bg-[#0B1A2B] py-20 xl:py-28 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <div class="font-semibold text-[#00AEEF] uppercase text-sm tracking-widest" data-aos="fade-up">About Us</div>
+      <h1 class="text-4xl xl:text-5xl font-bold text-white mt-4" data-aos="fade-up" data-aos-delay="100">会社情報</h1>
+      <p class="text-gray-400 mt-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">Rakucloud株式会社の企業理念、事業内容、沿革をご紹介します。</p>
+    </div>
+  </section>
+
+  <!-- ========== MISSION ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col xl:flex-row items-center gap-12 xl:gap-20" data-aos="fade-up">
+        <div class="xl:w-1/2">
+          <img src="/src/images/Home.jpeg" alt="Rakucloudのチーム" class="rounded-2xl w-full object-cover aspect-[4/3]" loading="lazy">
+        </div>
+        <div class="xl:w-1/2">
+          <div class="font-semibold text-[#00AEEF] uppercase text-sm">Mission</div>
+          <h2 class="text-3xl xl:text-4xl font-bold mt-2">Rakucloudの想い</h2>
+          <p class="mt-6 text-lg text-gray-700 leading-relaxed font-medium">
+            誰もがシステムを開発・運用し、課題を抽出し、標準化されたプロセスでビジネス成長を促進できる世界をつくります。
+          </p>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            これまで大手企業や投資力のある企業がSFA・CRM・ERPなどの業務管理システムを積極的に導入してきましたが、
+            中小企業やベンチャー企業ではDX化や標準化が進んでいないケースが多く見られます。
+          </p>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Rakucloud株式会社は、こうした企業に寄り添い、クラウド技術を活用したプロダクトとコンサルティングで、
+            誰もが使いこなせる業務管理システムの導入と運用を支援します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CEO MESSAGE ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-[#F7F8F9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col xl:flex-row-reverse items-center gap-12 xl:gap-20" data-aos="fade-up">
+        <div class="xl:w-1/2">
+          <img src="/src/images/ceo.png" alt="代表取締役 張 壮壮" class="rounded-2xl w-full object-cover aspect-[4/3]" loading="lazy">
+        </div>
+        <div class="xl:w-1/2">
+          <div class="font-semibold text-[#00AEEF] uppercase text-sm">CEO Message</div>
+          <h2 class="text-3xl xl:text-4xl font-bold mt-2">代表挨拶</h2>
+          <p class="mt-6 text-gray-600 leading-relaxed">
+            外資系コンサル企業や大手ECサイト企業で培った知識と経験をベースに、多様な業界の課題に向き合い、
+            お客様のビジネス成長を支えるパートナーとして伴走してまいりました。
+          </p>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            約10年以上のSalesforce導入経験と50以上のプロジェクト実績を活かし、
+            中小企業やベンチャー企業でも業務管理を定着させるための仕組みづくりを支援しています。
+            お客様に寄り添った業務管理システムが必要だという想いから、総合SaaSプラットフォーム「楽Platform」を自社開発いたしました。
+          </p>
+          <div class="mt-8">
+            <div class="text-xl font-bold">張 壮壮</div>
+            <div class="text-[#00AEEF] font-semibold text-sm mt-1">代表取締役 CEO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPANY OVERVIEW ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm">Company</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">会社概要</h2>
+      </div>
+
+      <div class="mt-12 max-w-4xl mx-auto" data-aos="fade-up">
+        <table class="w-full text-left">
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <th class="py-5 pr-8 text-sm font-semibold text-gray-800 w-40 md:w-52 align-top">会社名</th>
+              <td class="py-5 text-gray-600">Rakucloud株式会社</td>
+            </tr>
+            <tr>
+              <th class="py-5 pr-8 text-sm font-semibold text-gray-800 align-top">設立</th>
+              <td class="py-5 text-gray-600">2023年8月</td>
+            </tr>
+            <tr>
+              <th class="py-5 pr-8 text-sm font-semibold text-gray-800 align-top">資本金</th>
+              <td class="py-5 text-gray-600">10,000,000円</td>
+            </tr>
+            <tr>
+              <th class="py-5 pr-8 text-sm font-semibold text-gray-800 align-top">代表取締役社長</th>
+              <td class="py-5 text-gray-600">張 壮壮</td>
+            </tr>
+            <tr>
+              <th class="py-5 pr-8 text-sm font-semibold text-gray-800 align-top">所在地</th>
+              <td class="py-5 text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</td>
+            </tr>
+            <tr>
+              <th class="py-5 pr-8 text-sm font-semibold text-gray-800 align-top">メール</th>
+              <td class="py-5 text-gray-600"><a href="mailto:sales@rakucloud.com" class="text-[#00AEEF] hover:underline">sales@rakucloud.com</a></td>
+            </tr>
+            <tr>
+              <th class="py-5 pr-8 text-sm font-semibold text-gray-800 align-top">事業内容</th>
+              <td class="py-5 text-gray-600">
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2">
+                    <span class="text-[#00AEEF] mt-1.5 flex-shrink-0">
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 12 12"><circle cx="6" cy="6" r="3"/></svg>
+                    </span>
+                    コンピュータシステムの企画、開発、販売及び保守に関する業務
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-[#00AEEF] mt-1.5 flex-shrink-0">
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 12 12"><circle cx="6" cy="6" r="3"/></svg>
+                    </span>
+                    各種アプリケーションソフトの企画、制作、販売、運営及び管理
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-[#00AEEF] mt-1.5 flex-shrink-0">
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 12 12"><circle cx="6" cy="6" r="3"/></svg>
+                    </span>
+                    通信及び情報処理機器の開発、製造、販売及び輸出入
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-[#00AEEF] mt-1.5 flex-shrink-0">
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 12 12"><circle cx="6" cy="6" r="3"/></svg>
+                    </span>
+                    経営コンサルティング業務
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-[#00AEEF] mt-1.5 flex-shrink-0">
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 12 12"><circle cx="6" cy="6" r="3"/></svg>
+                    </span>
+                    企業の営業に関するコンサルティング業務
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HISTORY ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-[#F7F8F9]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm">History</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">沿革</h2>
+      </div>
+
+      <div class="mt-12 max-w-3xl mx-auto relative">
+        <!-- Timeline line -->
+        <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2"></div>
+
+        <!-- 2023 -->
+        <div class="relative flex items-start gap-6 md:gap-0 mb-12" data-aos="fade-up">
+          <div class="md:w-1/2 md:pr-12 md:text-right hidden md:block">
+            <div class="text-2xl font-bold text-[#00AEEF]">2023年8月</div>
+            <h3 class="text-lg font-bold mt-2">会社設立</h3>
+            <p class="text-gray-600 mt-1">Rakucloud株式会社を設立。業務管理システムの導入支援事業を開始。</p>
+          </div>
+          <div class="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+            <div class="w-12 h-12 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-sm shadow-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+            </div>
+          </div>
+          <div class="md:w-1/2 md:pl-12 md:hidden">
+            <div class="text-2xl font-bold text-[#00AEEF]">2023年8月</div>
+            <h3 class="text-lg font-bold mt-2">会社設立</h3>
+            <p class="text-gray-600 mt-1">Rakucloud株式会社を設立。業務管理システムの導入支援事業を開始。</p>
+          </div>
+        </div>
+
+        <!-- 2025 -->
+        <div class="relative flex items-start gap-6 md:gap-0 mb-12" data-aos="fade-up" data-aos-delay="100">
+          <div class="md:w-1/2 md:pr-12 md:text-right hidden md:block"></div>
+          <div class="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+            <div class="w-12 h-12 rounded-full bg-[#00AEEF] text-white flex items-center justify-center font-bold text-sm shadow-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+          </div>
+          <div class="md:w-1/2 md:pl-12">
+            <div class="text-2xl font-bold text-[#00AEEF]">2025年</div>
+            <h3 class="text-lg font-bold mt-2">資本金増資</h3>
+            <p class="text-gray-600 mt-1">資本金を100万円から1,000万円に増資。事業拡大に向けた基盤を強化。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CERTIFICATIONS ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center" data-aos="fade-up">
+        <div class="font-semibold text-[#00AEEF] uppercase text-sm">Certifications</div>
+        <h2 class="text-3xl xl:text-4xl font-bold mt-2">保有資格</h2>
+        <p class="text-gray-500 mt-3">多領域にわたる認定資格で確かな技術力を証明します</p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Salesforce -->
+        <div class="bg-[#F7F8F9] rounded-2xl p-8" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">Salesforce保有資格</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定システムアーキテクト</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定アプリケーションアーキテクト</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定上級 Platform デベロッパー</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Sales Cloud コンサルタント</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Service Cloud コンサルタント</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Community Cloud コンサルタント</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Data アーキテクト</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Identity and Access Management アーキテクト</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Sharing and Visibility アーキテクト</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Integration アーキテクト</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Development Lifecycle and Deployment アーキテクト</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Platform デベロッパー</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 Platform アプリケーションビルダー</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 アドミニストレーター</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 JavaScript デベロッパー</li>
+            <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> 認定 AI アソシエイト</li>
+          </ul>
+        </div>
+
+        <!-- Marketing Cloud + Tableau + Microsoft -->
+        <div class="space-y-8">
+          <!-- Marketing Cloud -->
+          <div class="bg-[#F7F8F9] rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold">Marketing Cloud保有資格</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Marketing Cloud Administrator</li>
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Marketing Cloud Email Specialist</li>
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Marketing Cloud Developer</li>
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Marketing Cloud Consultant</li>
+            </ul>
+          </div>
+
+          <!-- Tableau -->
+          <div class="bg-[#F7F8F9] rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold">Tableau保有資格</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Tableau Desktop Specialist</li>
+            </ul>
+          </div>
+
+          <!-- Dynamics 365 / Azure -->
+          <div class="bg-[#F7F8F9] rounded-2xl p-8" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold">Microsoft保有資格</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Dynamics 365 Sales Functional Consultant Associate</li>
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Power Platform App Maker Associate</li>
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Dynamics 365 Marketing Functional Consultant Associate</li>
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Azure Fundamentals</li>
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Azure AI Fundamentals</li>
+              <li class="flex items-start gap-2"><span class="text-[#00AEEF] mt-0.5">&#10003;</span> Azure Data Fundamentals</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-[#00AEEF] to-[#0077A8] p-8 lg:p-12 flex flex-col xl:flex-row justify-between xl:items-center gap-8" data-aos="fade-up">
+        <div class="text-white">
+          <h3 class="text-2xl xl:text-3xl font-bold">ビジネス成長を加速するパートナーにご相談ください</h3>
+          <p class="mt-3 text-sky-100">業務管理システムの導入やDX推進に関するご相談は、Rakucloud株式会社にお任せください。課題の整理から運用定着まで伴走いたします。</p>
+        </div>
+        <div class="flex-shrink-0">
+          <a href="https://www.rakucloud.co.jp/contact" class="inline-flex items-center gap-2 bg-white text-[#00AEEF] px-8 py-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+            <span>お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">サービス内容</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">課題ヒアリング</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">設計と開発</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">導入と定着支援</a></li>
+            <li><a href="/#steps" class="hover:text-[#00AEEF] transition-colors">継続的な改善</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/#solutions" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="https://www.rakucloud.co.jp/contact" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0">
+          <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto">
+        </a>
+        <div>
+          <div class="font-semibold text-sm">所在地</div>
+          <div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div>
+        </div>
+        <div>
+          <div class="font-semibold text-sm">メール</div>
+          <a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
