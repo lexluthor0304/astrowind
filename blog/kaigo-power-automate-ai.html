@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>カイポケ × Power Automate × Slack AI で介護記録の自動連携・情報活用基盤を構築 | Rakucloud株式会社</title>
+  <meta name="description" content="介護事業者様向けに、Power Automate（RPA）を中核とした業務自動化・情報活用基盤を構築。電子カルテ「カイポケ」から訪問記録をSlackへ自動連携し、AI活用で業務効率を大幅に改善した事例です。">
+  <meta property="og:title" content="カイポケ × Power Automate × Slack AI で介護記録の自動連携・情報活用基盤を構築">
+  <meta property="og:description" content="Power Automateで「カイポケ」の訪問記録をSlackへ自動連携。構造化テキスト化とSlack AI活用で業務効率を大幅改善。">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://www.rakucloud.co.jp/blog/kaigo-power-automate-ai">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-2xl">
+      <div class="flex justify-between items-center px-5 py-4 border-b">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="bg-[#0B1A2B] py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-3 mb-6" data-aos="fade-up">
+        <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">RPA</span>
+        <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">AI</span>
+        <span class="text-xs text-gray-400">2025/07/01</span>
+        <span class="text-xs text-gray-400">導入事例</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="100"><span class="text-[#00AEEF]">カイポケ</span> × <span class="text-[#00AEEF]">Power Automate</span> × <span class="text-[#00AEEF]">Slack AI</span> で<br class="hidden md:block">介護記録の自動連携・情報活用基盤を構築</h1>
+      <p class="text-gray-400 mt-6 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">Power Automate（RPA）を中核に、電子カルテ「カイポケ」の訪問記録をSlackへ自動連携。<br>構造化テキスト化とSlack AI活用で、日々の記録確認から月次報告書作成まで業務効率を大幅改善。</p>
+    </div>
+  </section>
+
+  <!-- ========== SYSTEM DIAGRAM ========== -->
+  <div class="max-w-5xl mx-auto px-5 lg:px-8 -mt-8" data-aos="fade-up" data-aos-delay="300">
+    <div class="bg-white rounded-2xl p-6 md:p-10 shadow-xl overflow-x-auto border border-gray-200">
+      <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" class="w-full min-w-[600px]" style="font-family: 'Inter', 'Noto Sans JP', sans-serif;">
+        <!-- Title -->
+        <text x="450" y="32" text-anchor="middle" fill="#0B1A2B" font-size="17" font-weight="bold" letter-spacing="2">システム構成図（概略）</text>
+
+        <!-- ===== TOP ROW ===== -->
+        <!-- Box 1: カイポケ -->
+        <rect x="20" y="65" width="175" height="80" rx="12" fill="#F0F9FF" stroke="#0B1A2B" stroke-width="1.5"/>
+        <text x="107" y="98" text-anchor="middle" fill="#0B1A2B" font-size="15" font-weight="bold">カイポケ</text>
+        <text x="107" y="122" text-anchor="middle" fill="#64748B" font-size="11">（電子カルテ）</text>
+
+        <!-- Arrow 1 + Label -->
+        <line x1="195" y1="105" x2="315" y2="105" stroke="#00AEEF" stroke-width="2" stroke-dasharray="6,3"/>
+        <polygon points="315,100 327,105 315,110" fill="#00AEEF"/>
+        <text x="255" y="92" text-anchor="middle" fill="#475569" font-size="10" font-weight="500">定期実行</text>
+        <text x="255" y="126" text-anchor="middle" fill="#475569" font-size="10" font-weight="500">ログイン→抽出</text>
+
+        <!-- Box 2: Power Automate (highlighted - brand blue) -->
+        <rect x="327" y="65" width="240" height="80" rx="12" fill="#00AEEF" stroke="#0088CC" stroke-width="1.5"/>
+        <text x="447" y="98" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Power Automate</text>
+        <text x="447" y="122" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">（RPAフロー）</text>
+
+        <!-- Arrow 2 + Label -->
+        <line x1="567" y1="105" x2="690" y2="105" stroke="#00AEEF" stroke-width="2" stroke-dasharray="6,3"/>
+        <polygon points="690,100 702,105 690,110" fill="#00AEEF"/>
+        <text x="628" y="92" text-anchor="middle" fill="#475569" font-size="10" font-weight="500">投稿</text>
+        <text x="628" y="126" text-anchor="middle" fill="#475569" font-size="10" font-weight="500">（API / Webhook等）</text>
+
+        <!-- Box 3: Slack -->
+        <rect x="702" y="65" width="178" height="80" rx="12" fill="#F0F9FF" stroke="#0B1A2B" stroke-width="1.5"/>
+        <text x="791" y="98" text-anchor="middle" fill="#0B1A2B" font-size="15" font-weight="bold">Slack</text>
+        <text x="791" y="122" text-anchor="middle" fill="#64748B" font-size="11">（指定チャンネル）</text>
+
+        <!-- ===== DOWN ARROW from Power Automate ===== -->
+        <line x1="447" y1="145" x2="447" y2="195" stroke="#00AEEF" stroke-width="2"/>
+        <line x1="447" y1="195" x2="340" y2="270" stroke="#00AEEF" stroke-width="2"/>
+        <polygon points="335,264 340,275 346,265" fill="#00AEEF"/>
+        <text x="462" y="185" fill="#475569" font-size="10" font-weight="500">整形</text>
+
+        <!-- ===== BOTTOM ROW ===== -->
+        <!-- Box 4: 整形・構造化 -->
+        <rect x="150" y="270" width="300" height="120" rx="12" fill="#F0F9FF" stroke="#0B1A2B" stroke-width="1.5"/>
+        <text x="300" y="300" text-anchor="middle" fill="#0B1A2B" font-size="14" font-weight="bold">整形・構造化（テキスト化）</text>
+        <text x="300" y="328" text-anchor="middle" fill="#64748B" font-size="11">・利用者 / 日時 / 内容</text>
+        <text x="300" y="352" text-anchor="middle" fill="#64748B" font-size="11">・観察 / 投薬 / 点滴</text>
+
+        <!-- Arrow bottom + Label -->
+        <line x1="450" y1="330" x2="585" y2="330" stroke="#00AEEF" stroke-width="2" stroke-dasharray="6,3"/>
+        <polygon points="585,325 597,330 585,335" fill="#00AEEF"/>
+        <text x="518" y="318" text-anchor="middle" fill="#475569" font-size="10" font-weight="500">テキスト投稿</text>
+
+        <!-- Box 5: Slack AI活用 (highlighted - brand blue) -->
+        <rect x="597" y="270" width="275" height="120" rx="12" fill="#00AEEF" stroke="#0088CC" stroke-width="1.5"/>
+        <text x="734" y="300" text-anchor="middle" fill="white" font-size="15" font-weight="bold">Slack AI活用</text>
+        <text x="734" y="328" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">（検索 / 要約 / 分析）</text>
+        <text x="734" y="352" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">月次報告書支援</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========== ARTICLE ========== -->
+  <article class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- 概要 -->
+      <h2 class="text-2xl font-bold mb-6 pb-3 border-b-2 border-[#00AEEF]">概要：Power Automateを中核とした業務自動化基盤</h2>
+      <p class="text-lg text-gray-600 leading-relaxed">介護事業者様向けに、<strong>Power Automate（RPA）</strong>を中核とした業務自動化・情報活用基盤を構築しました。電子カルテシステム「<strong>カイポケ</strong>」から訪問記録を、Power Automateが定期的に自動取得（ログイン〜抽出）し、<strong>Slack</strong>の指定チャンネルへ自動連携する仕組みを実現しています。</p>
+
+      <!-- 自動化フロー（テキスト版） -->
+      <div class="bg-[#F7F8F9] rounded-2xl p-8 mt-10 border border-gray-200">
+        <h3 class="text-gray-800 font-bold text-lg mb-6 text-center">自動化フロー</h3>
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="bg-white rounded-xl p-4 text-center flex-1 shadow-sm border border-gray-100">
+            <div class="w-8 h-8 rounded-full bg-[#00AEEF] text-white flex items-center justify-center mx-auto mb-2 text-sm font-bold">1</div>
+            <div class="text-gray-800 font-bold text-sm">定期実行</div>
+            <div class="text-gray-500 text-xs mt-1">Power Automate<br>がスケジュール起動</div>
+          </div>
+          <svg class="w-6 h-6 text-[#00AEEF] rotate-90 md:rotate-0 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <div class="bg-white rounded-xl p-4 text-center flex-1 shadow-sm border border-gray-100">
+            <div class="w-8 h-8 rounded-full bg-[#00AEEF] text-white flex items-center justify-center mx-auto mb-2 text-sm font-bold">2</div>
+            <div class="text-gray-800 font-bold text-sm">自動ログイン＆取得</div>
+            <div class="text-gray-500 text-xs mt-1">カイポケに自動接続<br>し訪問記録を抽出</div>
+          </div>
+          <svg class="w-6 h-6 text-[#00AEEF] rotate-90 md:rotate-0 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <div class="bg-white rounded-xl p-4 text-center flex-1 shadow-sm border border-gray-100">
+            <div class="w-8 h-8 rounded-full bg-[#00AEEF] text-white flex items-center justify-center mx-auto mb-2 text-sm font-bold">3</div>
+            <div class="text-gray-800 font-bold text-sm">構造化テキスト整形</div>
+            <div class="text-gray-500 text-xs mt-1">利用者名・日時・内容<br>投薬等をテキスト化</div>
+          </div>
+          <svg class="w-6 h-6 text-[#00AEEF] rotate-90 md:rotate-0 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <div class="bg-white rounded-xl p-4 text-center flex-1 shadow-sm border border-gray-100">
+            <div class="w-8 h-8 rounded-full bg-[#00AEEF] text-white flex items-center justify-center mx-auto mb-2 text-sm font-bold">4</div>
+            <div class="text-gray-800 font-bold text-sm">Slack投稿＆AI活用</div>
+            <div class="text-gray-500 text-xs mt-1">指定チャンネルへ<br>自動連携＋AI分析</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF→テキスト化への転換 -->
+      <h2 class="text-2xl font-bold mt-16 mb-6 pb-3 border-b-2 border-[#00AEEF]">PDF出力から構造化テキストへの転換</h2>
+      <p class="text-gray-600 leading-relaxed">当初はPDF出力を前提としていましたが、検索性とAI活用の拡張性を高めるため、RPAで取得した内容を<strong>構造化テキスト</strong>へ整形して投稿する方式へ変更。利用者名、訪問日時、サービス内容、職員名、観察記録、投薬・点滴管理などをテキスト化することで、Slack上での<strong>全文検索が容易</strong>になり、必要な記録へ迅速にアクセスできる運用を確立しました。</p>
+
+      <div class="grid sm:grid-cols-2 gap-6 mt-8">
+        <div class="bg-[#F7F8F9] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Before：PDF出力</h3>
+          <p class="text-sm text-gray-600">フリーテキスト検索ができず、過去の記録を見つけるのに時間がかかる。AI活用も困難。</p>
+        </div>
+        <div class="bg-[#F7F8F9] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">After：構造化テキスト</h3>
+          <p class="text-sm text-gray-600">Slack上で全文検索が容易。利用者名・日時・内容が明確に区分され、AI活用にもそのまま対応。</p>
+        </div>
+      </div>
+
+      <!-- 構造化テキストの項目 -->
+      <div class="bg-[#0B1A2B] rounded-2xl p-8 mt-8">
+        <h3 class="text-white font-bold text-sm mb-4">テキスト化される記録項目</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div class="bg-white/10 rounded-lg px-4 py-3 text-center">
+            <div class="text-[#00AEEF] font-bold text-sm">利用者名</div>
+          </div>
+          <div class="bg-white/10 rounded-lg px-4 py-3 text-center">
+            <div class="text-[#00AEEF] font-bold text-sm">訪問日時</div>
+          </div>
+          <div class="bg-white/10 rounded-lg px-4 py-3 text-center">
+            <div class="text-[#00AEEF] font-bold text-sm">サービス内容</div>
+          </div>
+          <div class="bg-white/10 rounded-lg px-4 py-3 text-center">
+            <div class="text-[#00AEEF] font-bold text-sm">職員名</div>
+          </div>
+          <div class="bg-white/10 rounded-lg px-4 py-3 text-center">
+            <div class="text-[#00AEEF] font-bold text-sm">観察記録</div>
+          </div>
+          <div class="bg-white/10 rounded-lg px-4 py-3 text-center">
+            <div class="text-[#00AEEF] font-bold text-sm">投薬・点滴管理</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slack AI連携 -->
+      <h2 class="text-2xl font-bold mt-16 mb-6 pb-3 border-b-2 border-[#00AEEF]">Slack AI連携による業務効率の大幅改善</h2>
+      <p class="text-gray-600 leading-relaxed">さらに、テキスト化された記録を基にSlackの<strong>AI機能</strong>で要約・検索・分析が行えるため、日々の記録確認から月次報告書作成までの業務効率を大幅に改善。「取得・整形・投稿」をPower Automateで自動化することで、<strong>現場の負担軽減と情報活用の高度化</strong>を同時に実現した事例です。</p>
+
+      <div class="grid sm:grid-cols-3 gap-4 mt-8">
+        <div class="bg-gradient-to-br from-[#00AEEF]/5 to-transparent rounded-2xl p-6 border border-[#00AEEF]/20 text-center">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <h4 class="font-bold text-sm">検索</h4>
+          <p class="text-xs text-gray-500 mt-2">自然言語で過去の記録を即座に検索。「〇〇さんの投薬記録は？」にすぐ回答</p>
+        </div>
+        <div class="bg-gradient-to-br from-[#00AEEF]/5 to-transparent rounded-2xl p-6 border border-[#00AEEF]/20 text-center">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h4 class="font-bold text-sm">要約</h4>
+          <p class="text-xs text-gray-500 mt-2">AIが複数記録を横断的に要約し、管理者の確認時間を大幅に短縮</p>
+        </div>
+        <div class="bg-gradient-to-br from-[#00AEEF]/5 to-transparent rounded-2xl p-6 border border-[#00AEEF]/20 text-center">
+          <div class="w-12 h-12 rounded-xl bg-[#00AEEF]/10 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h4 class="font-bold text-sm">分析・月次報告</h4>
+          <p class="text-xs text-gray-500 mt-2">蓄積データから月次レポートのドラフトを自動作成。報告書業務を効率化</p>
+        </div>
+      </div>
+
+      <!-- まとめ -->
+      <h2 class="text-2xl font-bold mt-16 mb-6 pb-3 border-b-2 border-[#00AEEF]">まとめ</h2>
+
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold">Power Automateによる完全自動化</h3>
+            <p class="text-gray-600 text-sm mt-1">「取得・整形・投稿」の全工程をPower Automateで自動化。カイポケからSlackまでシームレスに連携。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold">構造化テキストで検索性を向上</h3>
+            <p class="text-gray-600 text-sm mt-1">PDF出力から構造化テキストへ転換し、Slack上での全文検索と迅速な情報アクセスを実現。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold">Slack AIで情報活用を高度化</h3>
+            <p class="text-gray-600 text-sm mt-1">テキスト化された記録をSlack AIで要約・検索・分析。月次報告書作成までの業務効率を大幅改善。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00AEEF]/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold">現場負担の軽減と情報活用の両立</h3>
+            <p class="text-gray-600 text-sm mt-1">自動化による現場の負担軽減と、AI活用による情報活用の高度化を同時に実現。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="mt-16 pt-8 border-t border-gray-200">
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#RPA</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#Power Automate</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#カイポケ</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#Slack AI</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#介護DX</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#導入事例</span>
+        </div>
+      </div>
+
+      <!-- Back to Blog -->
+      <div class="mt-10">
+        <a href="/blog.html" class="inline-flex items-center gap-2 text-[#00AEEF] font-semibold text-sm hover:underline">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          ブログ一覧に戻る
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-[#00AEEF] to-[#0077A8] p-8 lg:p-12 flex flex-col xl:flex-row justify-between xl:items-center gap-8" data-aos="fade-up">
+        <div class="text-white">
+          <h3 class="text-2xl xl:text-3xl font-bold">業務自動化についてご相談ください</h3>
+          <p class="mt-3 text-sky-100">RPAやAI活用による業務効率化は、Rakucloud株式会社にお任せください。</p>
+        </div>
+        <div class="flex-shrink-0">
+          <a href="/contact.html" class="inline-flex items-center gap-2 bg-white text-[#00AEEF] px-8 py-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+            <span>お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/solution/others.html" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0"><img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto"></a>
+        <div><div class="font-semibold text-sm">所在地</div><div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div></div>
+        <div><div class="font-semibold text-sm">メール</div><a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a></div>
+      </div>
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

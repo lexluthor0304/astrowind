@@ -19,6 +19,7 @@ export default defineConfig({
         blog: resolve(__dirname, 'blog.html'),
         'blog-nocobase-case-study': resolve(__dirname, 'blog/nocobase-case-study.html'),
         'blog-kaigo-rpa-automation': resolve(__dirname, 'blog/kaigo-rpa-automation.html'),
+        'blog-kaigo-power-automate-ai': resolve(__dirname, 'blog/kaigo-power-automate-ai.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         contact: resolve(__dirname, 'contact.html'),
       },
