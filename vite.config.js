@@ -16,6 +16,7 @@ export default defineConfig({
         'solution-ai': resolve(__dirname, 'solution/ai.html'),
         'solution-nocobase': resolve(__dirname, 'solution/nocobase.html'),
         'solution-others': resolve(__dirname, 'solution/others.html'),
+        'solution-code-migration': resolve(__dirname, 'solution/code-migration.html'),
         blog: resolve(__dirname, 'blog.html'),
         'blog-nocobase-case-study': resolve(__dirname, 'blog/nocobase-case-study.html'),
         'blog-kaigo-rpa-automation': resolve(__dirname, 'blog/kaigo-rpa-automation.html'),

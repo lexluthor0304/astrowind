@@ -7,13 +7,13 @@ export function initNav() {
   if (!burger || !menu) return;
 
   function openMenu() {
-    menu.classList.add('open');
+    menu.style.display = 'block';
     overlay?.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
-    menu.classList.remove('open');
+    menu.style.display = 'none';
     overlay?.classList.add('hidden');
     document.body.style.overflow = '';
   }
