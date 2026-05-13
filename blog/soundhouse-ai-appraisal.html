@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>画像認識AI×価格エンジンによる中古楽器の「即時・自動査定」システム | Rakucloud株式会社</title>
+  <meta name="description" content="サウンドハウス様向けに、画像認識AIとダイナミック・プライシングエンジンを融合させた即時・自動査定システムを構築。写真1枚で査定を完結し、市場データと社内ロジックの融合で査定業務を標準化した事例です。">
+  <meta property="og:title" content="画像認識AI×価格エンジンによる中古楽器の「即時・自動査定」システム">
+  <meta property="og:description" content="写真1枚で査定を完結。市場データと社内ロジックの融合で査定業務を標準化。">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://www.rakucloud.co.jp/blog/soundhouse-ai-appraisal">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+  <style>
+    .content-area h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-bottom: 2px solid #00AEEF;
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #0B1A2B;
+    }
+    .content-area h3 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+    .content-area p {
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      color: #4b5563;
+    }
+    .content-area ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    .content-area li {
+      margin-bottom: 0.5rem;
+      color: #4b5563;
+    }
+  </style>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+            <a href="/solution/code-migration.html">AIコードマイグレーション</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" style="display:none;position:fixed;inset:0;z-index:9999;background:#fff;">
+      <div style="background:#fff;height:100%;overflow-y:auto;">
+      <div class="flex justify-between items-center px-5 py-4 border-b border-gray-200">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y divide-gray-200" style="background:#fff;">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/solution/code-migration.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIコードマイグレーション</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="bg-[#0B1A2B] py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-3 mb-6" data-aos="fade-up">
+        <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">AI</span>
+        <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">画像認識</span>
+        <span class="text-xs text-gray-400">2026/05/04</span>
+        <span class="text-xs text-gray-400">導入事例</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="100">
+        画像認識AI×価格エンジンによる<br class="hidden md:block">中古楽器の「即時・自動査定」システム
+      </h1>
+      <p class="text-gray-400 mt-6 max-w-2xl mx-auto text-lg" data-aos="fade-up" data-aos-delay="200">
+        写真1枚で査定を完結。市場データと社内ロジックの融合で査定業務を標準化。
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== SYSTEM DIAGRAM ========== -->
+  <div class="max-w-5xl mx-auto px-5 lg:px-8 -mt-8" data-aos="fade-up" data-aos-delay="300">
+    <div class="bg-white rounded-2xl p-6 md:p-10 shadow-xl overflow-x-auto border border-gray-200">
+      <img src="/src/images/ai-cases/soundhouse-appraisal-top.jpg" alt="画像認識AIによる中古楽器自動査定システムの構成図" class="w-full">
+    </div>
+  </div>
+
+  <!-- 数値ハイライトブロック -->
+  <div class="max-w-5xl mx-auto px-5 lg:px-8 mt-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center shadow-sm" data-aos="fade-up">
+        <div class="text-3xl font-bold mb-2 text-[#00AEEF]">70%</div>
+        <div class="text-sm font-bold text-gray-800">査定工数の削減</div>
+      </div>
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center shadow-sm" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-3xl font-bold mb-2 text-[#00AEEF]">1.5倍</div>
+        <div class="text-sm font-bold text-gray-800">即時提示による成約率向上</div>
+      </div>
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center shadow-sm" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-3xl font-bold mb-2 text-[#00AEEF]">0件</div>
+        <div class="text-sm font-bold text-gray-800">属人化による査定ミス</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ARTICLE ========== -->
+  <article class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-3xl mx-auto content-area">
+
+      <p class="text-lg text-gray-600 leading-relaxed mb-8">
+        中古楽器販売・買取事業者の<strong>サウンドハウス様</strong>向けに、<strong>画像認識AI（Node.jsベース）</strong>と<strong>ダイナミック・プライシングエンジン</strong>を融合させた「即時・自動査定システム」を構築しました。<br>
+        ユーザーがスマートフォンで撮影した写真から、AIが瞬時に外装状態や機種を特定し、市場データに基づく適正価格を提示する仕組みを実現しています。
+      </p>
+
+      <h2>背景と課題</h2>
+      <p>中古楽器の買取業務において、査定精度の安定とスピードアップが急務となっていました。特に以下の課題が深刻でした。</p>
+      <ul>
+        <li><strong>査定の属人化：</strong>楽器の状態や希少性の判断に専門知識が必要で、担当者による査定額のバラつきが大きな課題だった。</li>
+        <li><strong>機会損失：</strong>査定依頼から回答までに時間がかかることで、ユーザーの離脱や、夜間・休日における対応の遅れが発生していた。</li>
+        <li><strong>複雑な査定ロジック：</strong>品目、新旧、希少度、市場相場など、考慮すべき変数が多く、一貫した基準の適用・システム化が困難だった。</li>
+      </ul>
+
+      <h2>ソリューション：画像認識AIと柔軟な管理システムの構築</h2>
+      <p>
+        属人化を解消し、即時査定を実現するため、AIによる画像解析と、ビジネスロジックを自由にカスタマイズできる査定エンジンを組み合わせた二層アーキテクチャを採用しました。
+      </p>
+
+      <!-- UX Flow Diagram -->
+      <div class="my-10 bg-gray-50 border border-gray-200 rounded-xl p-8 shadow-sm">
+        <div class="text-center mb-10">
+          <h3 class="text-xl font-bold text-gray-900">3ステップで完結する自動査定フロー</h3>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-between relative z-10">
+          <div class="hidden md:block absolute top-1/2 left-10 right-10 h-1 bg-gray-200 -z-10 transform -translate-y-1/2"></div>
+          <!-- Step 1 -->
+          <div class="flex-1 flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md border border-gray-100 w-full md:w-auto mb-8 md:mb-0 relative group hover:-translate-y-1 transition duration-300">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-sm ring-4 ring-white absolute -top-5 bg-[#00AEEF] text-white">1</div>
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-4 mt-2 group-hover:scale-110 transition duration-300 bg-[#00AEEF]/10 text-[#00AEEF]">
+              <i class="fas fa-camera"></i>
+            </div>
+            <h4 class="font-bold text-gray-900 mb-2">撮影・送信</h4>
+            <p class="text-sm text-gray-600 leading-snug">スマホで楽器の全体と<br>傷の箇所を撮影し送信</p>
+          </div>
+          <div class="flex items-center justify-center w-10 h-10 bg-white border-2 border-gray-200 rounded-full z-10 my-4 md:my-0 md:mx-2 shadow-sm text-[#00AEEF]">
+            <i class="fas fa-arrow-right rotate-90 md:rotate-0 transition-transform"></i>
+          </div>
+          <!-- Step 2 -->
+          <div class="flex-1 flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md border border-gray-100 w-full md:w-auto mb-8 md:mb-0 relative group hover:-translate-y-1 transition duration-300">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-sm ring-4 ring-white absolute -top-5 bg-[#00AEEF] text-white">2</div>
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-4 mt-2 group-hover:scale-110 transition duration-300 bg-[#00AEEF]/10 text-[#00AEEF]">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <h4 class="font-bold text-gray-900 mb-2">AI解析</h4>
+            <p class="text-sm text-gray-600 leading-snug">AIがモデルや傷<br>を自動判別</p>
+          </div>
+          <div class="flex items-center justify-center w-10 h-10 bg-white border-2 border-gray-200 rounded-full z-10 my-4 md:my-0 md:mx-2 shadow-sm text-[#00AEEF]">
+            <i class="fas fa-arrow-right rotate-90 md:rotate-0 transition-transform"></i>
+          </div>
+          <!-- Step 3 -->
+          <div class="flex-1 flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md border border-gray-100 w-full md:w-auto relative group hover:-translate-y-1 transition duration-300">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-sm ring-4 ring-white absolute -top-5 bg-[#00AEEF] text-white">3</div>
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-4 mt-2 group-hover:scale-110 transition duration-300 bg-[#00AEEF]/10 text-[#00AEEF]">
+              <i class="fas fa-coins"></i>
+            </div>
+            <h4 class="font-bold text-gray-900 mb-2">査定完了</h4>
+            <p class="text-sm text-gray-600 leading-snug">市場価格を元に<br>即座に提示</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-[#00AEEF]/5 border-l-4 border-[#00AEEF] p-6 my-6 rounded-r">
+        <h3 class="!mt-0 text-lg font-bold mb-4 text-[#00AEEF]"><i class="fas fa-cogs mr-2"></i>実装された主要機能</h3>
+        <ol class="list-decimal pl-5 space-y-4 text-gray-700 font-medium">
+          <li><strong class="text-[#00AEEF]">AI画像診断：</strong>機種特定および外装ランク（傷・使用感）を自動判別。</li>
+          <li><strong class="text-[#00AEEF]">ダイナミック・プライシング：</strong>管理画面から「折旧率」をノーコードで設定可能。</li>
+          <li><strong class="text-[#00AEEF]">多角的な自動算出：</strong>市場価格API、自社DB、希少性を統合し、即座に価格提示。</li>
+        </ol>
+      </div>
+
+      <h2>ROI：導入による投資対効果の具体例</h2>
+      <div class="space-y-6 my-8">
+        <!-- ROI Item 1 -->
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start">
+            <div class="p-3 rounded-lg mr-4 flex-shrink-0 bg-[#00AEEF]/10 text-[#00AEEF]">
+              <i class="fas fa-user-clock text-xl"></i>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 mb-2">人件費・教育コストの大幅削減</h4>
+              <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                これまでベテラン社員が1件あたり平均15分かけていた査定業務を、AIが3秒で完了。新人教育においても、属人的な「勘」に頼る必要がなくなり、初日から一定の精度で査定が可能となりました。
+              </p>
+              <div class="flex items-center space-x-4 flex-wrap gap-2">
+                <div class="px-3 py-1 rounded font-bold text-xs bg-[#00AEEF]/10 text-[#00AEEF]">人件費 70% 削減</div>
+                <div class="px-3 py-1 rounded font-bold text-xs bg-[#00AEEF]/10 text-[#00AEEF]">教育期間 80% 短縮</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ROI Item 2 -->
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start">
+            <div class="p-3 rounded-lg mr-4 flex-shrink-0 bg-[#00AEEF]/10 text-[#00AEEF]">
+              <i class="fas fa-chart-line text-xl"></i>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 mb-2">24時間稼働による機会損失のゼロ化</h4>
+              <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                休日や夜間に発生していた査定依頼に即時回答できるようになったことで、競合店への流出を防止。結果として成約率が1.5倍に向上しました。
+              </p>
+              <div class="flex items-center space-x-4 flex-wrap gap-2">
+                <div class="px-3 py-1 rounded font-bold text-xs bg-[#00AEEF]/10 text-[#00AEEF]">成約率 150% 向上</div>
+                <div class="px-3 py-1 rounded font-bold text-xs bg-[#00AEEF]/10 text-[#00AEEF]">夜間成約数 3.2倍</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Before / After</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+        <div class="rounded-xl p-5 bg-red-50 border border-red-200">
+          <div class="flex items-center font-bold mb-3 text-red-500">
+            <i class="fas fa-times-circle mr-2 text-xl"></i> Before
+          </div>
+          <img src="/src/images/ai-cases/soundhouse-appraisal-before.jpg" alt="査定業務 Before" class="w-full h-32 object-cover rounded mt-3">
+          <p class="text-sm text-gray-700 m-0 mt-3">熟練スタッフの目視が必要で、回答までに数日を要し、基準のブレによりクレームリスクがあった。</p>
+        </div>
+        <div class="rounded-xl p-5 bg-green-50 border border-green-200">
+          <div class="flex items-center font-bold mb-3 text-green-500">
+            <i class="fas fa-check-circle mr-2 text-xl"></i> After
+          </div>
+          <img src="/src/images/ai-cases/soundhouse-appraisal-after.jpg" alt="査定業務 After" class="w-full h-32 object-cover rounded mt-3">
+          <p class="text-sm text-gray-700 m-0 mt-3">画像1枚で数秒以内に提示可能に。24時間対応で離脱を防ぎ、査定精度の平準化を実現した。</p>
+        </div>
+      </div>
+
+      <h2>導入効果と今後の展開</h2>
+      <p>
+        結果として、<strong>査定工数を約70%削減</strong>しながら、即時回答によるユーザー体験の向上により<strong>成約率も大幅に向上</strong>しました。今後は管楽器や打楽器など、より形状が複雑なカテゴリへの対応拡大を予定しています。
+      </p>
+
+      <!-- Tags -->
+      <div class="mt-16 pt-8 border-t border-gray-200">
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#AI</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#画像認識</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#中古楽器</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#自動査定</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#導入事例</span>
+        </div>
+      </div>
+
+      <!-- Back to Blog -->
+      <div class="mt-10">
+        <a href="/blog.html" class="inline-flex items-center gap-2 text-[#00AEEF] font-semibold text-sm hover:underline">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          ブログ一覧に戻る
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-[#00AEEF] to-[#0077A8] p-8 lg:p-12 flex flex-col xl:flex-row justify-between xl:items-center gap-8" data-aos="fade-up">
+        <div class="text-white">
+          <h3 class="text-2xl xl:text-3xl font-bold">業務自動化・AI導入についてご相談ください</h3>
+          <p class="mt-3 text-sky-100">Rakucloudでは、お客様の業務課題に合わせた最適なAIソリューションをご提案いたします。</p>
+        </div>
+        <div class="flex-shrink-0">
+          <a href="/contact.html" class="inline-flex items-center gap-2 bg-white text-[#00AEEF] px-8 py-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+            <span>無料相談・お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/solution/others.html" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+            <li><a href="/solution/code-migration.html" class="hover:text-[#00AEEF] transition-colors">AIコードマイグレーション</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0"><img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto"></a>
+        <div><div class="font-semibold text-sm">所在地</div><div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div></div>
+        <div><div class="font-semibold text-sm">メール</div><a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a></div>
+      </div>
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

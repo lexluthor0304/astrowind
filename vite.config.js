@@ -21,6 +21,8 @@ export default defineConfig({
         'blog-nocobase-case-study': resolve(__dirname, 'blog/nocobase-case-study.html'),
         'blog-kaigo-rpa-automation': resolve(__dirname, 'blog/kaigo-rpa-automation.html'),
         'blog-kaigo-power-automate-ai': resolve(__dirname, 'blog/kaigo-power-automate-ai.html'),
+        'blog-soundhouse-rag-pdf': resolve(__dirname, 'blog/soundhouse-rag-pdf.html'),
+        'blog-soundhouse-ai-appraisal': resolve(__dirname, 'blog/soundhouse-ai-appraisal.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         contact: resolve(__dirname, 'contact.html'),
       },
