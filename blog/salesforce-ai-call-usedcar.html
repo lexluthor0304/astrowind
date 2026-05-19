@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Salesforce×AI架電システムで中古車買取の反響対応を自動化 | Rakucloud株式会社</title>
+  <meta name="description" content="大手中古車買取事業者様向けに、Salesforceで管理する媒体反響リードとAI架電システムをAPI連携。1日数千件規模の問い合わせに対し、初回架電・フォロー・ヒアリングから査定予約までを完全自動化した事例です。">
+  <meta property="og:title" content="Salesforce×AI架電システムで中古車買取の反響対応を自動化">
+  <meta property="og:description" content="大量の問い合わせに対し、AIが初回架電・フォロー・ヒアリングから査定予約までを完全自動化。">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://www.rakucloud.co.jp/blog/salesforce-ai-call-usedcar">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="/src/main.js"></script>
+  <style>
+    .content-area h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-bottom: 2px solid #00AEEF;
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #0B1A2B;
+    }
+    .content-area h3 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #1f2937;
+    }
+    .content-area p {
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      color: #4b5563;
+    }
+    .content-area ul {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    .content-area li {
+      margin-bottom: 0.5rem;
+      color: #4b5563;
+    }
+  </style>
+</head>
+<body class="font-['Inter','Noto_Sans_JP',sans-serif] text-gray-800 antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="px-5 md:px-8 py-3 xl:py-4 sticky top-0 bg-white z-50 border-b border-gray-100">
+    <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40 xl:hidden"></div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 xl:h-9 w-auto">
+      </a>
+      <nav class="hidden xl:flex items-center gap-8">
+        <div class="nav-dropdown">
+          <a href="/solutions.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">ソリューション</a>
+          <div class="nav-dropdown-menu">
+            <a href="/solutions.html">ソリューション一覧</a>
+            <a href="/solution/rakuplatform.html">楽Platformの開発販売</a>
+            <a href="/solution/salesforce.html">Salesforce導入・運用支援</a>
+            <a href="/solution/ai.html">AIソリューション開発・導入支援</a>
+            <a href="/solution/nocobase.html">NocoBase導入・開発</a>
+            <a href="/solution/others.html">各種SaaSシステム受託開発</a>
+            <a href="/solution/code-migration.html">AIコードマイグレーション</a>
+          </div>
+        </div>
+        <a href="/about.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">会社情報</a>
+        <a href="/blog.html" class="font-semibold text-sm uppercase text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">チーム</a>
+        <a href="/privacy.html" class="font-semibold text-sm uppercase hover:text-[#00AEEF] transition-colors">個人情報保護方針</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="/contact.html" class="btn-outline hidden xl:inline-flex">
+          <span>お問い合わせ</span>
+          <svg class="w-3 h-3 transition-transform group-hover:rotate-45" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+        </a>
+        <button id="burger" class="xl:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" style="display:none;position:fixed;inset:0;z-index:9999;background:#fff;">
+      <div style="background:#fff;height:100%;overflow-y:auto;">
+      <div class="flex justify-between items-center px-5 py-4 border-b border-gray-200">
+        <span class="text-lg font-semibold">メニュー</span>
+        <button id="closeMenu"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button>
+      </div>
+      <nav class="flex flex-col divide-y divide-gray-200" style="background:#fff;">
+        <a href="/solutions.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">ソリューション一覧</a>
+        <a href="/solution/rakuplatform.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">楽Platformの開発販売</a>
+        <a href="/solution/salesforce.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">Salesforce導入・運用支援</a>
+        <a href="/solution/ai.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIソリューション開発・導入支援</a>
+        <a href="/solution/nocobase.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">NocoBase導入・開発</a>
+        <a href="/solution/others.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">各種SaaSシステム受託開発</a>
+        <a href="/solution/code-migration.html" class="px-5 py-4 pl-8 hover:text-[#00AEEF]">AIコードマイグレーション</a>
+        <a href="/about.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">会社情報</a>
+        <a href="/blog.html" class="px-5 py-4 font-semibold text-[#00AEEF]">ブログ</a>
+        <a href="/team.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">チーム</a>
+        <a href="/privacy.html" class="px-5 py-4 font-semibold hover:text-[#00AEEF]">個人情報保護方針</a>
+        <a href="/contact.html" class="px-5 py-4 font-semibold text-[#00AEEF]">お問い合わせ</a>
+      </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="bg-[#0B1A2B] py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-3 mb-6" data-aos="fade-up">
+        <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">AI</span>
+        <span class="text-xs font-semibold text-[#00AEEF] bg-[#00AEEF]/10 px-3 py-1 rounded-full">Salesforce</span>
+        <span class="text-xs text-gray-400">2026/05/19</span>
+        <span class="text-xs text-gray-400">導入事例</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="100">
+        <span class="text-[#00AEEF]">Salesforce</span>×<span class="text-[#00AEEF]">AI架電システム</span>で<br class="hidden md:block">中古車買取の反響対応を自動化
+      </h1>
+      <p class="text-gray-400 mt-6 max-w-2xl mx-auto text-lg" data-aos="fade-up" data-aos-delay="200">
+        大量の問い合わせに対し、AIが初回架電・フォロー・ヒアリングから査定予約までを完全自動化。
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== SYSTEM DIAGRAM ========== -->
+  <div class="max-w-5xl mx-auto px-5 lg:px-8 -mt-8" data-aos="fade-up" data-aos-delay="300">
+    <div class="bg-white rounded-2xl p-6 md:p-10 shadow-xl overflow-x-auto border border-gray-200">
+      <img src="/src/images/ai-cases/usedcar-ai-call-top.png" alt="Salesforce×AI架電システムによる中古車買取反響対応自動化の構成図" class="w-full">
+    </div>
+  </div>
+
+  <!-- 数値ハイライトブロック -->
+  <div class="max-w-5xl mx-auto px-5 lg:px-8 mt-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center shadow-sm" data-aos="fade-up">
+        <div class="text-3xl font-bold mb-2 text-[#00AEEF]">1日数千件</div>
+        <div class="text-sm font-bold text-gray-800">対応可能な問い合わせ規模</div>
+        <div class="text-xs text-gray-500 mt-1">人手対応の限界を突破し、大量反響に対応</div>
+      </div>
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center shadow-sm" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-3xl font-bold mb-2 text-[#00AEEF]">数十回線</div>
+        <div class="text-sm font-bold text-gray-800">同時アプローチスピード</div>
+        <div class="text-xs text-gray-500 mt-1">反響直後の超高速な同時架電・再架電</div>
+      </div>
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl text-center shadow-sm" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-3xl font-bold mb-2 text-[#00AEEF]">ゼロ</div>
+        <div class="text-sm font-bold text-gray-800">管理・対応漏れ</div>
+        <div class="text-xs text-gray-500 mt-1">Salesforce連携によるステータス一元管理</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ARTICLE ========== -->
+  <article class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-3xl mx-auto content-area">
+
+      <p class="text-lg text-gray-600 leading-relaxed mb-8">
+        大手中古車買取事業者様向けに、Salesforce上で管理される媒体反響リードとAI架電システムをAPI連携させ、自動反響対応・顧客獲得基盤を構築しました。カーセンサーなど各種媒体から流入する毎日数千件規模の問い合わせに対し、AIが初回架電・フォロー・ヒアリングから査定予約までを完全自動化。架電結果や文字起こしデータをリアルタイムにSalesforceへ蓄積し、最適なタイミングで人間の担当者へシームレスに引き継ぐことで、機会損失ゼロと営業効率の極大化を両立しています。
+      </p>
+
+      <h2>背景と課題</h2>
+      <ul class="space-y-4 list-none pl-0">
+        <li class="flex items-start bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
+          <span class="bg-red-50 text-red-500 rounded-lg p-1 mr-3 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+          <div>
+            <strong class="text-gray-900 block mb-0.5">反響対応の限界</strong>
+            <span class="text-sm text-gray-600">各種媒体からの反響件数が非常に多く、人手による架電では対応件数に物理的な限界があった。</span>
+          </div>
+        </li>
+        <li class="flex items-start bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
+          <span class="bg-red-50 text-red-500 rounded-lg p-1 mr-3 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+          <div>
+            <strong class="text-gray-900 block mb-0.5">膨大な再架電工数</strong>
+            <span class="text-sm text-gray-600">不通になりがちで何度も再架電を行う必要があり、コール担当者にかかる時間的・精神的な負荷が大きかった。</span>
+          </div>
+        </li>
+        <li class="flex items-start bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
+          <span class="bg-red-50 text-red-500 rounded-lg p-1 mr-3 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+          <div>
+            <strong class="text-gray-900 block mb-0.5">管理の煩雑さと連絡漏れ</strong>
+            <span class="text-sm text-gray-600">架電履歴や折り返し希望時間、拒否、架電停止といったステータス管理に手が回らず、漏れや不要な再架電のリスクがあった。</span>
+          </div>
+        </li>
+        <li class="flex items-start bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
+          <span class="bg-red-50 text-red-500 rounded-lg p-1 mr-3 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+          <div>
+            <strong class="text-gray-900 block mb-0.5">車種や地域による個別対応の限界</strong>
+            <span class="text-sm text-gray-600">車種や地域によって最適なタイミングや聞くべき項目（ヒアリング項目）が異なり、人手では画一的な対応になりがちだった。</span>
+          </div>
+        </li>
+        <li class="flex items-start bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
+          <span class="bg-red-50 text-red-500 rounded-lg p-1 mr-3 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+          <div>
+            <strong class="text-gray-900 block mb-0.5">コア営業業務への圧迫</strong>
+            <span class="text-sm text-gray-600">営業担当者が架電作業（特に不通の顧客へ掛け続ける作業）に追われ、本来注力すべき査定や商談などの高度な業務に十分な時間を割けていなかった。</span>
+          </div>
+        </li>
+      </ul>
+
+      <h2>ソリューション：SalesforceとAI架電システムのAPI連携</h2>
+      <p>
+        Rakucloudでは、Salesforceの柔軟なデータ構造と、数十回線規模の同時稼働が可能なAI架電システムをAPIで疎結合させた、自動反響対応・顧客獲得の2層アーキテクチャを構築しました。
+      </p>
+
+      <!-- システム連携・データフロー図解 -->
+      <div class="bg-gray-900 text-gray-100 rounded-2xl p-6 sm:p-8 mb-10 shadow-lg border border-gray-800 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-transparent pointer-events-none"></div>
+
+        <!-- デスクトップ：横並びフロー -->
+        <div class="hidden lg:flex items-center justify-between gap-2 relative py-4">
+          <div class="flex-1 bg-gray-800 rounded-xl p-4 text-center border border-gray-700 relative z-10 shadow-md">
+            <div class="text-blue-400 text-xs font-bold mb-1">Step 1</div>
+            <div class="font-bold text-sm text-white">各種媒体</div>
+            <div class="text-[10px] text-gray-400 mt-1">カーセンサー反響流入</div>
+          </div>
+          <div class="flex-shrink-0 text-blue-500 text-lg">→</div>
+          <div class="flex-1 bg-gray-800 rounded-xl p-4 text-center border-2 border-blue-500 relative z-10 shadow-md">
+            <div class="text-blue-400 text-xs font-bold mb-1">Step 2</div>
+            <div class="font-bold text-sm text-white">Salesforce</div>
+            <div class="text-[10px] text-gray-400 mt-1">リード即時自動登録</div>
+          </div>
+          <div class="flex-shrink-0 flex flex-col items-center justify-center px-1">
+            <div class="text-emerald-400 text-[10px] font-mono font-bold">API連携</div>
+            <div class="text-emerald-400 font-bold text-sm">⇆</div>
+          </div>
+          <div class="flex-1 bg-gray-800 rounded-xl p-4 text-center border-2 border-emerald-500 relative z-10 shadow-md">
+            <div class="text-emerald-400 text-xs font-bold mb-1">Step 3 &amp; 4</div>
+            <div class="font-bold text-sm text-white">AI架電システム</div>
+            <div class="text-[10px] text-gray-400 mt-1">数十回線同時架電・反映</div>
+          </div>
+          <div class="flex-shrink-0 text-emerald-500 text-lg">→</div>
+          <div class="flex-1 bg-gray-800 rounded-xl p-4 text-center border border-gray-700 relative z-10 shadow-md">
+            <div class="text-emerald-400 text-xs font-bold mb-1">Step 5</div>
+            <div class="font-bold text-sm text-white">人間の営業担当</div>
+            <div class="text-[10px] text-gray-400 mt-1">通知を受信し即時商談</div>
+          </div>
+        </div>
+
+        <!-- モバイル：縦並びフロー -->
+        <div class="lg:hidden space-y-4">
+          <div class="flex items-center space-x-3 p-3 rounded-xl border bg-gray-800/80 border-gray-700">
+            <span class="bg-blue-600/20 text-blue-400 font-extrabold text-xs w-6 h-6 rounded-full flex items-center justify-center border border-blue-500/30">1</span>
+            <div class="flex-1">
+              <p class="text-sm font-bold text-white mb-0">各種媒体（カーセンサー等）</p>
+              <p class="text-xs text-gray-400 mb-0">媒体からの反響情報をリアルタイム自動流入</p>
+            </div>
+          </div>
+          <div class="h-4 w-px bg-blue-500/40 ml-6"></div>
+          <div class="flex items-center space-x-3 p-3 rounded-xl border-2 border-blue-500 bg-gray-800/80">
+            <span class="bg-blue-500 text-gray-900 font-extrabold text-xs w-6 h-6 rounded-full flex items-center justify-center">2</span>
+            <div class="flex-1">
+              <p class="text-sm font-bold text-white mb-0">Salesforce（CRM基盤）</p>
+              <p class="text-xs text-gray-400 mb-0">リード自動登録後、AI架電へデータを即時引き渡し</p>
+            </div>
+          </div>
+          <div class="flex justify-center my-1">
+            <span class="text-xs font-mono text-emerald-400 px-2 py-0.5 bg-emerald-950/50 border border-emerald-500/30 rounded">双方向API連携（リード取得 ⇆ 履歴返却）</span>
+          </div>
+          <div class="flex items-center space-x-3 p-3 rounded-xl border-2 border-emerald-500 bg-gray-800/80">
+            <span class="bg-emerald-500 text-gray-900 font-extrabold text-xs w-6 h-6 rounded-full flex items-center justify-center">3</span>
+            <div class="flex-1">
+              <p class="text-sm font-bold text-white mb-0">AI架電システム（数十回線同時稼働）</p>
+              <p class="text-xs text-gray-400 mb-0">自然な口調で架電、通話結果を文字起こししSalesforceへ書き込み</p>
+            </div>
+          </div>
+          <div class="h-4 w-px bg-emerald-500/40 ml-6"></div>
+          <div class="flex items-center space-x-3 p-3 rounded-xl border bg-gray-800/80 border-gray-700">
+            <span class="bg-emerald-600/20 text-emerald-400 font-extrabold text-xs w-6 h-6 rounded-full flex items-center justify-center border border-emerald-500/30">4</span>
+            <div class="flex-1">
+              <p class="text-sm font-bold text-white mb-0">営業担当者へ引き継ぎ</p>
+              <p class="text-xs text-gray-400 mb-0">予約完了リードなどを検知し自動通知、即商談へ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>5ステップで完結する自動架電・連携フロー</h3>
+      <ul class="space-y-4 list-none pl-0">
+        <li class="flex items-start">
+          <span class="bg-blue-50 text-blue-600 font-extrabold rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 border border-blue-100 mt-1">1</span>
+          <div class="text-sm text-gray-600 leading-relaxed pt-1">
+            <strong class="text-gray-900 block">反響リードの自動流入</strong>
+            カーセンサー等の媒体から流入したユーザーの問い合わせ情報を、Salesforce上にリードとして即座に自動登録します。
+          </div>
+        </li>
+        <li class="flex items-start">
+          <span class="bg-blue-50 text-blue-600 font-extrabold rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 border border-blue-100 mt-1">2</span>
+          <div class="text-sm text-gray-600 leading-relaxed pt-1">
+            <strong class="text-gray-900 block">API連携による情報取得</strong>
+            AI架電システムがSalesforceからAPI経由で新規リードの登録情報を瞬時にキャッチし、架電準備を行います。
+          </div>
+        </li>
+        <li class="flex items-start">
+          <span class="bg-blue-50 text-blue-600 font-extrabold rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 border border-blue-100 mt-1">3</span>
+          <div class="text-sm text-gray-600 leading-relaxed pt-1">
+            <strong class="text-gray-900 block">AI自動架電・ヒアリング</strong>
+            朝8時から18時までの発信制限を守り、車種や地域に応じて架電のタイミングを制御。不自然さのない口調で自動会話を行い、売却希望条件を詳細にヒアリング。拒否の意思表示があれば自動検知し即座に除外します。
+          </div>
+        </li>
+        <li class="flex items-start">
+          <span class="bg-blue-50 text-blue-600 font-extrabold rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 border border-blue-100 mt-1">4</span>
+          <div class="text-sm text-gray-600 leading-relaxed pt-1">
+            <strong class="text-gray-900 block">Salesforce自動反映</strong>
+            通話の可否、文字起こしテキスト、録音ファイルのURL、更新された顧客ステータス（再連絡希望日、拒否状況など）、完了した査定予約の日時を、リアルタイムにSalesforce上のリードへ自動返却します。
+          </div>
+        </li>
+        <li class="flex items-start">
+          <span class="bg-blue-50 text-blue-600 font-extrabold rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 border border-blue-100 mt-1">5</span>
+          <div class="text-sm text-gray-600 leading-relaxed pt-1">
+            <strong class="text-gray-900 block">人間へのスムーズな引き継ぎ</strong>
+            AIが必要なヒアリング項目を満たしたタイミング、もしくは査定予約完了済になったタイミングで、Salesforce上の担当者へSlack等を経由してアラート通知。商談に進みます。
+          </div>
+        </li>
+      </ul>
+
+      <h2>Before / After</h2>
+      <div class="overflow-x-auto my-8 rounded-2xl border border-gray-200 shadow-sm">
+        <table class="min-w-full text-left border-collapse bg-white m-0">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-200">
+              <th class="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider w-1/4">比較項目</th>
+              <th class="p-4 text-xs font-bold uppercase tracking-wider text-red-500 bg-red-50/30">Before（導入前）</th>
+              <th class="p-4 text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50/20">After（本システム導入後）</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-sm">
+            <tr>
+              <td class="p-4 font-bold text-gray-700">対応可能規模</td>
+              <td class="p-4 text-gray-600 bg-red-50/10">人手中心のため、1日あたり数十件〜百数件規模の対応が限界となっていた。</td>
+              <td class="p-4 font-medium text-gray-800 bg-emerald-50/5"><strong class="text-emerald-600">数十回線の同時稼働</strong>により、1日数千件規模の問い合わせに即時自動アプローチが可能に。</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-gray-700">ステータス管理</td>
+              <td class="p-4 text-gray-600 bg-red-50/10">折り返し対応や再発信タイミング、架電停止等の管理にムラがあり、ヒューマンエラーが混入していた。</td>
+              <td class="p-4 font-medium text-gray-800 bg-emerald-50/5">結果・音声録音・AI文字起こしまで全てをSalesforceで<strong class="text-emerald-600">完全に自動一元管理</strong>。</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-gray-700">営業の注力ドメイン</td>
+              <td class="p-4 text-gray-600 bg-red-50/10">繋がらない顧客へ上げる架電や、記録を入力するという反復作業にスタッフが疲弊していた。</td>
+              <td class="p-4 font-medium text-gray-800 bg-emerald-50/5">初期の顧客接触・情報収集をAIが100%担い、営業担当者は<strong class="text-emerald-600">査定や成約に近い商談に集中可能</strong>。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>導入効果</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 shadow-sm">
+          <div class="bg-emerald-50 text-emerald-600 w-8 h-8 rounded-lg flex items-center justify-center font-bold mb-3">1</div>
+          <h4 class="font-bold text-gray-900 mb-2">処理能力の拡大</h4>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-0">
+            人手の物理的な限界を取り払い、各種Web媒体からの流入規模が増えてもヌケ漏れのないアプローチ体制を構築できました。
+          </p>
+        </div>
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 shadow-sm">
+          <div class="bg-emerald-50 text-emerald-600 w-8 h-8 rounded-lg flex items-center justify-center font-bold mb-3">2</div>
+          <h4 class="font-bold text-gray-900 mb-2">反復業務の削減と効率化</h4>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-0">
+            不通コールへのリトライなど不毛な架電をAIがカバーすることで、現場コール工数を抜本的に圧縮することに成功。
+          </p>
+        </div>
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 shadow-sm">
+          <div class="bg-emerald-50 text-emerald-600 w-8 h-8 rounded-lg flex items-center justify-center font-bold mb-3">3</div>
+          <h4 class="font-bold text-gray-900 mb-2">体験と成果の向上</h4>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-0">
+            希望された折り返し時間通りの架電リトライや自然な会話のやり取りなどから、確度の高い査定予約の取りこぼしを抑止しました。
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-8 font-bold text-gray-800">
+        本事例のように、RakucloudではSalesforce×AI架電システムによる反響対応の完全自動化と営業効率の極大化を同時に実現するソリューションを提供しています。架電業務の自動化やSalesforce連携によるステータス一元管理をご検討の企業様は、ぜひお気軽にご相談ください。
+      </p>
+
+      <!-- Tags -->
+      <div class="mt-16 pt-8 border-t border-gray-200">
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#Salesforce</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#AI</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#AI架電</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#中古車買取</span>
+          <span class="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">#導入事例</span>
+        </div>
+      </div>
+
+      <!-- Back to Blog -->
+      <div class="mt-10">
+        <a href="/blog.html" class="inline-flex items-center gap-2 text-[#00AEEF] font-semibold text-sm hover:underline">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          ブログ一覧に戻る
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-16 xl:py-24 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-3xl bg-gradient-to-r from-[#00AEEF] to-[#0077A8] p-8 lg:p-12 flex flex-col xl:flex-row justify-between xl:items-center gap-8" data-aos="fade-up">
+        <div class="text-white">
+          <h3 class="text-2xl xl:text-3xl font-bold">架電業務の自動化についてご相談ください</h3>
+          <p class="mt-3 text-sky-100">Salesforce連携やAI架電による反響対応の自動化は、Rakucloud株式会社にお任せください。</p>
+        </div>
+        <div class="flex-shrink-0">
+          <a href="/contact.html" class="inline-flex items-center gap-2 bg-white text-[#00AEEF] px-8 py-4 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+            <span>お問い合わせ</span>
+            <svg class="w-3 h-3" viewBox="0 0 14 14" fill="none"><path d="M1.707 2H10.293L0 12.293L1.414 13.707L11.707 3.414V12H13.707V0H1.707V2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 pt-12 bg-gradient-to-b from-[#F2F2F2] to-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">ソリューション</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platformの開発販売</a></li>
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce導入・運用支援</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">AIソリューション開発</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase導入・開発</a></li>
+            <li><a href="/solution/others.html" class="hover:text-[#00AEEF] transition-colors">SaaS受託開発</a></li>
+            <li><a href="/solution/code-migration.html" class="hover:text-[#00AEEF] transition-colors">AIコードマイグレーション</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">技術スタック</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/solution/salesforce.html" class="hover:text-[#00AEEF] transition-colors">Salesforce</a></li>
+            <li><a href="/solution/nocobase.html" class="hover:text-[#00AEEF] transition-colors">NocoBase</a></li>
+            <li><a href="/solution/ai.html" class="hover:text-[#00AEEF] transition-colors">RAG / AIエージェント</a></li>
+            <li><a href="/solution/rakuplatform.html" class="hover:text-[#00AEEF] transition-colors">楽Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-[#00AEEF] transition-colors">会社概要</a></li>
+            <li><a href="/team.html" class="hover:text-[#00AEEF] transition-colors">チーム紹介</a></li>
+            <li><a href="/blog.html" class="hover:text-[#00AEEF] transition-colors">ブログ</a></li>
+            <li><a href="/privacy.html" class="hover:text-[#00AEEF] transition-colors">個人情報保護方針</a></li>
+            <li><a href="/contact.html" class="hover:text-[#00AEEF] transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-[#F7F8F9] rounded-2xl p-6 md:p-8 mt-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <a href="/" class="flex items-center flex-shrink-0"><img src="/src/images/Logo.avif" alt="Rakucloud株式会社" class="h-8 w-auto"></a>
+        <div><div class="font-semibold text-sm">所在地</div><div class="text-sm text-gray-600">〒115-0045 東京都北区赤羽1-55-8 501</div></div>
+        <div><div class="font-semibold text-sm">メール</div><a href="mailto:sales@rakucloud.com" class="text-sm text-gray-600 hover:text-[#00AEEF] transition-colors">sales@rakucloud.com</a></div>
+      </div>
+      <div class="border-t border-gray-200 mt-10 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">&copy; 2025 Rakucloud株式会社. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

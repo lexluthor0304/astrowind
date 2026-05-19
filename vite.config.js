@@ -23,6 +23,7 @@ export default defineConfig({
         'blog-kaigo-power-automate-ai': resolve(__dirname, 'blog/kaigo-power-automate-ai.html'),
         'blog-soundhouse-rag-pdf': resolve(__dirname, 'blog/soundhouse-rag-pdf.html'),
         'blog-soundhouse-ai-appraisal': resolve(__dirname, 'blog/soundhouse-ai-appraisal.html'),
+        'blog-salesforce-ai-call-usedcar': resolve(__dirname, 'blog/salesforce-ai-call-usedcar.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         contact: resolve(__dirname, 'contact.html'),
       },
