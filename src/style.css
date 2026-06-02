@@ -179,6 +179,7 @@ body {
 #preloader.done {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 }
 
 #preloader.done ~ * {
