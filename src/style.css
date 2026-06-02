@@ -190,3 +190,84 @@ body {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ===== Salesforce solution proposal ===== */
+.sf-hero-shell {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 16%, rgba(0, 174, 239, 0.28), transparent 30%),
+    radial-gradient(circle at 86% 10%, rgba(91, 213, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, #061525 0%, #0B1A2B 46%, #063A5B 100%);
+}
+
+.sf-hero-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 88%);
+  pointer-events: none;
+}
+
+.sf-hero-shell::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  right: -180px;
+  top: 120px;
+  border-radius: 9999px;
+  background: rgba(0, 174, 239, 0.16);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.sf-soft-bg {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(0, 174, 239, 0.12), transparent 34%),
+    radial-gradient(circle at 100% 18%, rgba(4, 120, 178, 0.10), transparent 36%),
+    linear-gradient(180deg, #F7FCFF 0%, #FFFFFF 56%, #F3FAFD 100%);
+}
+
+.sf-panel {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 174, 239, 0.16);
+  box-shadow: 0 24px 70px rgba(8, 42, 72, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.sf-tint-section {
+  background:
+    linear-gradient(180deg, rgba(235, 249, 255, 0.9), rgba(255, 255, 255, 0.96)),
+    radial-gradient(circle at 84% 0%, rgba(0, 174, 239, 0.16), transparent 34%);
+}
+
+.sf-number {
+  color: rgba(0, 174, 239, 0.18);
+  line-height: 1;
+  letter-spacing: -0.08em;
+}
+
+.sf-cta-band {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 30%, rgba(255, 255, 255, 0.22), transparent 24%),
+    linear-gradient(135deg, #00AEEF 0%, #087AA8 48%, #0B1A2B 100%);
+}
+
+.sf-cta-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.28;
+  pointer-events: none;
+}
