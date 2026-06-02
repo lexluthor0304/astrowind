@@ -18,9 +18,19 @@ export function initAccordion() {
     });
   });
 
-  // Mobile: click to toggle accordion
+  // Click opens the corresponding detail page when a destination is set.
   items.forEach(item => {
+    const navigateToDetail = () => {
+      const href = item.dataset.href;
+      if (href) window.location.href = href;
+    };
+
     item.addEventListener('click', () => {
+      if (item.dataset.href) {
+        navigateToDetail();
+        return;
+      }
+
       if (window.innerWidth >= 1280) return;
       const content = item.querySelector('.accordion-content');
       if (!content) return;
@@ -39,6 +49,12 @@ export function initAccordion() {
         item.classList.add('active');
         content.classList.add('expanded');
       }
+    });
+
+    item.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      navigateToDetail();
     });
   });
 }
