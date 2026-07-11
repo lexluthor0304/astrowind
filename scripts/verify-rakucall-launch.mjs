@@ -18,6 +18,10 @@ function requireText(path, content, expected, label = expected) {
   if (!content.includes(expected)) failures.push(`${path}: missing ${label}`);
 }
 
+function forbidText(path, content, forbidden, label = forbidden) {
+  if (content.includes(forbidden)) failures.push(`${path}: must not include ${label}`);
+}
+
 function parseJsonLd(path, html) {
   const blocks = [...html.matchAll(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   if (blocks.length === 0) {
@@ -46,8 +50,9 @@ const aiSolution = read('solution/ai.html');
 const privacy = read('privacy.html');
 const sitemap = read('public/sitemap.xml');
 const robots = read('public/robots.txt');
+const viteConfig = read('vite.config.js');
+const vercelConfig = JSON.parse(read('vercel.json'));
 const distProduct = read('dist/product/rakucall.html');
-const distArticle = read('dist/blog/rakucall-launch.html');
 
 for (const field of [
   'companyName',
@@ -88,23 +93,38 @@ if (!articleSchemas.some((schema) => schema['@type'] === 'NewsArticle' && schema
 }
 checks.push('valid Service and NewsArticle JSON-LD');
 
+requireText('solution/ai.html', aiSolution, '/product/rakucall.html', 'RakuCall product discovery link');
+requireText('privacy.html', privacy, 'RakuCall', 'RakuCall privacy terms');
 for (const [path, html] of [
   ['index.html', home],
   ['blog.html', blogIndex],
-  ['solution/ai.html', aiSolution],
+  [productPath, product],
+  ['vite.config.js', viteConfig],
 ]) {
-  requireText(path, html, path === 'solution/ai.html' ? '/product/rakucall.html' : '/blog/rakucall-launch.html', 'RakuCall discovery link');
+  forbidText(path, html, '/blog/rakucall-launch', 'published RakuCall launch article reference');
 }
-requireText('privacy.html', privacy, 'RakuCall', 'RakuCall privacy terms');
-checks.push('homepage, blog, AI solution, and privacy-policy discovery links');
+checks.push('launch article hidden from homepage, blog, product navigation, and Vite inputs');
+
+const hiddenArticleRedirect = vercelConfig.redirects?.find(
+  (redirect) => redirect.source === '/blog/rakucall-launch',
+);
+if (
+  hiddenArticleRedirect?.destination !== '/blog' ||
+  hiddenArticleRedirect?.permanent !== false
+) {
+  failures.push('vercel.json: hidden launch article must temporarily redirect to /blog');
+}
+checks.push('direct launch article URL temporarily redirects to the blog index');
 
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 for (const url of [
   'https://rakucloud.com/',
   'https://rakucloud.com/product/rakucall',
-  'https://rakucloud.com/blog/rakucall-launch',
 ]) {
   if (!sitemapUrls.includes(url)) failures.push(`public/sitemap.xml: missing ${url}`);
+}
+if (sitemapUrls.includes('https://rakucloud.com/blog/rakucall-launch')) {
+  failures.push('public/sitemap.xml: hidden RakuCall launch article must be absent');
 }
 if (new Set(sitemapUrls).size !== sitemapUrls.length) failures.push('public/sitemap.xml: duplicate URL');
 requireText('public/robots.txt', robots, 'Sitemap: https://rakucloud.com/sitemap.xml', 'sitemap declaration');
@@ -119,8 +139,10 @@ for (const path of [
   if (!existsSync(resolve(root, path))) failures.push(`${path}: missing`);
 }
 requireText('dist/product/rakucall.html', distProduct, publicImage, 'built product social image');
-requireText('dist/blog/rakucall-launch.html', distArticle, publicImage, 'built article social image');
-checks.push('production build contains stable social image and discovery files');
+if (existsSync(resolve(root, 'dist/blog/rakucall-launch.html'))) {
+  failures.push('dist/blog/rakucall-launch.html: hidden article must not be built');
+}
+checks.push('production build contains product assets and excludes the hidden article');
 
 for (const [path, html] of [[productPath, product], [articlePath, article]]) {
   if (/\bfont-bold\b|<strong\b|<b\b/.test(html)) failures.push(`${path}: bold text is not allowed in RakuCloud customer-facing materials`);
