@@ -25,7 +25,7 @@ export default defineConfig({
         'blog-soundhouse-rag-pdf': resolve(__dirname, 'blog/soundhouse-rag-pdf.html'),
         'blog-soundhouse-ai-appraisal': resolve(__dirname, 'blog/soundhouse-ai-appraisal.html'),
         'blog-salesforce-ai-call-usedcar': resolve(__dirname, 'blog/salesforce-ai-call-usedcar.html'),
-        'blog-rakucall-launch': resolve(__dirname, 'blog/rakucall-launch.html'),
+        // Keep the RakuCall launch article source unpublished until product testing is complete.
         privacy: resolve(__dirname, 'privacy.html'),
         contact: resolve(__dirname, 'contact.html'),
       },
