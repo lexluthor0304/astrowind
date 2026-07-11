@@ -63,6 +63,7 @@ for (const field of [
 }
 requireText(productPath, product, 'data-endpoint="https://rakucall.ai/api/public/demo-applications"', 'production API endpoint');
 requireText(productPath, product, '担当者確認後に発信します。自動で即時発信は行いません。', 'operator-review notice');
+requireText(productPath, product, '外部送信やSalesforce本番組織への書き込みは行いません。', 'public-demo boundary');
 requireText('src/js/rakucall-demo-form.js', formScript, "'http://127.0.0.1:4173/api/public/demo-applications'", 'local API endpoint');
 requireText('src/js/rakucall-demo-form.js', formScript, "method: 'POST'", 'POST submission');
 checks.push('demo application form fields, consent, review notice, and API endpoints');
