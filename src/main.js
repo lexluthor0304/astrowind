@@ -5,6 +5,7 @@ import { initCounters } from './js/counter.js';
 import { initAccordion } from './js/accordion.js';
 import { initNav } from './js/nav.js';
 import { initPreloader } from './js/preloader.js';
+import { initRakuCallDemoForm } from './js/rakucall-demo-form.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
@@ -13,4 +14,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initAccordion();
   initNav();
+  initRakuCallDemoForm();
 });

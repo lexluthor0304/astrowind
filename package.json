@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "verify:rakucall": "node scripts/verify-rakucall-launch.mjs"
   },
   "keywords": [],
   "author": "",
