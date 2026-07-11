@@ -271,3 +271,1064 @@ body {
   opacity: 0.28;
   pointer-events: none;
 }
+
+/* ===== RakuCall product ===== */
+.rakucall-page {
+  --rc-navy: #061525;
+  --rc-navy-soft: #0b2138;
+  --rc-cyan: #00aeef;
+  --rc-cyan-dark: #008fc4;
+  --rc-ink: #112239;
+  --rc-muted: #5f7083;
+  --rc-line: #dbe4ec;
+  --rc-soft: #f2f8fb;
+  --rc-success: #18794e;
+  color: var(--rc-ink);
+  background: #fff;
+  font-family: "Meiryo UI", "Yu Gothic UI", Inter, system-ui, sans-serif;
+}
+
+.rakucall-page h1,
+.rakucall-page h2,
+.rakucall-page h3,
+.rakucall-page h4,
+.rakucall-page strong,
+.rakucall-page b {
+  font-weight: 500;
+}
+
+.rakucall-page :focus-visible {
+  outline: 3px solid rgba(0, 174, 239, 0.32);
+  outline-offset: 3px;
+}
+
+.rakucall-container {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.rakucall-header-link {
+  color: #26384c;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.rakucall-header-link:hover {
+  color: var(--rc-cyan-dark);
+}
+
+.rakucall-button,
+.rakucall-button-outline {
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.rakucall-button {
+  border: 1px solid var(--rc-cyan);
+  color: #fff;
+  background: var(--rc-cyan);
+}
+
+.rakucall-button:hover {
+  border-color: var(--rc-cyan-dark);
+  background: var(--rc-cyan-dark);
+  transform: translateY(-1px);
+}
+
+.rakucall-button-outline {
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  color: #fff;
+  background: transparent;
+}
+
+.rakucall-button-outline:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.rakucall-hero {
+  position: relative;
+  min-height: min(780px, calc(100svh - 72px));
+  overflow: hidden;
+  color: #fff;
+  background-color: var(--rc-navy);
+}
+
+.rakucall-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+}
+
+.rakucall-hero-inner {
+  position: relative;
+  z-index: 1;
+  min-height: inherit;
+  padding-block: 72px 58px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(560px, 1.18fr);
+  align-items: center;
+  gap: 54px;
+}
+
+.rakucall-product-name {
+  margin: 0;
+  color: #86ddff;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.rakucall-hero-message {
+  margin: 18px 0 0;
+  max-width: 600px;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
+.rakucall-hero-copy {
+  margin: 24px 0 0;
+  max-width: 570px;
+  color: #c9d7e4;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.rakucall-hero-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rakucall-console {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(175, 208, 230, 0.48);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+}
+
+.rakucall-console-bar {
+  min-height: 42px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  background: #081b2f;
+  font-size: 13px;
+}
+
+.rakucall-console-bar span:last-child {
+  color: #80e0bd;
+  font-size: 11px;
+}
+
+.rakucall-console-body {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  min-height: 410px;
+}
+
+.rakucall-console-nav {
+  padding: 17px 10px;
+  color: #bfd0df;
+  background: #0a223a;
+  font-size: 10px;
+}
+
+.rakucall-console-nav div {
+  min-height: 34px;
+  padding: 0 9px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-left: 2px solid transparent;
+}
+
+.rakucall-console-nav .is-active {
+  border-left-color: var(--rc-cyan);
+  color: #fff;
+  background: rgba(0, 174, 239, 0.12);
+}
+
+.rakucall-console-main {
+  min-width: 0;
+  padding: 15px;
+  color: var(--rc-ink);
+  background: #f7fafc;
+}
+
+.rakucall-console-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.rakucall-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--rc-success);
+  font-size: 10px;
+}
+
+.rakucall-live-indicator::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #24a269;
+}
+
+.rakucall-console-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 0.95fr 1fr 1.05fr;
+  border: 1px solid var(--rc-line);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.rakucall-console-column {
+  min-width: 0;
+  padding: 13px;
+  border-right: 1px solid var(--rc-line);
+}
+
+.rakucall-console-column:last-child {
+  border-right: 0;
+}
+
+.rakucall-console-column h3 {
+  margin: 0;
+  font-size: 11px;
+}
+
+.rakucall-wave {
+  height: 58px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.rakucall-wave span {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--rc-cyan);
+}
+
+.rakucall-wave span:nth-child(1),
+.rakucall-wave span:nth-child(7) { height: 18px; }
+.rakucall-wave span:nth-child(2),
+.rakucall-wave span:nth-child(6) { height: 34px; }
+.rakucall-wave span:nth-child(3),
+.rakucall-wave span:nth-child(5) { height: 48px; }
+.rakucall-wave span:nth-child(4) { height: 27px; }
+
+.rakucall-call-time {
+  color: var(--rc-ink);
+  font-size: 20px;
+}
+
+.rakucall-reaction-list,
+.rakucall-task-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 9px;
+}
+
+.rakucall-reaction-list div,
+.rakucall-task-list div {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--rc-muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.rakucall-reaction-list i {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--rc-cyan);
+}
+
+.rakucall-task-list div {
+  padding: 7px 8px;
+  border: 1px solid var(--rc-line);
+  border-radius: 4px;
+  color: var(--rc-ink);
+  background: #fbfdff;
+}
+
+.rakucall-salesforce-strip {
+  margin-top: 12px;
+  min-height: 74px;
+  padding: 12px 13px;
+  border: 1px solid var(--rc-line);
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  color: var(--rc-muted);
+  background: #fff;
+  font-size: 9px;
+}
+
+.rakucall-salesforce-strip span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--rc-ink);
+  font-size: 10px;
+}
+
+.rakucall-section {
+  padding: 92px 0;
+}
+
+.rakucall-section-heading {
+  margin: 0;
+  color: var(--rc-ink);
+  font-size: 36px;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.rakucall-section-copy {
+  max-width: 720px;
+  margin: 16px 0 0;
+  color: var(--rc-muted);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.rakucall-workflow {
+  margin-top: 54px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+}
+
+.rakucall-workflow-step {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.rakucall-workflow-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: calc(50% + 32px);
+  width: calc(100% - 64px);
+  height: 1px;
+  background: #a9c8d9;
+}
+
+.rakucall-workflow-icon,
+.rakucall-integration-icon {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #b9dceb;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--rc-cyan-dark);
+  background: #f4fbfe;
+}
+
+.rakucall-workflow-icon svg,
+.rakucall-integration-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.rakucall-workflow-step h3 {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.rakucall-workflow-step p {
+  margin: 0;
+  color: var(--rc-muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.rakucall-operation-section {
+  background: var(--rc-soft);
+}
+
+.rakucall-operation-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.34fr) minmax(300px, 0.66fr);
+  gap: 58px;
+  align-items: center;
+}
+
+.rakucall-history-ui {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #cadbe5;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  background: #fff;
+  box-shadow: 0 18px 42px rgba(26, 66, 96, 0.09);
+}
+
+.rakucall-history-list,
+.rakucall-history-detail {
+  padding: 20px;
+}
+
+.rakucall-history-detail {
+  border-left: 1px solid var(--rc-line);
+  background: #fbfdff;
+}
+
+.rakucall-ui-title {
+  margin: 0;
+  font-size: 14px;
+}
+
+.rakucall-history-table {
+  width: 100%;
+  margin-top: 14px;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.rakucall-history-table th,
+.rakucall-history-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--rc-line);
+  text-align: left;
+  font-weight: 400;
+}
+
+.rakucall-history-table th {
+  color: var(--rc-muted);
+  background: #f5f9fb;
+}
+
+.rakucall-history-table tr.is-selected td {
+  background: #edf9fe;
+}
+
+.rakucall-detail-list {
+  margin: 14px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.rakucall-detail-list div {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 8px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.rakucall-detail-list dt {
+  color: var(--rc-muted);
+}
+
+.rakucall-detail-list dd {
+  margin: 0;
+}
+
+.rakucall-operation-copy .rakucall-section-heading {
+  font-size: 32px;
+}
+
+.rakucall-operation-points {
+  margin: 30px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+  list-style: none;
+}
+
+.rakucall-operation-points li {
+  padding-left: 20px;
+  position: relative;
+  color: var(--rc-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.rakucall-operation-points li::before {
+  content: "";
+  position: absolute;
+  top: 0.66em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rc-cyan);
+}
+
+.rakucall-usecase-list {
+  margin-top: 42px;
+  border-top: 1px solid var(--rc-line);
+}
+
+.rakucall-usecase-row {
+  min-height: 114px;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--rc-line);
+  display: grid;
+  grid-template-columns: 64px 280px minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.rakucall-usecase-row svg {
+  width: 34px;
+  height: 34px;
+  color: var(--rc-cyan-dark);
+}
+
+.rakucall-usecase-row h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.rakucall-usecase-row p {
+  margin: 0;
+  color: var(--rc-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.rakucall-form-section {
+  background: var(--rc-soft);
+}
+
+.rakucall-form-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.75fr) minmax(560px, 1.25fr);
+  gap: 64px;
+  align-items: start;
+}
+
+.rakucall-trust-list {
+  margin: 38px 0 0;
+  padding: 0;
+  border-top: 1px solid #cbdde6;
+  list-style: none;
+}
+
+.rakucall-trust-list li {
+  min-height: 74px;
+  padding: 18px 0;
+  border-bottom: 1px solid #cbdde6;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  color: #364b60;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.rakucall-trust-list svg {
+  width: 28px;
+  height: 28px;
+  color: var(--rc-cyan-dark);
+}
+
+.rakucall-demo-form {
+  padding: 30px;
+  border: 1px solid #cadbe5;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 18px 42px rgba(26, 66, 96, 0.08);
+}
+
+.rakucall-form-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.rakucall-form-field {
+  display: grid;
+  gap: 8px;
+}
+
+.rakucall-form-field label,
+.rakucall-consent label {
+  color: var(--rc-ink);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.rakucall-form-field label span {
+  color: #b42318;
+}
+
+.rakucall-form-field input,
+.rakucall-form-field select {
+  width: 100%;
+  height: 48px;
+  padding: 0 13px;
+  border: 1px solid #bfced9;
+  border-radius: 6px;
+  color: var(--rc-ink);
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.rakucall-form-field input:focus,
+.rakucall-form-field select:focus {
+  border-color: var(--rc-cyan-dark);
+  box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.14);
+}
+
+.rakucall-consents {
+  margin-top: 22px;
+  display: grid;
+  gap: 12px;
+}
+
+.rakucall-consent {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
+  gap: 9px;
+}
+
+.rakucall-consent input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--rc-cyan-dark);
+}
+
+.rakucall-consent a {
+  color: var(--rc-cyan-dark);
+}
+
+.rakucall-submit {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 24px;
+  border: 1px solid var(--rc-cyan);
+  border-radius: 6px;
+  color: #fff;
+  background: var(--rc-cyan);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.rakucall-submit:hover:not(:disabled) {
+  border-color: var(--rc-cyan-dark);
+  background: var(--rc-cyan-dark);
+}
+
+.rakucall-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.rakucall-form-note {
+  margin: 10px 0 0;
+  color: var(--rc-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.rakucall-form-status {
+  margin-top: 16px;
+  padding: 13px 14px;
+  border: 1px solid var(--rc-line);
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.rakucall-form-status.is-success {
+  border-color: #b9ddca;
+  color: #14633e;
+  background: #eff9f3;
+}
+
+.rakucall-form-status.is-error {
+  border-color: #efc5c0;
+  color: #9e2a24;
+  background: #fff4f2;
+}
+
+.rakucall-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.rakucall-integration-section {
+  background: #eef7fb;
+}
+
+.rakucall-integration-rail {
+  margin-top: 46px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.rakucall-integration-item {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  color: var(--rc-ink);
+  font-size: 14px;
+}
+
+.rakucall-integration-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 26px;
+  left: calc(50% + 29px);
+  width: calc(100% - 58px);
+  height: 1px;
+  background: #76bcd9;
+}
+
+.rakucall-faq {
+  max-width: 980px;
+  margin: 42px auto 0;
+  border-top: 1px solid var(--rc-line);
+}
+
+.rakucall-faq details {
+  border-bottom: 1px solid var(--rc-line);
+}
+
+.rakucall-faq summary {
+  min-height: 66px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--rc-ink);
+  font-size: 15px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.rakucall-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.rakucall-faq summary::after {
+  content: "+";
+  color: var(--rc-cyan-dark);
+  font-size: 22px;
+}
+
+.rakucall-faq details[open] summary::after {
+  content: "−";
+}
+
+.rakucall-faq p {
+  margin: 0;
+  padding: 0 8px 22px;
+  color: var(--rc-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.rakucall-final-cta {
+  padding: 56px 0;
+  color: #fff;
+  background: var(--rc-navy);
+}
+
+.rakucall-final-cta-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 20px;
+}
+
+.rakucall-final-cta h2 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.5;
+}
+
+.rakucall-text-link {
+  color: #fff;
+  font-size: 14px;
+  text-underline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rakucall-button,
+  .rakucall-button-outline {
+    transition: none;
+  }
+}
+
+@media (max-width: 1050px) {
+  .rakucall-hero {
+    min-height: auto;
+  }
+
+  .rakucall-hero-inner {
+    padding-block: 62px;
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .rakucall-hero-copy {
+    max-width: 720px;
+  }
+
+  .rakucall-console {
+    width: min(760px, 100%);
+  }
+
+  .rakucall-operation-grid,
+  .rakucall-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rakucall-form-grid {
+    gap: 44px;
+  }
+
+  .rakucall-final-cta-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .rakucall-final-cta .rakucall-text-link {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .rakucall-container {
+    width: min(100% - 32px, 1180px);
+  }
+
+  .rakucall-hero {
+    height: calc(100svh - 96px);
+    min-height: 560px;
+  }
+
+  .rakucall-hero-inner {
+    height: 100%;
+    min-height: 100%;
+    padding-block: 46px 32px;
+    gap: 30px;
+    overflow: hidden;
+  }
+
+  .rakucall-product-name {
+    font-size: 17px;
+  }
+
+  .rakucall-hero-message {
+    margin-top: 12px;
+    font-size: 34px;
+    line-height: 1.35;
+  }
+
+  .rakucall-hero-copy {
+    margin-top: 18px;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .rakucall-hero-actions {
+    margin-top: 22px;
+  }
+
+  .rakucall-button,
+  .rakucall-button-outline {
+    width: 100%;
+  }
+
+  .rakucall-console-body {
+    grid-template-columns: 1fr;
+    min-height: 250px;
+  }
+
+  .rakucall-console-nav,
+  .rakucall-salesforce-strip,
+  .rakucall-console-column:nth-child(3) {
+    display: none;
+  }
+
+  .rakucall-console-main {
+    padding: 12px;
+  }
+
+  .rakucall-console-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .rakucall-console-column:nth-child(2) {
+    border-right: 0;
+  }
+
+  .rakucall-section {
+    padding: 68px 0;
+  }
+
+  .rakucall-section-heading,
+  .rakucall-operation-copy .rakucall-section-heading {
+    font-size: 28px;
+  }
+
+  .rakucall-section-copy {
+    font-size: 14px;
+  }
+
+  .rakucall-workflow {
+    margin-top: 38px;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .rakucall-workflow-step {
+    min-height: 96px;
+    padding: 12px 0;
+    grid-template-columns: 52px minmax(0, 1fr);
+    justify-items: start;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+  }
+
+  .rakucall-workflow-step:not(:last-child)::after {
+    top: 66px;
+    left: 25px;
+    width: 1px;
+    height: 34px;
+  }
+
+  .rakucall-workflow-step h3,
+  .rakucall-workflow-step p {
+    grid-column: 2;
+  }
+
+  .rakucall-workflow-step h3 {
+    align-self: end;
+  }
+
+  .rakucall-workflow-step p {
+    margin-top: -12px;
+    align-self: start;
+  }
+
+  .rakucall-history-ui {
+    grid-template-columns: 1fr;
+  }
+
+  .rakucall-history-detail {
+    border-top: 1px solid var(--rc-line);
+    border-left: 0;
+  }
+
+  .rakucall-history-table th:nth-child(2),
+  .rakucall-history-table td:nth-child(2) {
+    display: none;
+  }
+
+  .rakucall-usecase-row {
+    padding: 24px 0;
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 4px 14px;
+  }
+
+  .rakucall-usecase-row h3 {
+    font-size: 18px;
+  }
+
+  .rakucall-usecase-row p {
+    grid-column: 2;
+    font-size: 14px;
+  }
+
+  .rakucall-demo-form {
+    padding: 22px 18px;
+  }
+
+  .rakucall-form-fields {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .rakucall-integration-rail {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .rakucall-integration-item {
+    min-height: 78px;
+    grid-template-columns: 52px 1fr;
+    justify-items: start;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rakucall-integration-item:not(:last-child)::after {
+    top: 56px;
+    left: 25px;
+    width: 1px;
+    height: 22px;
+  }
+
+  .rakucall-final-cta-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .rakucall-final-cta h2 {
+    font-size: 23px;
+  }
+
+  .rakucall-final-cta .rakucall-text-link {
+    grid-column: auto;
+  }
+}
